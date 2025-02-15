@@ -3,6 +3,7 @@
  */
 
 package com.mycompany.j2bank;
+import view.auth.Login;
 
 /**
  *
@@ -11,6 +12,7 @@ package com.mycompany.j2bank;
 public class J2bank {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        Login login = new Login();
+        login.setVisible(true);
     }
 }

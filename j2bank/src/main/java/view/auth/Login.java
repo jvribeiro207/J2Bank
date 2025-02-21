@@ -93,6 +93,7 @@ public class Login extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void credencialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_credencialActionPerformed
@@ -101,10 +102,10 @@ public class Login extends javax.swing.JFrame {
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
         // TODO add your handling code here:
-        if (credencial.getText().equals("cliente") && senha.getText().equals("cliente123")){
-            ClienteMenu cliente_logado = new ClienteMenu();
-            cliente_logado.setVisible(true);
-            this.setVisible(false);
+        if (credencial.getText().equals("teste") && senha.getText().equals("teste")){
+            GerenteMenu gerente_logado = new GerenteMenu();
+            gerente_logado.setVisible(true);
+            this.dispose();
         }
     }//GEN-LAST:event_btnEntrarActionPerformed
 

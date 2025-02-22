@@ -35,6 +35,7 @@ public class Login extends javax.swing.JFrame {
         senha = new javax.swing.JPasswordField();
         btnEntrar = new javax.swing.JButton();
 
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(18, 30, 49));
 
         credencial.setBorder(javax.swing.BorderFactory.createTitledBorder("Credencial"));

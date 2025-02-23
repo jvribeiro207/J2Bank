@@ -10,6 +10,13 @@
         <maven.compiler.release>21</maven.compiler.release>
         <exec.mainClass>com.mycompany.j2bank.J2bank</exec.mainClass>
     </properties>
+    <dependencies>
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.10</version>
+        </dependency>
+    </dependencies>
     <build>
         <pluginManagement>
             <plugins>

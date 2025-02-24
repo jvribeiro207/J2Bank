@@ -8,16 +8,25 @@ package model;
  *
  * @author B r u n o
  */
-public class Usuario {
+abstract class Usuario {
+
     private String nome;
     private String senha;
     private String tipo;
-    
-    
-    public Usuario(String nome, String senha, String tipo){
+    private String cpf;
+
+    public Usuario(String nome, String senha, String tipo) {
         this.nome = nome;
         this.senha = senha;
         this.tipo = tipo;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 
     public String getNome() {
@@ -43,6 +52,5 @@ public class Usuario {
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
-    
-    
+
 }

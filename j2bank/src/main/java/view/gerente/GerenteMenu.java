@@ -65,7 +65,7 @@ public class GerenteMenu extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\B r u n o\\Desktop\\J2Bank\\j2bank\\src\\main\\java\\assets\\logo menu.png")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\joaov\\Documents\\NetBeansProjects\\J2Bank\\j2bank\\src\\main\\java\\assets\\logo menu.png")); // NOI18N
         jLabel1.setAlignmentX(dashboard.getX()/2);
         jLabel1.setAlignmentY(dashboard.getY()/2);
 
@@ -90,7 +90,7 @@ public class GerenteMenu extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dashboardLayout.createSequentialGroup()
                 .addGap(116, 116, 116)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 156, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(logoutBtn)
                 .addGap(28, 28, 28))
         );

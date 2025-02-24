@@ -58,7 +58,7 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
-        icon.setIcon(new javax.swing.ImageIcon("C:\\Users\\B r u n o\\Desktop\\J2Bank\\j2bank\\src\\main\\java\\assets\\logo login.png")); // NOI18N
+        icon.setIcon(new javax.swing.ImageIcon("C:\\Users\\joaov\\Documents\\NetBeansProjects\\J2Bank\\j2bank\\src\\main\\java\\assets\\logo login.png")); // NOI18N
 
         regBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         regBtn.setForeground(new java.awt.Color(16, 21, 64));
@@ -99,7 +99,7 @@ public class Login extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(29, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(icon)
                 .addGap(18, 18, 18)
                 .addComponent(cpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -133,9 +133,17 @@ public class Login extends javax.swing.JFrame {
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
         // TODO add your handling code here:
-        if (cpf.getText().equals("teste") && senha.getText().equals("teste")){
+        if (cpf.getText().equals("gerente") && senha.getText().equals("gerente")){
             GerenteMenu gerente_logado = new GerenteMenu();
             gerente_logado.setVisible(true);
+            this.dispose();
+        }else if(cpf.getText().equals("cliente") && senha.getText().equals("cliente")){
+            ClienteMenu cm = new ClienteMenu();
+            cm.setVisible(true);
+            this.dispose();
+        }else if(cpf.getText().equals("caixa") && senha.getText().equals("caixa")){
+            CaixaMenu cm = new CaixaMenu();
+            cm.setVisible(true);
             this.dispose();
         }
     }//GEN-LAST:event_btnEntrarActionPerformed

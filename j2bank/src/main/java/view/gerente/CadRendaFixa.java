@@ -4,6 +4,11 @@
  */
 package view.gerente;
 
+import controller.CadRendaFixaController;
+import controller.RendaFixaController;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+
 /**
  *
  * @author B r u n o
@@ -27,29 +32,51 @@ public class CadRendaFixa extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
+        nome_opTxt = new javax.swing.JTextField();
+        rendimentoTxt = new javax.swing.JTextField();
+        prazoMinTxt = new javax.swing.JTextField();
+        validadeTxt = new javax.swing.JTextField();
         cadFixaBtn = new javax.swing.JButton();
 
         setBorder(javax.swing.BorderFactory.createTitledBorder("Cadastrar renda fixa"));
         setClosable(true);
-
-        jTextField1.setBorder(javax.swing.BorderFactory.createTitledBorder("Nome da operação"));
-
-        jTextField2.setBorder(javax.swing.BorderFactory.createTitledBorder("Taxa de rendimento"));
-
-        jTextField3.setBorder(javax.swing.BorderFactory.createTitledBorder("Prazo mínimo para resgate"));
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameOpened(evt);
             }
         });
 
-        jTextField4.setBorder(javax.swing.BorderFactory.createTitledBorder("Validade da operação"));
+        nome_opTxt.setBorder(javax.swing.BorderFactory.createTitledBorder("Nome da operação"));
+
+        rendimentoTxt.setBorder(javax.swing.BorderFactory.createTitledBorder("Taxa de rendimento"));
+
+        prazoMinTxt.setBorder(javax.swing.BorderFactory.createTitledBorder("Prazo mínimo para resgate"));
+        prazoMinTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                prazoMinTxtActionPerformed(evt);
+            }
+        });
+
+        validadeTxt.setBorder(javax.swing.BorderFactory.createTitledBorder("Validade da operação"));
 
         cadFixaBtn.setText("Cadastrar");
+        cadFixaBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cadFixaBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -59,9 +86,9 @@ public class CadRendaFixa extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(26, 26, 26)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(nome_opTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(rendimentoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(150, 150, 150)
                         .addComponent(cadFixaBtn)))
@@ -69,8 +96,8 @@ public class CadRendaFixa extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(108, 108, 108)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(validadeTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(prazoMinTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -78,12 +105,12 @@ public class CadRendaFixa extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(38, 38, 38)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(nome_opTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(rendimentoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(prazoMinTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(validadeTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(cadFixaBtn)
                 .addContainerGap(31, Short.MAX_VALUE))
@@ -103,17 +130,48 @@ public class CadRendaFixa extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void prazoMinTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prazoMinTxtActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    }//GEN-LAST:event_prazoMinTxtActionPerformed
 
+    private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
+        // TODO add your handling code here:
+        controller = new CadRendaFixaController(this);
+    }//GEN-LAST:event_formInternalFrameOpened
 
+    private void cadFixaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadFixaBtnActionPerformed
+        // TODO add your handling code here:
+        if(getNome_opTxt().equals("") || getPrazoMinTxt().equals("") ||
+           getRendimentoTxt().equals("") || getValidadeTxt().equals("")){
+            JOptionPane.showMessageDialog(null, "Preencha todos os campos para completar a ação");
+        } else {
+            controller.adicionaRendaFixa();
+        }
+    }//GEN-LAST:event_cadFixaBtnActionPerformed
+
+    public String getNome_opTxt() {
+        return nome_opTxt.getText();
+    }
+
+    public String getPrazoMinTxt() {
+        return prazoMinTxt.getText();
+    }
+
+    public String getRendimentoTxt() {
+        return rendimentoTxt.getText();
+    }
+
+    public String getValidadeTxt() {
+        return validadeTxt.getText();
+    }
+
+    private CadRendaFixaController controller;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cadFixaBtn;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField nome_opTxt;
+    private javax.swing.JTextField prazoMinTxt;
+    private javax.swing.JTextField rendimentoTxt;
+    private javax.swing.JTextField validadeTxt;
     // End of variables declaration//GEN-END:variables
 }

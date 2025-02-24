@@ -137,7 +137,7 @@
         <Component class="javax.swing.JLabel" name="icon">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\B r u n o\Desktop\J2Bank\j2bank\src\main\java\assets\logo login.png"/>
+              <Image iconType="2" name="C:\Users\joses\Documents\NetBeansProjects\J2Bank\j2bank\src\main\java\assets\logo login.png"/>
             </Property>
           </Properties>
         </Component>

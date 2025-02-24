@@ -68,7 +68,7 @@ public class Registro extends javax.swing.JFrame {
             }
         });
 
-        icon.setIcon(new javax.swing.ImageIcon("C:\\Users\\B r u n o\\Desktop\\J2Bank\\j2bank\\src\\main\\java\\assets\\logo login.png")); // NOI18N
+        icon.setIcon(new javax.swing.ImageIcon("C:\\Users\\joses\\Documents\\NetBeansProjects\\J2Bank\\j2bank\\src\\main\\java\\assets\\logo login.png")); // NOI18N
 
         nome.setBorder(javax.swing.BorderFactory.createTitledBorder("Nome"));
 

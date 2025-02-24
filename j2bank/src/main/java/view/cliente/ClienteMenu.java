@@ -134,7 +134,9 @@ public class ClienteMenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnInvestimentosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInvestimentosActionPerformed
-        // TODO add your handling code here:
+        TelaInvestimentos ti = new TelaInvestimentos();
+        ti.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btnInvestimentosActionPerformed
 
     private void btnTransferenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTransferenciaActionPerformed

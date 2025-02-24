@@ -13,6 +13,8 @@ import javax.swing.JInternalFrame;
  */
 public class GerenteMenu extends javax.swing.JFrame {
 
+    
+    
     /**
      * Creates new form GerenteMenu
      */
@@ -48,6 +50,11 @@ public class GerenteMenu extends javax.swing.JFrame {
         setLocation(new java.awt.Point(0, 0));
         setMaximumSize(new java.awt.Dimension(800, 600));
         setMinimumSize(new java.awt.Dimension(800, 600));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         dashboard.setBackground(new java.awt.Color(245, 245, 245));
 
@@ -254,6 +261,10 @@ public class GerenteMenu extends javax.swing.JFrame {
         menu.show();
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formWindowOpened
+
     /**
      * @param args the command line arguments
      */
@@ -288,6 +299,7 @@ public class GerenteMenu extends javax.swing.JFrame {
             }
         });
     }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane dashboard;

@@ -14,6 +14,8 @@ import persistence.*;
  *
  * @author B r u n o
  */
+
+/*
 public class UsuarioController {
 
     public void adiciona() {
@@ -41,3 +43,4 @@ public class UsuarioController {
     }
 
 }
+*/

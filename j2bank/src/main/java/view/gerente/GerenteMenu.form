@@ -98,6 +98,9 @@
     <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
       <Dimension value="[800, 600]"/>
     </Property>
+    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+      <Dimension value="[800, 600]"/>
+    </Property>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="menuBar" type="java.lang.String" value="jMenuBar1"/>
@@ -178,7 +181,7 @@
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\joaov\Documents\NetBeansProjects\J2Bank\j2bank\src\main\java\assets\logo menu.png"/>
+              <Image iconType="3" name="/assets/logo menu.png"/>
             </Property>
             <Property name="alignmentX" type="float" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
               <Connection code="dashboard.getX()/2" type="code"/>

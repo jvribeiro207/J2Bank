@@ -5,7 +5,7 @@
 package persistence;
 
 import persistence.*;
-import model.Usuario;
+//import model.Usuario;
 
 import com.google.gson.reflect.TypeToken;
 
@@ -19,6 +19,8 @@ import com.google.gson.Gson;
  *
  * @author B r u n o
  */
+
+/*
 public class UsuarioPersistence implements Persistence<Usuario> {
 
     private static final String PATH = DIRECTORY + File.separator + "usuarios.json";
@@ -58,3 +60,5 @@ public class UsuarioPersistence implements Persistence<Usuario> {
         return usuarios;
     }
 }
+
+*/

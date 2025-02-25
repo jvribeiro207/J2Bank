@@ -58,7 +58,7 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
-        icon.setIcon(new javax.swing.ImageIcon("C:\\Users\\joses\\Documents\\NetBeansProjects\\J2Bank\\j2bank\\src\\main\\java\\assets\\logo login.png")); // NOI18N
+        icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/logo login.png"))); // NOI18N
 
         regBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         regBtn.setForeground(new java.awt.Color(16, 21, 64));

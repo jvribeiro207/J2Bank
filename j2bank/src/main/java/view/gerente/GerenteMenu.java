@@ -65,7 +65,7 @@ public class GerenteMenu extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\joses\\Documents\\NetBeansProjects\\J2Bank\\j2bank\\src\\main\\java\\assets\\logo menu.png")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/logo menu.png"))); // NOI18N
         jLabel1.setAlignmentX(dashboard.getX()/2);
         jLabel1.setAlignmentY(dashboard.getY()/2);
 

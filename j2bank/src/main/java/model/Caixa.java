@@ -10,8 +10,16 @@ package model;
  */
 public class Caixa extends Usuario {
     
-    public Caixa(String nome, String senha, String tipo) {
-        super(nome, senha, tipo);
+    public Caixa(String nome, String senha, String cpf) {
+        super(nome, senha, "CAIXA");
+        this.setCpf(cpf);
+        
+        }
+    
+    @Override
+        public String toString(){
+        return getNome() + " - " + getCpf();
+    
     }
     
 }

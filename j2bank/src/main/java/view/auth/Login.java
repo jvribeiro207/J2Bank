@@ -58,7 +58,7 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
-        icon.setIcon(new javax.swing.ImageIcon("C:\\Users\\joaov\\Documents\\NetBeansProjects\\J2Bank\\j2bank\\src\\main\\java\\assets\\logo login.png")); // NOI18N
+        icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/logo login.png"))); // NOI18N
 
         regBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         regBtn.setForeground(new java.awt.Color(16, 21, 64));
@@ -134,8 +134,8 @@ public class Login extends javax.swing.JFrame {
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
         // TODO add your handling code here:
         if (cpf.getText().equals("gerente") && senha.getText().equals("gerente")){
-            GerenteMenu gerente_logado = new GerenteMenu();
-            gerente_logado.setVisible(true);
+            GerenteMenu gm = new GerenteMenu();
+            gm.setVisible(true);
             this.dispose();
         }else if(cpf.getText().equals("cliente") && senha.getText().equals("cliente")){
             ClienteMenu cm = new ClienteMenu();

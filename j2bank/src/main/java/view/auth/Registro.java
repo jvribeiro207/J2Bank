@@ -8,11 +8,16 @@ import javax.swing.JOptionPane;
 import view.caixa.*;
 import view.cliente.*;
 import view.gerente.*;
+import model.*;
+import persistence.*;
+import controller.CaixaController.*;
+import java.util.List;
 
 /**
  *
  * @author B r u n o
  */
+
 public class Registro extends javax.swing.JFrame {
 
     /**
@@ -140,15 +145,38 @@ public class Registro extends javax.swing.JFrame {
 
     private void regBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regBtnActionPerformed
         // TODO add your handling code here:
+        String nomeUsuario = nome.getText();
+        String cpfUsuario = cpf.getText();
+        String senhaUsuario = new String(senha.getPassword());
+        String tipoUsuario = (String) tipo.getSelectedItem();
+
+        if (nomeUsuario.isEmpty() || cpfUsuario.isEmpty() || senhaUsuario.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Preencha todos os campos!", "Erro", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        if ("Caixa".equals(tipoUsuario)) {
+            Caixa novoCaixa = new Caixa(nomeUsuario, senhaUsuario, cpfUsuario);
+
+            Persistence<Caixa> caixaPersistence = new CaixaPersistence();
+            List<Caixa> caixas = caixaPersistence.findAll();
+            caixas.add(novoCaixa);
+            caixaPersistence.save(caixas);
+
+            JOptionPane.showMessageDialog(this, "Caixa registrado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(this, "Tipo de usuário não suportado!", "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+
         Login menu = new Login();
-        menu.show();
+        menu.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_regBtnActionPerformed
 
     private void voltarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_voltarBtnActionPerformed
         // TODO add your handling code here:
         Login menu = new Login();
-        menu.show();
+        menu.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_voltarBtnActionPerformed
 
@@ -156,39 +184,39 @@ public class Registro extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+    /* Set the Nimbus look and feel */
+    //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+    /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
+     */
+    try {
+        for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+            if ("Nimbus".equals(info.getName())) {
+                javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                break;
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Registro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Registro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Registro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Registro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Registro().setVisible(true);
-            }
-        });
+    } catch (ClassNotFoundException ex) {
+        java.util.logging.Logger.getLogger(Registro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    } catch (InstantiationException ex) {
+        java.util.logging.Logger.getLogger(Registro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    } catch (IllegalAccessException ex) {
+        java.util.logging.Logger.getLogger(Registro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        java.util.logging.Logger.getLogger(Registro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
     }
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
+
+    /* Create and display the form */
+    java.awt.EventQueue.invokeLater(new Runnable() {
+        public void run() {
+            new Registro().setVisible(true);
+        }
+    });
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField cpf;

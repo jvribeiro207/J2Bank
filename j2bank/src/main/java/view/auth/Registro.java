@@ -4,6 +4,7 @@
  */
 package view.auth;
 
+import controller.ClienteController;
 import javax.swing.JOptionPane;
 import view.caixa.*;
 import view.cliente.*;
@@ -20,6 +21,7 @@ public class Registro extends javax.swing.JFrame {
      */
     public Registro() {
         initComponents();
+        clienteController = new ClienteController();
     }
 
     /**
@@ -33,12 +35,12 @@ public class Registro extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         voltarBtn = new javax.swing.JButton();
-        cpf = new javax.swing.JTextField();
-        senha = new javax.swing.JPasswordField();
+        tfCpf = new javax.swing.JTextField();
+        tfSenha = new javax.swing.JPasswordField();
         regBtn = new javax.swing.JButton();
         icon = new javax.swing.JLabel();
-        nome = new javax.swing.JTextField();
-        tipo = new javax.swing.JComboBox<>();
+        tfNome = new javax.swing.JTextField();
+        cbTipo = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(18, 30, 49));
@@ -52,14 +54,14 @@ public class Registro extends javax.swing.JFrame {
             }
         });
 
-        cpf.setBorder(javax.swing.BorderFactory.createTitledBorder("CPF"));
-        cpf.addActionListener(new java.awt.event.ActionListener() {
+        tfCpf.setBorder(javax.swing.BorderFactory.createTitledBorder("CPF"));
+        tfCpf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cpfActionPerformed(evt);
+                tfCpfActionPerformed(evt);
             }
         });
 
-        senha.setBorder(javax.swing.BorderFactory.createTitledBorder("Senha"));
+        tfSenha.setBorder(javax.swing.BorderFactory.createTitledBorder("Senha"));
 
         regBtn.setText("Registrar");
         regBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -70,10 +72,10 @@ public class Registro extends javax.swing.JFrame {
 
         icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/logo login.png"))); // NOI18N
 
-        nome.setBorder(javax.swing.BorderFactory.createTitledBorder("Nome"));
+        tfNome.setBorder(javax.swing.BorderFactory.createTitledBorder("Nome"));
 
-        tipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cliente", "Caixa", "Gerente" }));
-        tipo.setBorder(javax.swing.BorderFactory.createTitledBorder("Tipo de conta"));
+        cbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cliente", "Caixa", "Gerente" }));
+        cbTipo.setBorder(javax.swing.BorderFactory.createTitledBorder("Tipo de conta"));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -82,10 +84,10 @@ public class Registro extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(senha)
-                    .addComponent(tipo, 0, 222, Short.MAX_VALUE)
-                    .addComponent(cpf)
-                    .addComponent(nome))
+                    .addComponent(tfSenha)
+                    .addComponent(cbTipo, 0, 222, Short.MAX_VALUE)
+                    .addComponent(tfCpf)
+                    .addComponent(tfNome))
                 .addGap(93, 93, 93))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -105,13 +107,13 @@ public class Registro extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(icon)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(nome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tfNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(cpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tfCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(tipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(senha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tfSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(regBtn)
@@ -134,15 +136,25 @@ public class Registro extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cpfActionPerformed
+    private void tfCpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfCpfActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cpfActionPerformed
+    }//GEN-LAST:event_tfCpfActionPerformed
 
     private void regBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regBtnActionPerformed
-        // TODO add your handling code here:
-        Login menu = new Login();
-        menu.show();
-        this.dispose();
+                
+                String nome = tfNome.getText();
+                String cpf = tfCpf.getText();
+                String senha = new String(tfSenha.getPassword());
+                String tipoUsuario = cbTipo.getSelectedItem().toString();
+
+                boolean sucesso = clienteController.registrarCliente(nome, cpf, senha, tipoUsuario);
+
+                if (sucesso) {
+                    JOptionPane.showMessageDialog(null, "Cliente registrado com sucesso!");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Erro ao registrar. Verifique os dados.");
+                }
+    
     }//GEN-LAST:event_regBtnActionPerformed
 
     private void voltarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_voltarBtnActionPerformed
@@ -189,15 +201,15 @@ public class Registro extends javax.swing.JFrame {
             }
         });
     }
-
+    private ClienteController clienteController;
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField cpf;
+    private javax.swing.JComboBox<String> cbTipo;
     private javax.swing.JLabel icon;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField nome;
     private javax.swing.JButton regBtn;
-    private javax.swing.JPasswordField senha;
-    private javax.swing.JComboBox<String> tipo;
+    private javax.swing.JTextField tfCpf;
+    private javax.swing.JTextField tfNome;
+    private javax.swing.JPasswordField tfSenha;
     private javax.swing.JButton voltarBtn;
     // End of variables declaration//GEN-END:variables
 }

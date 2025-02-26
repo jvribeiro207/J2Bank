@@ -8,17 +8,18 @@ package model;
  *
  * @author B r u n o
  */
-abstract class Usuario {
+public abstract class Usuario {
 
     private String nome;
     private String senha;
     private String tipo;
     private String cpf;
 
-    public Usuario(String nome, String senha, String tipo) {
+    public Usuario(String nome, String cpf, String tipo, String senha) {
         this.nome = nome;
         this.senha = senha;
         this.tipo = tipo;
+        this.cpf = cpf;
     }
 
     public String getCpf() {

@@ -4,7 +4,7 @@
  */
 package model;
 import java.math.BigDecimal;
-import java.util.List;
+
 /**
  *
  * @author B r u n o
@@ -12,10 +12,22 @@ import java.util.List;
 public class Cliente extends Usuario {
     
     private BigDecimal saldo;
-    private List<Transacao> historicoTransacoes;
-    
-    public Cliente(String nome, String senha, String tipo) {
-        super(nome, senha, tipo);
+
+    public Cliente(String nome, String cpf, String tipo, String senha) {
+        super(nome, cpf, "CLIENTE", senha);
+        saldo = BigDecimal.ZERO;
+    }
+
+    public BigDecimal getSaldo() {
+        return saldo;
+    }
+
+    public void setSaldo(BigDecimal saldo) {
+        this.saldo = saldo;
     }
     
+    @Override
+    public String toString() {
+        return "Cliente{" + "nome='" + getNome() + '\'' + ", cpf='" + getCpf() + '\'' + ", tipo='" + getTipo() + '\'' + " senha='" + getSenha() + '}';
+    }
 }

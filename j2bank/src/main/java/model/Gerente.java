@@ -10,8 +10,8 @@ package model;
  */
 public class Gerente extends Caixa {
     
-    public Gerente(String nome, String senha, String tipo) {
-        super(nome, senha, tipo);
+    public Gerente(String nome, String senha, String tipo, String cpf) {
+        super(nome, senha, "GERENTE", cpf);
     }
     
 }

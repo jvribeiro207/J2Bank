@@ -46,6 +46,8 @@ public class TelaInvestimentos extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel1.setPreferredSize(new java.awt.Dimension(600, 400));
+
         jButton1.setText("Vender/Retirar Dinheiro");
 
         btnVoltar.setText("Voltar");
@@ -222,6 +224,7 @@ public class TelaInvestimentos extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed

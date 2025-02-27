@@ -4,6 +4,7 @@
  */
 package view.cliente;
 
+import model.Cliente;
 import view.auth.Login;
 
 /**
@@ -200,7 +201,15 @@ public class ClienteMenu extends javax.swing.JFrame {
             }
         });
     }
-
+    
+    public Cliente getLogado(){
+        return logado;
+    }
+    public void setLogado(Cliente logado){
+        this.logado = logado;
+    }
+    
+    private Cliente logado;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel BemVindo;
     private javax.swing.JButton btnConsultas;
@@ -210,4 +219,6 @@ public class ClienteMenu extends javax.swing.JFrame {
     private javax.swing.JButton btnTransferencia;
     private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
+
+
 }

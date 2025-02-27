@@ -4,7 +4,7 @@
  */
 package view.gerente;
 
-import controller.RendaVarController;
+import controller.renda_var.RendaVarController;
 import java.awt.Dimension;
 import javax.swing.JList;
 import model.RendaVar;

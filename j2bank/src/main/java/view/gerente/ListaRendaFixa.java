@@ -4,7 +4,7 @@
  */
 package view.gerente;
 
-import controller.RendaFixaController;
+import controller.renda_fixa.RendaFixaController;
 import java.awt.Dimension;
 import java.util.List;
 import javax.swing.DefaultListModel;

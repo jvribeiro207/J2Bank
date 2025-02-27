@@ -4,7 +4,7 @@
  */
 package view.gerente;
 
-import controller.CadRendaVarController;
+import controller.renda_var.CadRendaVarController;
 import static java.lang.Integer.parseInt;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;

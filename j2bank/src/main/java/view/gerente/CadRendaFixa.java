@@ -4,8 +4,8 @@
  */
 package view.gerente;
 
-import controller.CadRendaFixaController;
-import controller.RendaFixaController;
+import controller.renda_fixa.CadRendaFixaController;
+import controller.renda_fixa.RendaFixaController;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 

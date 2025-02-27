@@ -115,6 +115,7 @@ public class Transferencia extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnContaDestinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContaDestinoActionPerformed

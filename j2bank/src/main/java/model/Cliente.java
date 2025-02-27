@@ -9,9 +9,11 @@ package model;
  * @author B r u n o
  */
 public class Cliente extends Usuario {
-    
-    public Cliente(String nome, String senha, String tipo) {
-        super(nome, senha, tipo);
+
+    public Cliente(String nome, String senha, String tipo, String cpf) {
+        super(nome, senha, tipo, cpf);
     }
+    
+
     
 }

@@ -9,17 +9,13 @@ package model;
  * @author B r u n o
  */
 public class Caixa extends Usuario {
-    
-    public Caixa(String nome, String senha, String cpf) {
-        super(nome, senha, "CAIXA");
-        this.setCpf(cpf);
-        
-        }
-    
-    @Override
-        public String toString(){
-        return getNome() + " - " + getCpf();
-    
+
+    public Caixa(String nome, String senha, String tipo, String cpf) {
+        super(nome, senha, tipo, cpf);
     }
     
+    @Override
+    public String toString(){
+        return getNome() + " - " + getSenha() + " - " + getCpf();
+    }
 }

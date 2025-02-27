@@ -19,6 +19,7 @@ import persistence.CaixaPersistence;
 public class CaixaController {
     private DefaultListModel<Caixa> model;
 
+
     public CaixaController(DefaultListModel<Caixa> model) {
         this.model = model;
     }

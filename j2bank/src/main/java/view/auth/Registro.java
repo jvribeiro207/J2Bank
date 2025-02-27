@@ -154,6 +154,8 @@ public class Registro extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Preencha todos os campos!", "Erro", JOptionPane.ERROR_MESSAGE);
             return;
         }
+        
+        
 
         if ("Caixa".equals(tipoUsuario)) {
             Caixa novoCaixa = new Caixa(nomeUsuario, senhaUsuario, cpfUsuario);

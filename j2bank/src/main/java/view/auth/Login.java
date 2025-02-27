@@ -3,10 +3,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package view.auth;
+
 import javax.swing.JOptionPane;
 import view.caixa.*;
 import view.cliente.*;
 import view.gerente.*;
+import java.util.List;
+import model.*;
+import persistence.*;
 
 /**
  *
@@ -133,15 +137,37 @@ public class Login extends javax.swing.JFrame {
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
         // TODO add your handling code here:
-        if (cpf.getText().equals("gerente") && senha.getText().equals("gerente")){
+
+        String cpfUsuario = cpf.getText();
+        String senhaUsuario = new String(senha.getPassword());
+
+        if (cpfUsuario.isEmpty() || senhaUsuario.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Preencha todos os campos!", "Erro", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        Persistence<Caixa> caixaPersistence = new CaixaPersistence();
+        List<Caixa> caixas = caixaPersistence.findAll();
+        for (Caixa caixa : caixas) {
+            if (caixa.getCpf().equals(cpfUsuario) && caixa.getSenha().equals(senha.getText())) {
+                CaixaMenu cm = new CaixaMenu();
+                cm.setVisible(true);
+                this.dispose();
+            } else {
+                JOptionPane.showMessageDialog(this, "Senha incorreta!", "Erro", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+        }
+
+        if (cpf.getText().equals("gerente") && senha.getText().equals("gerente")) {
             GerenteMenu gerente_logado = new GerenteMenu();
             gerente_logado.setVisible(true);
             this.dispose();
-        }else if(cpf.getText().equals("cliente") && senha.getText().equals("cliente")){
+        } else if (cpf.getText().equals("cliente") && senha.getText().equals("cliente")) {
             ClienteMenu cm = new ClienteMenu();
             cm.setVisible(true);
             this.dispose();
-        }else if(cpf.getText().equals("caixa") && senha.getText().equals("caixa")){
+        } else if (cpf.getText().equals("caixa") && senha.getText().equals("caixa")) {
             CaixaMenu cm = new CaixaMenu();
             cm.setVisible(true);
             this.dispose();

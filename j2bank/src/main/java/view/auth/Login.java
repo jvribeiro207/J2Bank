@@ -3,7 +3,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package view.auth;
+
+import java.util.List;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+import model.Gerente;
+import persistence.GerentePersistence;
 import view.caixa.*;
 import view.cliente.*;
 import view.gerente.*;
@@ -36,9 +43,11 @@ public class Login extends javax.swing.JFrame {
         btnEntrar = new javax.swing.JButton();
         icon = new javax.swing.JLabel();
         regBtn = new javax.swing.JButton();
+        tipo = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(18, 30, 49));
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(245, 245, 245));
 
@@ -71,21 +80,26 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
+        tipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cliente", "Caixa", "Gerente" }));
+        tipo.setBorder(javax.swing.BorderFactory.createTitledBorder("Tipo de conta"));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(122, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(cpf)
-                            .addComponent(senha, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(119, 119, 119))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(icon)
-                        .addGap(150, 150, 150))))
+                    .addComponent(senha, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                            .addComponent(icon)
+                            .addGap(150, 150, 150))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(tipo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(cpf, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(119, 119, 119)))))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -101,11 +115,13 @@ public class Login extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(icon)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(tipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(14, 14, 14)
                 .addComponent(senha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnEntrar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(regBtn)
@@ -133,19 +149,12 @@ public class Login extends javax.swing.JFrame {
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
         // TODO add your handling code here:
-        if (cpf.getText().equals("gerente") && senha.getText().equals("gerente")){
-            GerenteMenu gerente_logado = new GerenteMenu();
-            gerente_logado.setVisible(true);
-            this.dispose();
-        }else if(cpf.getText().equals("cliente") && senha.getText().equals("cliente")){
-            ClienteMenu cm = new ClienteMenu();
-            cm.setVisible(true);
-            this.dispose();
-        }else if(cpf.getText().equals("caixa") && senha.getText().equals("caixa")){
-            CaixaMenu cm = new CaixaMenu();
-            cm.setVisible(true);
-            this.dispose();
+        if (getCpf().equals("") || getSenha().equals("") || getTipo().equals("")) {
+            JOptionPane.showMessageDialog(this, "Preencha todos os campos");
+        } else if (getTipo().equals("Gerente")){
+            logaGerente();
         }
+
     }//GEN-LAST:event_btnEntrarActionPerformed
 
     private void regBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regBtnActionPerformed
@@ -191,6 +200,38 @@ public class Login extends javax.swing.JFrame {
         });
     }
 
+    public String getCpf() {
+        return cpf.getText();
+    }
+
+    public String getSenha() {
+        return senha.getText();
+    }
+
+    public String getTipo() {
+        return tipo.getSelectedItem().toString();
+    }
+
+    private void logaGerente() {
+        Gerente conta_existe = new Gerente("","","","");
+        GerentePersistence gerentePersistence = new GerentePersistence();
+        List<Gerente> todos = gerentePersistence.findAll();
+        for (Gerente g : todos) {
+            if (g.getCpf().equals(this.getCpf()) && g.getSenha().equals(this.getSenha())) {
+                conta_existe = g;
+            }
+        }
+        if (conta_existe.getCpf().equals("")) {
+            JOptionPane.showMessageDialog(this, "Conta não foi encontrada nos registros");
+        } else{
+            GerenteMenu menu = new GerenteMenu();
+            menu.setLogado(conta_existe);
+            menu.show();
+            this.dispose();
+        }
+    }
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEntrar;
     private javax.swing.JTextField cpf;
@@ -198,5 +239,6 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton regBtn;
     private javax.swing.JPasswordField senha;
+    private javax.swing.JComboBox<String> tipo;
     // End of variables declaration//GEN-END:variables
 }

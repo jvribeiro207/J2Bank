@@ -4,13 +4,16 @@
  */
 package view.auth;
 
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 import view.caixa.*;
 import view.cliente.*;
 import view.gerente.*;
 import java.util.List;
-import model.*;
-import persistence.*;
+import model.Caixa;
+import persistence.CaixaPersistence;
 
 /**
  *
@@ -21,8 +24,11 @@ public class Login extends javax.swing.JFrame {
     /**
      * Creates new form login
      */
+    
+    
     public Login() {
         initComponents();
+
     }
 
     /**
@@ -40,6 +46,7 @@ public class Login extends javax.swing.JFrame {
         btnEntrar = new javax.swing.JButton();
         icon = new javax.swing.JLabel();
         regBtn = new javax.swing.JButton();
+        tipo = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(18, 30, 49));
@@ -75,41 +82,47 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
+        tipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cliente", "Caixa", "Gerente" }));
+        tipo.setBorder(javax.swing.BorderFactory.createTitledBorder("Tipo de conta"));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(122, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(cpf)
-                            .addComponent(senha, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(119, 119, 119))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(icon)
-                        .addGap(150, 150, 150))))
-            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(162, 162, 162)
+                        .addGap(155, 155, 155)
                         .addComponent(btnEntrar))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(148, 148, 148)
+                        .addGap(136, 136, 136)
                         .addComponent(regBtn)))
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(122, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(tipo, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                            .addComponent(icon)
+                            .addGap(150, 150, 150))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                            .addComponent(cpf, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(119, 119, 119)))
+                    .addComponent(senha, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(icon)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(8, 8, 8)
                 .addComponent(senha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(tipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnEntrar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(regBtn)
@@ -138,39 +151,10 @@ public class Login extends javax.swing.JFrame {
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
         // TODO add your handling code here:
 
-        String cpfUsuario = cpf.getText();
-        String senhaUsuario = new String(senha.getPassword());
-
-        if (cpfUsuario.isEmpty() || senhaUsuario.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Preencha todos os campos!", "Erro", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-        Persistence<Caixa> caixaPersistence = new CaixaPersistence();
-        List<Caixa> caixas = caixaPersistence.findAll();
-        for (Caixa caixa : caixas) {
-            if (caixa.getCpf().equals(cpfUsuario) && caixa.getSenha().equals(senha.getText())) {
-                CaixaMenu cm = new CaixaMenu();
-                cm.setVisible(true);
-                this.dispose();
-            } else {
-                JOptionPane.showMessageDialog(this, "Senha incorreta!", "Erro", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-        }
-
-        if (cpf.getText().equals("gerente") && senha.getText().equals("gerente")) {
-            GerenteMenu gerente_logado = new GerenteMenu();
-            gerente_logado.setVisible(true);
-            this.dispose();
-        } else if (cpf.getText().equals("cliente") && senha.getText().equals("cliente")) {
-            ClienteMenu cm = new ClienteMenu();
-            cm.setVisible(true);
-            this.dispose();
-        } else if (cpf.getText().equals("caixa") && senha.getText().equals("caixa")) {
-            CaixaMenu cm = new CaixaMenu();
-            cm.setVisible(true);
-            this.dispose();
+        if (getCpf().equals("") || getSenha().equals("") || getTipo().equals("")) {
+            JOptionPane.showMessageDialog(this, "Preencha todos os campos");
+        } else if (getTipo().equals("Caixa")){
+            logaCaixa();
         }
     }//GEN-LAST:event_btnEntrarActionPerformed
 
@@ -216,6 +200,37 @@ public class Login extends javax.swing.JFrame {
             }
         });
     }
+    
+    public String getCpf() {
+        return cpf.getText();
+    }
+
+    public String getSenha() {
+        return senha.getText();
+    }
+
+    public String getTipo() {
+        return tipo.getSelectedItem().toString();
+    }
+
+    private void logaCaixa() {
+        Caixa conta_existe = new Caixa("","","","");
+        CaixaPersistence caixaPersistence = new CaixaPersistence();
+        List<Caixa> todos = caixaPersistence.findAll();
+        for (Caixa g : todos) {
+            if (g.getCpf().equals(this.getCpf()) && g.getSenha().equals(this.getSenha())) {
+                conta_existe = g;
+            }
+        }
+        if (conta_existe.getCpf().equals("")) {
+            JOptionPane.showMessageDialog(this, "Conta não foi encontrada nos registros");
+        } else{
+            CaixaMenu menu = new CaixaMenu();
+            menu.setLogado(conta_existe);
+            menu.show();
+            this.dispose();
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEntrar;
@@ -224,5 +239,6 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton regBtn;
     private javax.swing.JPasswordField senha;
+    private javax.swing.JComboBox<String> tipo;
     // End of variables declaration//GEN-END:variables
 }

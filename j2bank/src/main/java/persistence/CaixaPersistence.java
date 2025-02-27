@@ -20,19 +20,15 @@ public class CaixaPersistence implements Persistence<Caixa> {
 
     private static final String PATH = DIRECTORY + File.separator + "caixas.json";
 
-    private void criaDiretorio() {
-        File diretorio = new File(DIRECTORY);
-        if (!diretorio.exists()) {
-            diretorio.mkdirs();
-        }
-    }
-    
     @Override
     public void save(List<Caixa> itens) {
         Gson gson = new Gson();
         String json = gson.toJson(itens);
 
-        criaDiretorio();
+        File diretorio = new File(DIRECTORY);
+        if (!diretorio.exists()) {
+            diretorio.mkdirs();
+        }
 
         Arquivo.salva(PATH, json);
 
@@ -58,5 +54,4 @@ public class CaixaPersistence implements Persistence<Caixa> {
 
         return caixas;
     }
-
 }

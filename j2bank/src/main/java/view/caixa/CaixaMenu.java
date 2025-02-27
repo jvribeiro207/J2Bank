@@ -4,7 +4,9 @@
  */
 package view.caixa;
 
-import view.auth.Login;
+import view.auth.*;
+import model.Caixa;
+
 
 /**
  *
@@ -160,6 +162,16 @@ public class CaixaMenu extends javax.swing.JFrame {
             }
         });
     }
+    
+    public Caixa getLogado() {
+        return logado;
+    }
+
+    public void setLogado(Caixa logado) {
+        this.logado = logado;
+    }
+    
+    private Caixa logado;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDeposito;

@@ -56,4 +56,10 @@ public class TransacaoPersistence implements Persistence<Transacao> {
 
         return transacoes;
     }
+    
+    public void registraTransacao(Transacao transacao){
+        List<Transacao> transacoes = findAll();
+        transacoes.add(transacao);
+        save(transacoes);
+    }
 }

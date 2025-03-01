@@ -18,7 +18,6 @@ import persistence.Persistence;
 public class ClienteController {
     private DefaultListModel<Cliente> model;
 
-
     public ClienteController(DefaultListModel<Cliente> model) {
         this.model = model;
     }

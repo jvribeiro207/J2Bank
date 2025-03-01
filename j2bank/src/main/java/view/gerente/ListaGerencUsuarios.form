@@ -72,9 +72,9 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="158" max="-2" attributes="0"/>
-                          <Component id="editaGerenteBtn1" min="-2" max="-2" attributes="0"/>
+                          <Component id="editaClienteBtn" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
-                          <Component id="removeGerenteBtn1" min="-2" max="-2" attributes="0"/>
+                          <Component id="removeClienteBtn" min="-2" max="-2" attributes="0"/>
                           <EmptySpace pref="154" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
@@ -90,8 +90,8 @@
                           <Component id="jScrollPane2" min="-2" pref="220" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="editaGerenteBtn1" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="removeGerenteBtn1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="editaClienteBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="removeClienteBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="0" pref="21" max="32767" attributes="0"/>
                       </Group>
@@ -99,15 +99,15 @@
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JButton" name="removeGerenteBtn1">
+                <Component class="javax.swing.JButton" name="removeClienteBtn">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Excluir registro"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="removeGerenteBtn1ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="removeClienteBtnActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="editaGerenteBtn1">
+                <Component class="javax.swing.JButton" name="editaClienteBtn">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Editar registro"/>
                   </Properties>
@@ -119,7 +119,7 @@
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                   <SubComponents>
-                    <Component class="javax.swing.JList" name="lista_gerentes1">
+                    <Component class="javax.swing.JList" name="lista_clientes">
                       <Properties>
                         <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
                           <StringArray count="0"/>
@@ -156,9 +156,9 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="158" max="-2" attributes="0"/>
-                          <Component id="editaGerenteBtn2" min="-2" max="-2" attributes="0"/>
+                          <Component id="editaCaixaBtn" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
-                          <Component id="removeGerenteBtn2" min="-2" max="-2" attributes="0"/>
+                          <Component id="removeCaixaBtn" min="-2" max="-2" attributes="0"/>
                           <EmptySpace pref="154" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
@@ -174,8 +174,8 @@
                           <Component id="jScrollPane3" min="-2" pref="220" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="editaGerenteBtn2" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="removeGerenteBtn2" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="editaCaixaBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="removeCaixaBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="0" pref="21" max="32767" attributes="0"/>
                       </Group>
@@ -183,15 +183,15 @@
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JButton" name="removeGerenteBtn2">
+                <Component class="javax.swing.JButton" name="removeCaixaBtn">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Excluir registro"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="removeGerenteBtn2ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="removeCaixaBtnActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="editaGerenteBtn2">
+                <Component class="javax.swing.JButton" name="editaCaixaBtn">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Editar registro"/>
                   </Properties>
@@ -203,7 +203,7 @@
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                   <SubComponents>
-                    <Component class="javax.swing.JList" name="lista_gerentes2">
+                    <Component class="javax.swing.JList" name="lista_caixas">
                       <Properties>
                         <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
                           <StringArray count="0"/>
@@ -279,6 +279,9 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Editar registro"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="editaGerenteBtnActionPerformed"/>
+                  </Events>
                 </Component>
                 <Container class="javax.swing.JScrollPane" name="jScrollPane1">
                   <AuxValues>

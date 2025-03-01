@@ -5,6 +5,8 @@
 package view.gerente;
 
 import controller.GerenteController;
+import java.awt.Frame;
+import java.awt.Window;
 import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JList;
@@ -14,7 +16,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 import model.Gerente;
 import persistence.GerentePersistence;
-import view.gerente.EditarUsuarioModal;
+import view.gerente.EditarGerenteModal;
 
 /**
  *
@@ -41,16 +43,16 @@ public class ListaGerencUsuarios extends javax.swing.JInternalFrame {
         painelAbas = new javax.swing.JTabbedPane();
         clientes = new javax.swing.JToolBar();
         jPanel8 = new javax.swing.JPanel();
-        removeGerenteBtn1 = new javax.swing.JButton();
-        editaGerenteBtn1 = new javax.swing.JButton();
+        removeClienteBtn = new javax.swing.JButton();
+        editaClienteBtn = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        lista_gerentes1 = new javax.swing.JList<>();
+        lista_clientes = new javax.swing.JList<>();
         caixas = new javax.swing.JToolBar();
         jPanel9 = new javax.swing.JPanel();
-        removeGerenteBtn2 = new javax.swing.JButton();
-        editaGerenteBtn2 = new javax.swing.JButton();
+        removeCaixaBtn = new javax.swing.JButton();
+        editaCaixaBtn = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
-        lista_gerentes2 = new javax.swing.JList<>();
+        lista_caixas = new javax.swing.JList<>();
         gerentes = new javax.swing.JToolBar();
         jPanel7 = new javax.swing.JPanel();
         removeGerenteBtn = new javax.swing.JButton();
@@ -82,16 +84,16 @@ public class ListaGerencUsuarios extends javax.swing.JInternalFrame {
 
         clientes.setRollover(true);
 
-        removeGerenteBtn1.setText("Excluir registro");
-        removeGerenteBtn1.addActionListener(new java.awt.event.ActionListener() {
+        removeClienteBtn.setText("Excluir registro");
+        removeClienteBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                removeGerenteBtn1ActionPerformed(evt);
+                removeClienteBtnActionPerformed(evt);
             }
         });
 
-        editaGerenteBtn1.setText("Editar registro");
+        editaClienteBtn.setText("Editar registro");
 
-        jScrollPane2.setViewportView(lista_gerentes1);
+        jScrollPane2.setViewportView(lista_clientes);
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -99,9 +101,9 @@ public class ListaGerencUsuarios extends javax.swing.JInternalFrame {
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addGap(158, 158, 158)
-                .addComponent(editaGerenteBtn1)
+                .addComponent(editaClienteBtn)
                 .addGap(55, 55, 55)
-                .addComponent(removeGerenteBtn1)
+                .addComponent(removeClienteBtn)
                 .addContainerGap(154, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
@@ -114,8 +116,8 @@ public class ListaGerencUsuarios extends javax.swing.JInternalFrame {
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(43, 43, 43)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(editaGerenteBtn1)
-                    .addComponent(removeGerenteBtn1))
+                    .addComponent(editaClienteBtn)
+                    .addComponent(removeClienteBtn))
                 .addGap(0, 21, Short.MAX_VALUE))
         );
 
@@ -125,16 +127,16 @@ public class ListaGerencUsuarios extends javax.swing.JInternalFrame {
 
         caixas.setRollover(true);
 
-        removeGerenteBtn2.setText("Excluir registro");
-        removeGerenteBtn2.addActionListener(new java.awt.event.ActionListener() {
+        removeCaixaBtn.setText("Excluir registro");
+        removeCaixaBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                removeGerenteBtn2ActionPerformed(evt);
+                removeCaixaBtnActionPerformed(evt);
             }
         });
 
-        editaGerenteBtn2.setText("Editar registro");
+        editaCaixaBtn.setText("Editar registro");
 
-        jScrollPane3.setViewportView(lista_gerentes2);
+        jScrollPane3.setViewportView(lista_caixas);
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
@@ -142,9 +144,9 @@ public class ListaGerencUsuarios extends javax.swing.JInternalFrame {
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addGap(158, 158, 158)
-                .addComponent(editaGerenteBtn2)
+                .addComponent(editaCaixaBtn)
                 .addGap(55, 55, 55)
-                .addComponent(removeGerenteBtn2)
+                .addComponent(removeCaixaBtn)
                 .addContainerGap(154, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
@@ -157,8 +159,8 @@ public class ListaGerencUsuarios extends javax.swing.JInternalFrame {
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(43, 43, 43)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(editaGerenteBtn2)
-                    .addComponent(removeGerenteBtn2))
+                    .addComponent(editaCaixaBtn)
+                    .addComponent(removeCaixaBtn))
                 .addGap(0, 21, Short.MAX_VALUE))
         );
 
@@ -176,6 +178,11 @@ public class ListaGerencUsuarios extends javax.swing.JInternalFrame {
         });
 
         editaGerenteBtn.setText("Editar registro");
+        editaGerenteBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editaGerenteBtnActionPerformed(evt);
+            }
+        });
 
         jScrollPane1.setViewportView(lista_gerentes);
 
@@ -232,13 +239,13 @@ public class ListaGerencUsuarios extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_removeGerenteBtnActionPerformed
 
-    private void removeGerenteBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeGerenteBtn1ActionPerformed
+    private void removeClienteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeClienteBtnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_removeGerenteBtn1ActionPerformed
+    }//GEN-LAST:event_removeClienteBtnActionPerformed
 
-    private void removeGerenteBtn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeGerenteBtn2ActionPerformed
+    private void removeCaixaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeCaixaBtnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_removeGerenteBtn2ActionPerformed
+    }//GEN-LAST:event_removeCaixaBtnActionPerformed
 
     private void formInternalFrameClosing(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameClosing
         // TODO add your handling code here:
@@ -251,6 +258,24 @@ public class ListaGerencUsuarios extends javax.swing.JInternalFrame {
         gController.carregaGerentes();
     }//GEN-LAST:event_formInternalFrameOpened
 
+    private void editaGerenteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editaGerenteBtnActionPerformed
+        // TODO add your handling code here:
+        if(!lista_gerentes.isSelectionEmpty()){
+            Gerente selecionado = lista_gerentes.getSelectedValue();
+            
+            EditarGerenteModal menu = new EditarGerenteModal(null,true);
+            menu.setEditar_usuario(selecionado);
+            menu.setLogado(logado);
+            
+            this.setVisible(false);
+            
+            menu.setVisible(true);
+            
+            this.setVisible(true);
+
+        }
+    }//GEN-LAST:event_editaGerenteBtnActionPerformed
+
     public JList<Gerente> getLista_gerentes() {
         return lista_gerentes;
     }
@@ -262,15 +287,16 @@ public class ListaGerencUsuarios extends javax.swing.JInternalFrame {
     public void setLogado(Gerente logado) {
         this.logado = logado;
     }
+    
 
     private Gerente logado;
     private GerenteController gController;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToolBar caixas;
     private javax.swing.JToolBar clientes;
+    private javax.swing.JButton editaCaixaBtn;
+    private javax.swing.JButton editaClienteBtn;
     private javax.swing.JButton editaGerenteBtn;
-    private javax.swing.JButton editaGerenteBtn1;
-    private javax.swing.JButton editaGerenteBtn2;
     private javax.swing.JToolBar gerentes;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
@@ -278,12 +304,12 @@ public class ListaGerencUsuarios extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JList<Gerente> lista_caixas;
+    private javax.swing.JList<Gerente> lista_clientes;
     private javax.swing.JList<Gerente> lista_gerentes;
-    private javax.swing.JList<Gerente> lista_gerentes1;
-    private javax.swing.JList<Gerente> lista_gerentes2;
     private javax.swing.JTabbedPane painelAbas;
+    private javax.swing.JButton removeCaixaBtn;
+    private javax.swing.JButton removeClienteBtn;
     private javax.swing.JButton removeGerenteBtn;
-    private javax.swing.JButton removeGerenteBtn1;
-    private javax.swing.JButton removeGerenteBtn2;
     // End of variables declaration//GEN-END:variables
 }

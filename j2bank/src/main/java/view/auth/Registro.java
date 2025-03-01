@@ -4,8 +4,8 @@
  */
 package view.auth;
 
-import controller.RegClienteController;
-import controller.RegCaixaController;
+import controller.gerente.RegGerenteController;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JComboBox;
 import view.caixa.*;
@@ -49,6 +49,7 @@ public class Registro extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(18, 30, 49));
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(245, 245, 245));
 
@@ -178,6 +179,17 @@ public class Registro extends javax.swing.JFrame {
                 break;
             }
         }
+        // TODO add your handling code here:
+        if (getNome().equals("") || getCpf().equals("") || getTipo().equals("") || getSenha().equals("")) {
+            JOptionPane.showMessageDialog(this, "Preencha todos os campos");
+        } else {
+            registra();
+            JOptionPane.showMessageDialog(this, "Usuário registrado com sucesso");
+            Login menu = new Login();
+            menu.show();
+            this.dispose();
+        }
+
     }//GEN-LAST:event_regBtnActionPerformed
 
     private void voltarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_voltarBtnActionPerformed
@@ -228,9 +240,30 @@ public class Registro extends javax.swing.JFrame {
             }
         });
     }
-    
-    private RegCaixaController caixaController;
-    private RegClienteController clienteController;
+
+    public String getCpf() {
+        return cpf.getText();
+    }
+
+    public String getNome() {
+        return nome.getText();
+    }
+
+    public String getSenha() {
+        return senha.getText();
+    }
+
+    public String getTipo() {
+        return tipo.getSelectedItem().toString();
+    }
+
+    private void registra() {
+        if (getTipo().equals("Gerente")) {
+            RegGerenteController controller = new RegGerenteController(this);
+            controller.registraGerente();
+        }
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> cbTipo;
     private javax.swing.JFormattedTextField ftfCPF;

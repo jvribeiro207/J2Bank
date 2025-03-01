@@ -50,6 +50,7 @@ public class Login extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(18, 30, 49));
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(245, 245, 245));
 
@@ -88,6 +89,19 @@ public class Login extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(122, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(senha, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                            .addComponent(icon)
+                            .addGap(150, 150, 150))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(tipo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(cpf, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(119, 119, 119)))))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -149,6 +163,7 @@ public class Login extends javax.swing.JFrame {
         }else if(getTipo().equals("Caixa")){
             logaCaixa();
         }
+
     }//GEN-LAST:event_btnEntrarActionPerformed
 
     private void regBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regBtnActionPerformed
@@ -244,6 +259,38 @@ public class Login extends javax.swing.JFrame {
     }
     
 
+    public String getCpf() {
+        return cpf.getText();
+    }
+
+    public String getSenha() {
+        return senha.getText();
+    }
+
+    public String getTipo() {
+        return tipo.getSelectedItem().toString();
+    }
+
+    private void logaGerente() {
+        Gerente conta_existe = new Gerente("","","","");
+        GerentePersistence gerentePersistence = new GerentePersistence();
+        List<Gerente> todos = gerentePersistence.findAll();
+        for (Gerente g : todos) {
+            if (g.getCpf().equals(this.getCpf()) && g.getSenha().equals(this.getSenha())) {
+                conta_existe = g;
+            }
+        }
+        if (conta_existe.getCpf().equals("")) {
+            JOptionPane.showMessageDialog(this, "Conta não foi encontrada nos registros");
+        } else{
+            GerenteMenu menu = new GerenteMenu();
+            menu.setLogado(conta_existe);
+            menu.show();
+            this.dispose();
+        }
+    }
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEntrar;
     private javax.swing.JComboBox<String> cbTipo;
@@ -252,5 +299,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton regBtn;
     private javax.swing.JPasswordField tfSenha;
+    private javax.swing.JPasswordField senha;
+    private javax.swing.JComboBox<String> tipo;
     // End of variables declaration//GEN-END:variables
 }

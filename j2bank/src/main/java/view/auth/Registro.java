@@ -4,8 +4,8 @@
  */
 package view.auth;
 
-import controller.RegCaixaController;
-import controller.RegClienteController;
+import controller.caixa.RegCaixaController;
+import controller.cliente.RegClienteController;
 import controller.gerente.RegGerenteController;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;

@@ -4,16 +4,19 @@
  */
 package view.gerente;
 
+import javax.swing.JOptionPane;
+import model.Gerente;
+
 /**
  *
  * @author B r u n o
  */
-public class EditarUsuarioModal extends javax.swing.JDialog {
+public class EditarGerenteModal extends javax.swing.JDialog {
 
     /**
      * Creates new form EditarUsuarioModal
      */
-    public EditarUsuarioModal(java.awt.Frame parent, boolean modal) {
+    public EditarGerenteModal(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
@@ -30,7 +33,6 @@ public class EditarUsuarioModal extends javax.swing.JDialog {
         jPanel1 = new javax.swing.JPanel();
         nome = new javax.swing.JTextField();
         cpf = new javax.swing.JTextField();
-        tipo = new javax.swing.JComboBox<>();
         senha = new javax.swing.JPasswordField();
         regBtn = new javax.swing.JButton();
         voltarBtn = new javax.swing.JButton();
@@ -38,8 +40,8 @@ public class EditarUsuarioModal extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Editar usuário");
         addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowClosing(java.awt.event.WindowEvent evt) {
-                formWindowClosing(evt);
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
             }
         });
 
@@ -47,14 +49,21 @@ public class EditarUsuarioModal extends javax.swing.JDialog {
 
         cpf.setBorder(javax.swing.BorderFactory.createTitledBorder("CPF"));
 
-        tipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cliente", "Caixa", "Gerente" }));
-        tipo.setBorder(javax.swing.BorderFactory.createTitledBorder("Tipo de conta"));
-
         senha.setBorder(javax.swing.BorderFactory.createTitledBorder("Senha"));
 
         regBtn.setText("Salvar");
+        regBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                regBtnActionPerformed(evt);
+            }
+        });
 
         voltarBtn.setText("Voltar");
+        voltarBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                voltarBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -65,9 +74,8 @@ public class EditarUsuarioModal extends javax.swing.JDialog {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(120, 120, 120)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(senha, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(senha, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
                             .addComponent(cpf, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tipo, javax.swing.GroupLayout.Alignment.LEADING, 0, 160, Short.MAX_VALUE)
                             .addComponent(nome, javax.swing.GroupLayout.Alignment.LEADING)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(105, 105, 105)
@@ -79,15 +87,13 @@ public class EditarUsuarioModal extends javax.swing.JDialog {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(36, Short.MAX_VALUE)
+                .addContainerGap(61, Short.MAX_VALUE)
                 .addComponent(nome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(cpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
-                .addComponent(tipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(senha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addComponent(senha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(42, 42, 42)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(voltarBtn)
                     .addComponent(regBtn))
@@ -109,9 +115,30 @@ public class EditarUsuarioModal extends javax.swing.JDialog {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
-    }//GEN-LAST:event_formWindowClosing
+        nome.setText(editar_usuario.getNome());
+        cpf.setText(editar_usuario.getCpf());
+        senha.setText(editar_usuario.getSenha());
+    }//GEN-LAST:event_formWindowOpened
+
+    private void regBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regBtnActionPerformed
+        // TODO add your handling code here:
+        if (nome.getText().equals("") || senha.getText().equals("") || cpf.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Preencha todos os campos");
+        } else {
+            editar_usuario.setNome(nome.getText());
+            editar_usuario.setCpf(cpf.getText());
+            editar_usuario.setSenha(senha.getText());
+            JOptionPane.showMessageDialog(null, "Usuario editado com sucesso");
+            this.dispose();
+        }
+    }//GEN-LAST:event_regBtnActionPerformed
+
+    private void voltarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_voltarBtnActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_voltarBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -130,20 +157,21 @@ public class EditarUsuarioModal extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(EditarUsuarioModal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditarGerenteModal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(EditarUsuarioModal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditarGerenteModal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(EditarUsuarioModal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditarGerenteModal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(EditarUsuarioModal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditarGerenteModal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                EditarUsuarioModal dialog = new EditarUsuarioModal(new javax.swing.JFrame(), true);
+                EditarGerenteModal dialog = new EditarGerenteModal(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -155,13 +183,31 @@ public class EditarUsuarioModal extends javax.swing.JDialog {
         });
     }
 
+    public Gerente getEditar_usuario() {
+        return editar_usuario;
+    }
+
+    public void setEditar_usuario(Gerente editar_usuario) {
+        this.editar_usuario = editar_usuario;
+    }
+
+    public Gerente getLogado() {
+        return logado;
+    }
+
+    public void setLogado(Gerente logado) {
+        this.logado = logado;
+    }
+    
+
+    private Gerente logado;
+    private Gerente editar_usuario;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField cpf;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField nome;
     private javax.swing.JButton regBtn;
     private javax.swing.JPasswordField senha;
-    private javax.swing.JComboBox<String> tipo;
     private javax.swing.JButton voltarBtn;
     // End of variables declaration//GEN-END:variables
 }

@@ -4,6 +4,8 @@
  */
 package view.auth;
 
+import controller.RegCaixaController;
+import controller.RegClienteController;
 import controller.gerente.RegGerenteController;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
@@ -27,6 +29,7 @@ public class Registro extends javax.swing.JFrame {
         initComponents();
         clienteController = new RegClienteController();
         caixaController = new RegCaixaController();
+        gerenteController = new RegGerenteController();
     }
 
     /**
@@ -169,25 +172,17 @@ public class Registro extends javax.swing.JFrame {
                 if (sucesso) {
                 JOptionPane.showMessageDialog(null, "Caixa registrado com sucesso!");
                 }
+
                 break;
             }
             case "Gerente":{
-                //sucesso = gerenteController.registrarGerente(nome,cpf,senha,tipoUsuario);
+                sucesso = gerenteController.registrarGerente(nome,cpf,senha,tipoUsuario);
                 if (sucesso) {
                 JOptionPane.showMessageDialog(null, "Gerente registrado com sucesso!");
                 }
+
                 break;
             }
-        }
-        // TODO add your handling code here:
-        if (getNome().equals("") || getCpf().equals("") || getTipo().equals("") || getSenha().equals("")) {
-            JOptionPane.showMessageDialog(this, "Preencha todos os campos");
-        } else {
-            registra();
-            JOptionPane.showMessageDialog(this, "Usuário registrado com sucesso");
-            Login menu = new Login();
-            menu.show();
-            this.dispose();
         }
 
     }//GEN-LAST:event_regBtnActionPerformed
@@ -242,28 +237,25 @@ public class Registro extends javax.swing.JFrame {
     }
 
     public String getCpf() {
-        return cpf.getText();
+        return ftfCPF.getText();
     }
 
     public String getNome() {
-        return nome.getText();
+        return tfNome.getText();
     }
 
     public String getSenha() {
-        return senha.getText();
+        return tfSenha.getText();
     }
 
     public String getTipo() {
-        return tipo.getSelectedItem().toString();
+        return cbTipo.getSelectedItem().toString();
     }
 
-    private void registra() {
-        if (getTipo().equals("Gerente")) {
-            RegGerenteController controller = new RegGerenteController(this);
-            controller.registraGerente();
-        }
-    }
 
+    private RegGerenteController gerenteController;
+    private RegClienteController clienteController;
+    private RegCaixaController caixaController;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> cbTipo;
     private javax.swing.JFormattedTextField ftfCPF;

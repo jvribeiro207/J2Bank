@@ -5,7 +5,10 @@
 package controller.gerente;
 
 import java.util.List;
+import javax.swing.JOptionPane;
 import model.Gerente;
+import persistence.CaixaPersistence;
+import persistence.ClientePersistence;
 import persistence.GerentePersistence;
 import persistence.Persistence;
 import view.auth.Registro;
@@ -16,21 +19,28 @@ import view.auth.Registro;
  */
 public class RegGerenteController {
     
-    private Registro janela;
+    private ClientePersistence clientePersistence;
+    private CaixaPersistence caixaPersistence;
+    private GerentePersistence gerentePersistence;
     
-    public RegGerenteController(Registro janela){
-        this.janela = janela;
+    public RegGerenteController(){
+         caixaPersistence = new CaixaPersistence();
+        clientePersistence = new ClientePersistence();
+        gerentePersistence = new GerentePersistence();
     }
     
-    public void registraGerente(){
-        Gerente novo_gerente = new Gerente 
-        (janela.getNome(), janela.getSenha(), janela.getTipo(), janela.getCpf());
-        
-        GerentePersistence gerentePersistence = new GerentePersistence();
-        
-        List<Gerente> todos = gerentePersistence.findAll();
-        todos.add(novo_gerente);
-        gerentePersistence.save(todos);
+public boolean registrarGerente(String nome, String cpf, String senha, String tipoUsuario) {
+        if (nome.isEmpty() || cpf.isEmpty() || senha.isEmpty() || tipoUsuario.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Não foi possível registrar, preencha todos os campos!");
+            return false;
+        }
+
+        if (caixaPersistence.buscarCaixa(cpf) != null || clientePersistence.buscarCliente(cpf) != null || gerentePersistence.buscarGerente(cpf) != null) {
+            JOptionPane.showMessageDialog(null, "Não foi possível registrar, pois este CPF já possui uma conta!");
+            return false;
+        }
+        Gerente gerente = new Gerente(nome, senha, tipoUsuario, cpf);
+        gerentePersistence.criarGerente(gerente);
+        return true;
     }
-    
 }

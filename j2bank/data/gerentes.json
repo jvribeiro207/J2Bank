@@ -1,1 +1,1 @@
-[{"nome":"teste","senha":"teste","tipo":"Gerente","cpf":"teste"},{"nome":"admin","senha":"admin","tipo":"Gerente","cpf":"admin"}]
+[{"nome":"gerente2","senha":"gerente2","tipo":"Gerente","cpf":"123.456.789-13"},{"nome":"gerente","senha":"gerente","tipo":"Gerente","cpf":"123.456.789-12"}]

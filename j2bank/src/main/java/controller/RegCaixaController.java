@@ -5,6 +5,7 @@ import javax.swing.JOptionPane;
 import model.Caixa;
 import persistence.CaixaPersistence;
 import persistence.ClientePersistence;
+import persistence.GerentePersistence;
 
 /**
  *
@@ -14,9 +15,12 @@ public class RegCaixaController {
     
     private ClientePersistence clientePersistence;
     private CaixaPersistence caixaPersistence;
+    private GerentePersistence gerentePersistence;
+    
     public RegCaixaController() {
         caixaPersistence = new CaixaPersistence();
         clientePersistence = new ClientePersistence();
+        gerentePersistence = new GerentePersistence();
     }
 
     public boolean registrarCaixa(String nome, String cpf, String senha, String tipoUsuario) {
@@ -25,11 +29,11 @@ public class RegCaixaController {
             return false;
         }
 
-        if (caixaPersistence.buscarCaixa(cpf) != null || clientePersistence.buscarCliente(cpf) != null) {
+        if (caixaPersistence.buscarCaixa(cpf) != null || clientePersistence.buscarCliente(cpf) != null || gerentePersistence.buscarGerente(cpf) != null) {
             JOptionPane.showMessageDialog(null, "Não foi possível registrar, pois este CPF já possui uma conta!");
             return false;
         }
-        Caixa caixa = new Caixa(nome, cpf, tipoUsuario, senha);
+        Caixa caixa = new Caixa(nome, senha, tipoUsuario, cpf);
         caixaPersistence.criarCaixa(caixa);
         return true;
     }

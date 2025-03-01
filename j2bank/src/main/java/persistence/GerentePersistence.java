@@ -60,6 +60,24 @@ public class GerentePersistence implements Persistence<Gerente> {
 
         return gerentes;
     }
+    public Gerente buscarGerente(String cpf) {
+    Persistence<Gerente> gerente = new GerentePersistence();
+    List <Gerente> todos = gerente.findAll();
+
+    //busca o gerente pelo CPF
+    return todos.stream().filter(g -> g.getCpf().equals(cpf)).findFirst().orElse(null);
+    
+}
+    public void criarGerente(Gerente gerente) {
+    //carrega a lista existente
+    List<Gerente> gerentes = findAll();
+
+    //adiciona o novo gerente
+    gerentes.add(gerente);
+
+    //salva a lista atualizada no JSON
+    save(gerentes);
+}
 }
 
 

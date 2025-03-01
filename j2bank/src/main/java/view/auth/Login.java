@@ -6,7 +6,6 @@ package view.auth;
 import java.util.List;
 import javax.swing.JOptionPane;
 import model.*;
-import persistence.CaixaPersistence;
 import persistence.ClientePersistence;
 import view.caixa.*;
 import view.cliente.*;
@@ -14,6 +13,7 @@ import view.gerente.*;
 import java.util.List;
 import model.Caixa;
 import persistence.CaixaPersistence;
+import persistence.GerentePersistence;
 
 /**
  *
@@ -55,6 +55,11 @@ public class Login extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(245, 245, 245));
 
         tfSenha.setBorder(javax.swing.BorderFactory.createTitledBorder("Senha"));
+        tfSenha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfSenhaActionPerformed(evt);
+            }
+        });
 
         btnEntrar.setText("Entrar");
         btnEntrar.addActionListener(new java.awt.event.ActionListener() {
@@ -89,27 +94,9 @@ public class Login extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(122, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(senha, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                            .addComponent(icon)
-                            .addGap(150, 150, 150))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(tipo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(cpf, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(119, 119, 119)))))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(155, 155, 155)
-                        .addComponent(btnEntrar))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(136, 136, 136)
-                        .addComponent(regBtn)))
+                .addGap(162, 162, 162)
+                .addComponent(btnEntrar)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(122, Short.MAX_VALUE)
@@ -121,6 +108,10 @@ public class Login extends javax.swing.JFrame {
                         .addComponent(icon))
                     .addComponent(tfSenha, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE))
                 .addGap(119, 119, 119))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(152, 152, 152)
+                .addComponent(regBtn)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -162,8 +153,9 @@ public class Login extends javax.swing.JFrame {
             logaCliente();
         }else if(getTipo().equals("Caixa")){
             logaCaixa();
+        }else if(getTipo().equals("Gerente")){
+            logaGerente();
         }
-
     }//GEN-LAST:event_btnEntrarActionPerformed
 
     private void regBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regBtnActionPerformed
@@ -172,6 +164,10 @@ public class Login extends javax.swing.JFrame {
         menu.show();
         this.dispose();
     }//GEN-LAST:event_regBtnActionPerformed
+
+    private void tfSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfSenhaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfSenhaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -239,6 +235,7 @@ public class Login extends javax.swing.JFrame {
             this.dispose();
         }
     }
+    
         private void logaCaixa() {
         Caixa conta_existe = new Caixa("","","","");
         CaixaPersistence caixaPersistence = new CaixaPersistence();
@@ -256,19 +253,6 @@ public class Login extends javax.swing.JFrame {
             menu.show();
             this.dispose();
         }
-    }
-    
-
-    public String getCpf() {
-        return cpf.getText();
-    }
-
-    public String getSenha() {
-        return senha.getText();
-    }
-
-    public String getTipo() {
-        return tipo.getSelectedItem().toString();
     }
 
     private void logaGerente() {
@@ -299,7 +283,5 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton regBtn;
     private javax.swing.JPasswordField tfSenha;
-    private javax.swing.JPasswordField senha;
-    private javax.swing.JComboBox<String> tipo;
     // End of variables declaration//GEN-END:variables
 }

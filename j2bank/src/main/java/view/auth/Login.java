@@ -6,6 +6,7 @@ package view.auth;
 import java.util.List;
 import javax.swing.JOptionPane;
 import model.*;
+import persistence.CaixaPersistence;
 import persistence.ClientePersistence;
 import view.caixa.*;
 import view.cliente.*;
@@ -34,24 +35,17 @@ public class Login extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        tfCpf = new javax.swing.JTextField();
         tfSenha = new javax.swing.JPasswordField();
         btnEntrar = new javax.swing.JButton();
         icon = new javax.swing.JLabel();
         regBtn = new javax.swing.JButton();
         cbTipo = new javax.swing.JComboBox<>();
+        ftfCPF = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(18, 30, 49));
 
         jPanel1.setBackground(new java.awt.Color(245, 245, 245));
-
-        tfCpf.setBorder(javax.swing.BorderFactory.createTitledBorder("CPF"));
-        tfCpf.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfCpfActionPerformed(evt);
-            }
-        });
 
         tfSenha.setBorder(javax.swing.BorderFactory.createTitledBorder("Senha"));
 
@@ -77,6 +71,13 @@ public class Login extends javax.swing.JFrame {
 
         cbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cliente", "Caixa", "Gerente" }));
 
+        ftfCPF.setBorder(javax.swing.BorderFactory.createTitledBorder("CPF"));
+        try {
+            ftfCPF.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -92,23 +93,21 @@ public class Login extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(122, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                            .addComponent(tfCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(119, 119, 119))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                            .addComponent(icon)
-                            .addGap(150, 150, 150)))
-                    .addComponent(tfSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(ftfCPF)
+                    .addComponent(cbTipo, 0, 160, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addComponent(icon))
+                    .addComponent(tfSenha, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE))
+                .addGap(119, 119, 119))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addComponent(icon)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tfCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(ftfCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(tfSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -135,16 +134,14 @@ public class Login extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tfCpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfCpfActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfCpfActionPerformed
-
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
         // TODO add your handling code here:
         if (getCpf().equals("")|| getSenha().equals("") || getTipo().equals("")){
             JOptionPane.showMessageDialog(this, "Preencha todos os campos");
         }else if(getTipo().equals("Cliente")){
             logaCliente();
+        }else if(getTipo().equals("Caixa")){
+            logaCaixa();
         }
     }//GEN-LAST:event_btnEntrarActionPerformed
 
@@ -192,7 +189,7 @@ public class Login extends javax.swing.JFrame {
     }
     
     public String getCpf() {
-        return tfCpf.getText();
+        return ftfCPF.getText();
     }
 
     public String getSenha() {
@@ -221,15 +218,33 @@ public class Login extends javax.swing.JFrame {
             this.dispose();
         }
     }
+        private void logaCaixa() {
+        Caixa conta_existe = new Caixa("","","","");
+        CaixaPersistence caixaPersistence = new CaixaPersistence();
+        List<Caixa> todos = caixaPersistence.findAll();
+        for (Caixa c : todos) {
+            if (c.getCpf().equals(this.getCpf()) && c.getSenha().equals(this.getSenha())) {
+                conta_existe = c;
+            }
+        }
+        if (conta_existe.getCpf().equals("")) {
+            JOptionPane.showMessageDialog(this, "Conta não foi encontrada nos registros");
+        } else{
+            CaixaMenu menu = new CaixaMenu();
+            menu.setLogado(conta_existe);
+            menu.show();
+            this.dispose();
+        }
+    }
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEntrar;
     private javax.swing.JComboBox<String> cbTipo;
+    private javax.swing.JFormattedTextField ftfCPF;
     private javax.swing.JLabel icon;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton regBtn;
-    private javax.swing.JTextField tfCpf;
     private javax.swing.JPasswordField tfSenha;
     // End of variables declaration//GEN-END:variables
 }

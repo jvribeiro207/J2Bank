@@ -6,6 +6,7 @@ package view.gerente;
 
 import view.auth.*;
 import javax.swing.JInternalFrame;
+import javax.swing.event.InternalFrameEvent;
 import model.Gerente;
 
 /**
@@ -55,7 +56,15 @@ public class GerenteMenu extends javax.swing.JFrame {
         setMinimumSize(new java.awt.Dimension(800, 600));
         setPreferredSize(new java.awt.Dimension(800, 600));
         setResizable(false);
+        addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                formMouseMoved(evt);
+            }
+        });
         addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
             }
@@ -205,7 +214,7 @@ public class GerenteMenu extends javax.swing.JFrame {
 
     private void fechaJanelasInternas() {
         for (JInternalFrame janela : dashboard.getAllFrames()) {
-            janela.dispose();
+            janela.doDefaultCloseAction();
         }
     }
 
@@ -291,6 +300,20 @@ public class GerenteMenu extends javax.swing.JFrame {
         dashboard.add(menu);
         menu.show();
     }//GEN-LAST:event_jMenuItem8ActionPerformed
+
+    private void formMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseMoved
+        // TODO add your handling code here:
+        if(dashboard.getAllFrames().length > 0){
+            logoutBtn.setEnabled(false);
+        } else {
+            logoutBtn.setEnabled(true);
+        }
+    }//GEN-LAST:event_formMouseMoved
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        // TODO add your handling code here:
+        fechaJanelasInternas();
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments

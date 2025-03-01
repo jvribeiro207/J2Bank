@@ -18,18 +18,18 @@ import view.auth.Registro;
  * @author B r u n o
  */
 public class RegGerenteController {
-    
+
     private ClientePersistence clientePersistence;
     private CaixaPersistence caixaPersistence;
     private GerentePersistence gerentePersistence;
-    
-    public RegGerenteController(){
-         caixaPersistence = new CaixaPersistence();
+
+    public RegGerenteController() {
+        caixaPersistence = new CaixaPersistence();
         clientePersistence = new ClientePersistence();
         gerentePersistence = new GerentePersistence();
     }
-    
-public boolean registrarGerente(String nome, String cpf, String senha, String tipoUsuario) {
+
+    public boolean registrarGerente(String nome, String cpf, String senha, String tipoUsuario) {
         if (nome.isEmpty() || cpf.isEmpty() || senha.isEmpty() || tipoUsuario.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Não foi possível registrar, preencha todos os campos!");
             return false;

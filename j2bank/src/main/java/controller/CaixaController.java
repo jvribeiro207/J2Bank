@@ -10,6 +10,7 @@ import javax.swing.DefaultListModel;
 import model.Caixa;
 import persistence.Persistence;
 import persistence.CaixaPersistence;
+import view.gerente.ListaGerencUsuarios;
 
 
 /**
@@ -17,11 +18,14 @@ import persistence.CaixaPersistence;
  * @author jose
  */
 public class CaixaController {
+    private ListaGerencUsuarios janela;
     private DefaultListModel<Caixa> model;
-
-
-    public CaixaController(DefaultListModel<Caixa> model) {
-        this.model = model;
+    
+    public CaixaController(ListaGerencUsuarios janela){
+        this.janela = janela;
+        this.model = new DefaultListModel<>();
+        janela.getLista_caixas().setModel(model);
+        this.model = (DefaultListModel<Caixa>) janela.getLista_caixas().getModel();
     }
     
     public void carregaCaixas() {
@@ -46,7 +50,7 @@ public class CaixaController {
         caixaPersistence.save(listaCaixas());
     }
     
-    public void removeCaixa(int indice) {
-        model.remove(indice);
+    public void removeCaixa() {
+        model.removeElementAt(janela.getLista_caixas().getSelectedIndex());
     }
 }

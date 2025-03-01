@@ -4,6 +4,9 @@
  */
 package view.caixa;
 
+import model.Caixa;
+import view.auth.Login;
+
 /**
  *
  * @author B r u n o
@@ -29,6 +32,7 @@ public class CaixaMenu extends javax.swing.JFrame {
         btnDeposito = new javax.swing.JButton();
         btnSaque = new javax.swing.JButton();
         btnTrasferencia = new javax.swing.JButton();
+        btnSair = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -53,6 +57,13 @@ public class CaixaMenu extends javax.swing.JFrame {
             }
         });
 
+        btnSair.setText("Sair");
+        btnSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSairActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -64,11 +75,17 @@ public class CaixaMenu extends javax.swing.JFrame {
                     .addComponent(btnSaque, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnDeposito, javax.swing.GroupLayout.DEFAULT_SIZE, 301, Short.MAX_VALUE))
                 .addGap(53, 53, 53))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnSair)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(60, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(btnSair)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addComponent(btnSaque, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnDeposito, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -78,28 +95,35 @@ public class CaixaMenu extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnDepositoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDepositoActionPerformed
         // TODO add your handling code here:
         Deposito depositoMenu = new Deposito();
         depositoMenu.setVisible(true);
-        this.setVisible(false);
+        dispose();
     }//GEN-LAST:event_btnDepositoActionPerformed
 
     private void btnSaqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaqueActionPerformed
         // TODO add your handling code here:
         Saque saqueMenu = new Saque();
         saqueMenu.setVisible(true);
-        this.setVisible(false);
+        dispose();
     }//GEN-LAST:event_btnSaqueActionPerformed
 
     private void btnTrasferenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTrasferenciaActionPerformed
         // TODO add your handling code here:
-        Transferencia transferenlciaMenu = new Transferencia();
-        transferenlciaMenu.setVisible(true);
+        Transferencia transferenciaMenu = new Transferencia();
+        transferenciaMenu.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnTrasferenciaActionPerformed
+
+    private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
+        Login login = new Login();
+        login.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnSairActionPerformed
 
     /**
      * @param args the command line arguments
@@ -135,9 +159,18 @@ public class CaixaMenu extends javax.swing.JFrame {
             }
         });
     }
+     public Caixa getLogado() {
+        return logado;
+    }
 
+    public void setLogado(Caixa logado) {
+        this.logado = logado;
+    }
+    
+    private Caixa logado;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDeposito;
+    private javax.swing.JButton btnSair;
     private javax.swing.JButton btnSaque;
     private javax.swing.JButton btnTrasferencia;
     // End of variables declaration//GEN-END:variables

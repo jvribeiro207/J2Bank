@@ -221,9 +221,7 @@ public class TelaTransfCliente extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Transferência inválida");
         }
         if(sucesso){
-            LocalDate data = LocalDate.now();
-            DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-            Transacao transferencia = new Transacao(cpfOrigem, cpfDestino, valorBigDecimal, data.format(formato), "TRANSFERENCIA");
+            Transacao transferencia = new Transacao(cpfOrigem, cpfDestino, valorBigDecimal, "TRANSFERENCIA");
             transacaoPersistence.registraTransacao(transferencia);
         }
     }

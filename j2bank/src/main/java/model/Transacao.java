@@ -23,10 +23,10 @@ public  class Transacao {
     private String tipo;
 
     //construtor
-    public Transacao(String cpfOrigem, String cpfDestino, BigDecimal valor, String data, String tipo) {
+    public Transacao(String cpfOrigem, String cpfDestino, BigDecimal valor, String tipo) {
         this.cpfOrigem = cpfOrigem;
         this.valor = valor.setScale(2, RoundingMode.HALF_UP);
-        this.data = data;
+        this.data = LocalDate.now().toString();
         this.tipo = tipo;
         
         if(tipo.equals("TRANSFERENCIA")){

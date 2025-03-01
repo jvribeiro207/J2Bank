@@ -4,7 +4,7 @@
  */
 package view.auth;
 
-import controller.RegGerenteController;
+import controller.gerente.RegGerenteController;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;

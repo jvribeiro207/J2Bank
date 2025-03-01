@@ -4,7 +4,7 @@
  */
 package view.gerente;
 
-import controller.GerenteController;
+import controller.gerente.GerenteController;
 import java.awt.Frame;
 import java.awt.Window;
 import java.util.List;

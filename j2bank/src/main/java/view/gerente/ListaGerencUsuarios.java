@@ -4,6 +4,7 @@
  */
 package view.gerente;
 
+import controller.CaixaController;
 import controller.gerente.GerenteController;
 import java.awt.Frame;
 import java.awt.Window;
@@ -14,6 +15,7 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
+import model.Caixa;
 import model.Gerente;
 import persistence.GerentePersistence;
 import view.gerente.EditarGerenteModal;
@@ -135,7 +137,13 @@ public class ListaGerencUsuarios extends javax.swing.JInternalFrame {
         });
 
         editaCaixaBtn.setText("Editar registro");
+        editaCaixaBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editaCaixaBtnActionPerformed(evt);
+            }
+        });
 
+        lista_caixas.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane3.setViewportView(lista_caixas);
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
@@ -184,6 +192,7 @@ public class ListaGerencUsuarios extends javax.swing.JInternalFrame {
             }
         });
 
+        lista_gerentes.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(lista_gerentes);
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
@@ -245,17 +254,23 @@ public class ListaGerencUsuarios extends javax.swing.JInternalFrame {
 
     private void removeCaixaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeCaixaBtnActionPerformed
         // TODO add your handling code here:
+        if (!lista_caixas.isSelectionEmpty()) {
+            cxController.removeCaixa();
+        }
     }//GEN-LAST:event_removeCaixaBtnActionPerformed
 
     private void formInternalFrameClosing(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameClosing
         // TODO add your handling code here:
         gController.salvaAoFechar();
+        cxController.salvaCaixasAoFechar();
     }//GEN-LAST:event_formInternalFrameClosing
 
     private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
         // TODO add your handling code here:
         gController = new GerenteController(this);
+        cxController = new CaixaController(this);
         gController.carregaGerentes();
+        cxController.carregaCaixas();
     }//GEN-LAST:event_formInternalFrameOpened
 
     private void editaGerenteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editaGerenteBtnActionPerformed
@@ -276,9 +291,35 @@ public class ListaGerencUsuarios extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_editaGerenteBtnActionPerformed
 
+    private void editaCaixaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editaCaixaBtnActionPerformed
+        // TODO add your handling code here:
+        if(!lista_caixas.isSelectionEmpty()){
+            Caixa selecionado = lista_caixas.getSelectedValue();
+            
+            EditarCaixaModal menu = new EditarCaixaModal(null,true);
+            menu.setEditar_usuario(selecionado);
+            menu.setLogado(logado);
+            
+            this.setVisible(false);
+            
+            menu.setVisible(true);
+            
+            this.setVisible(true);
+        }
+    }//GEN-LAST:event_editaCaixaBtnActionPerformed
+
     public JList<Gerente> getLista_gerentes() {
         return lista_gerentes;
     }
+
+    public JList<Caixa> getLista_caixas() {
+        return lista_caixas;
+    }
+
+    public JList<Gerente> getLista_clientes() {
+        return lista_clientes;
+    }
+    
 
     public Gerente getLogado() {
         return logado;
@@ -291,6 +332,7 @@ public class ListaGerencUsuarios extends javax.swing.JInternalFrame {
 
     private Gerente logado;
     private GerenteController gController;
+    private CaixaController cxController;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToolBar caixas;
     private javax.swing.JToolBar clientes;
@@ -304,7 +346,7 @@ public class ListaGerencUsuarios extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JList<Gerente> lista_caixas;
+    private javax.swing.JList<Caixa> lista_caixas;
     private javax.swing.JList<Gerente> lista_clientes;
     private javax.swing.JList<Gerente> lista_gerentes;
     private javax.swing.JTabbedPane painelAbas;

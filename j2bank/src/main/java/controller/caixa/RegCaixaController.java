@@ -1,5 +1,5 @@
 
-package controller;
+package controller.caixa;
 
 import javax.swing.JOptionPane;
 import model.Caixa;

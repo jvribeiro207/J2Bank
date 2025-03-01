@@ -4,8 +4,9 @@
  */
 package view.caixa;
 
+import view.auth.*;
 import model.Caixa;
-import view.auth.Login;
+
 
 /**
  *
@@ -32,7 +33,7 @@ public class CaixaMenu extends javax.swing.JFrame {
         btnDeposito = new javax.swing.JButton();
         btnSaque = new javax.swing.JButton();
         btnTrasferencia = new javax.swing.JButton();
-        btnSair = new javax.swing.JButton();
+        btnLogout = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -57,10 +58,10 @@ public class CaixaMenu extends javax.swing.JFrame {
             }
         });
 
-        btnSair.setText("Sair");
-        btnSair.addActionListener(new java.awt.event.ActionListener() {
+        btnLogout.setText("Logout");
+        btnLogout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSairActionPerformed(evt);
+                btnLogoutActionPerformed(evt);
             }
         });
 
@@ -68,30 +69,31 @@ public class CaixaMenu extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addGap(46, 46, 46)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnTrasferencia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnSaque, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnDeposito, javax.swing.GroupLayout.DEFAULT_SIZE, 301, Short.MAX_VALUE))
-                .addGap(53, 53, 53))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnSair)
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnLogout)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnTrasferencia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnSaque, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnDeposito, javax.swing.GroupLayout.DEFAULT_SIZE, 501, Short.MAX_VALUE))
+                        .addGap(53, 53, 53))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnSair)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                .addGap(59, 59, 59)
                 .addComponent(btnSaque, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnDeposito, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnTrasferencia, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(48, 48, 48))
+                .addGap(62, 62, 62)
+                .addComponent(btnLogout)
+                .addContainerGap(66, Short.MAX_VALUE))
         );
 
         pack();
@@ -119,11 +121,12 @@ public class CaixaMenu extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_btnTrasferenciaActionPerformed
 
-    private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
-        Login login = new Login();
-        login.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_btnSairActionPerformed
+    private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
+        // TODO add your handling code here:
+        Login loginMenu = new Login();
+        loginMenu.show();
+        this.dispose();
+    }//GEN-LAST:event_btnLogoutActionPerformed
 
     /**
      * @param args the command line arguments
@@ -159,7 +162,8 @@ public class CaixaMenu extends javax.swing.JFrame {
             }
         });
     }
-     public Caixa getLogado() {
+    
+    public Caixa getLogado() {
         return logado;
     }
 
@@ -168,9 +172,15 @@ public class CaixaMenu extends javax.swing.JFrame {
     }
     
     private Caixa logado;
+
+    public void setLogado(Caixa logado) {
+        this.logado = logado;
+    }
+    
+    private Caixa logado;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDeposito;
-    private javax.swing.JButton btnSair;
+    private javax.swing.JButton btnLogout;
     private javax.swing.JButton btnSaque;
     private javax.swing.JButton btnTrasferencia;
     // End of variables declaration//GEN-END:variables

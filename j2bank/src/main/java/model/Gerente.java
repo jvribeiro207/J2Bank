@@ -9,9 +9,13 @@ package model;
  * @author B r u n o
  */
 public class Gerente extends Caixa {
-    
+
     public Gerente(String nome, String senha, String tipo, String cpf) {
-        super(nome, senha, "GERENTE", cpf);
+        super(nome, senha, tipo, cpf);
     }
     
+    @Override
+    public String toString(){
+        return getNome() + " - " + getSenha() + " - " + getCpf();
+    }
 }

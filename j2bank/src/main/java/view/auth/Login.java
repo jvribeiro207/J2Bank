@@ -11,6 +11,9 @@ import persistence.ClientePersistence;
 import view.caixa.*;
 import view.cliente.*;
 import view.gerente.*;
+import java.util.List;
+import model.Caixa;
+import persistence.CaixaPersistence;
 
 /**
  *
@@ -21,8 +24,11 @@ public class Login extends javax.swing.JFrame {
     /**
      * Creates new form login
      */
+    
+    
     public Login() {
         initComponents();
+
     }
 
     /**
@@ -85,10 +91,10 @@ public class Login extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(162, 162, 162)
+                        .addGap(155, 155, 155)
                         .addComponent(btnEntrar))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(148, 148, 148)
+                        .addGap(136, 136, 136)
                         .addComponent(regBtn)))
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()

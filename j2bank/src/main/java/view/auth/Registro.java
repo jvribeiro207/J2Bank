@@ -7,9 +7,12 @@ package view.auth;
 import controller.RegClienteController;
 import controller.RegCaixaController;
 import javax.swing.JOptionPane;
+import javax.swing.JComboBox;
 import view.caixa.*;
 import view.cliente.*;
 import view.gerente.*;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 
 /**
  *
@@ -180,7 +183,7 @@ public class Registro extends javax.swing.JFrame {
     private void voltarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_voltarBtnActionPerformed
         // TODO add your handling code here:
         Login menu = new Login();
-        menu.show();
+        menu.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_voltarBtnActionPerformed
 

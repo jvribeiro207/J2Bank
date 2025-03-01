@@ -14,7 +14,7 @@ public class Cliente extends Usuario {
     private BigDecimal saldo;
 
     public Cliente(String nome, String cpf, String tipo, String senha) {
-        super(nome, cpf, "CLIENTE", senha);
+        super(nome, cpf, tipo, senha);
         saldo = BigDecimal.ZERO;
     }
 
@@ -27,7 +27,8 @@ public class Cliente extends Usuario {
     }
     
     @Override
-    public String toString() {
-        return "Cliente{" + "nome='" + getNome() + '\'' + ", cpf='" + getCpf() + '\'' + ", tipo='" + getTipo() + '\'' + " senha='" + getSenha() + '}';
+    public String toString(){
+        return getNome() + " - " + getSenha() + " - " + getCpf() + " - Saldo: " + getSaldo();
     }
 }
+

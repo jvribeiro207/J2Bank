@@ -64,7 +64,7 @@ public class ClienteController {
         
         BigDecimal limite = new BigDecimal("1000000");
         
-        if(valor.compareTo(limite)<0 ){
+        if(valor.compareTo(limite) >= 0 ){
             return false;
         }
         

@@ -1,1 +1,1 @@
-[{"saldo":0,"nome":"teste","senha":"cliente","tipo":"Cliente","cpf":"123.456.789-10"},{"saldo":0,"nome":"cliente2","senha":"cliente2","tipo":"Cliente","cpf":"123.456.789-44"}]
+[{"saldo":1200,"nome":"teste","senha":"cliente","tipo":"Cliente","cpf":"123.456.789-10"},{"saldo":10000,"nome":"cliente2","senha":"cliente2","tipo":"Cliente","cpf":"123.456.789-44"},{"saldo":99800,"nome":"teste","senha":"teste","tipo":"Cliente","cpf":"123.456.789-00"}]

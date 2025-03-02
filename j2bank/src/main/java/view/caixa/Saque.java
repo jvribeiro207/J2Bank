@@ -4,6 +4,12 @@
  */
 package view.caixa;
 
+import controller.ClienteController;
+import controller.TransacaoController;
+import java.math.BigDecimal;
+import javax.swing.JOptionPane;
+import model.Cliente;
+
 
 /**
  *
@@ -16,6 +22,8 @@ public class Saque extends javax.swing.JFrame {
      */
     public Saque() {
         initComponents();
+        ccontroller = new ClienteController();
+        tcontroller = new TransacaoController();
     }
     
      
@@ -30,28 +38,19 @@ public class Saque extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel2 = new javax.swing.JPanel();
-        valor = new javax.swing.JTextField();
-        senha = new javax.swing.JTextField();
+        btnValor = new javax.swing.JTextField();
         btnConfirmar = new javax.swing.JButton();
-        conta = new javax.swing.JTextField();
         btnVoltar = new javax.swing.JButton();
+        btnCpf = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel2.setPreferredSize(new java.awt.Dimension(800, 600));
 
-        valor.setBorder(javax.swing.BorderFactory.createTitledBorder("Valor"));
-        valor.addActionListener(new java.awt.event.ActionListener() {
+        btnValor.setBorder(javax.swing.BorderFactory.createTitledBorder("Valor"));
+        btnValor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                valorActionPerformed(evt);
-            }
-        });
-
-        senha.setBorder(javax.swing.BorderFactory.createTitledBorder("Senha"));
-        senha.setBorder(javax.swing.BorderFactory.createTitledBorder("Senha"));
-        senha.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                senhaActionPerformed(evt);
+                btnValorActionPerformed(evt);
             }
         });
 
@@ -62,19 +61,19 @@ public class Saque extends javax.swing.JFrame {
             }
         });
 
-        conta.setBorder(javax.swing.BorderFactory.createTitledBorder("Conta"));
-        conta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                contaActionPerformed(evt);
-            }
-        });
-
         btnVoltar.setText("Voltar");
         btnVoltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVoltarActionPerformed(evt);
             }
         });
+
+        btnCpf.setBorder(javax.swing.BorderFactory.createTitledBorder("CPF"));
+        try {
+            btnCpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -87,28 +86,23 @@ public class Saque extends javax.swing.JFrame {
                         .addComponent(btnVoltar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnConfirmar))
-                    .addComponent(senha, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(conta, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(valor, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnValor, javax.swing.GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE)
+                    .addComponent(btnCpf))
                 .addContainerGap(183, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(54, 54, 54)
-                .addComponent(conta, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(senha, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(valor, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                .addGap(102, 102, 102)
+                .addComponent(btnCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(48, 48, 48)
+                .addComponent(btnValor, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnVoltar)
                     .addComponent(btnConfirmar))
                 .addGap(85, 85, 85))
         );
-
-        conta.getAccessibleContext().setAccessibleName("");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -125,21 +119,35 @@ public class Saque extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void valorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valorActionPerformed
+    private void btnValorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnValorActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_valorActionPerformed
-
-    private void senhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_senhaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_senhaActionPerformed
+    }//GEN-LAST:event_btnValorActionPerformed
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnConfirmarActionPerformed
+        String cpfOrigem = btnCpf.getText();
+        String valor = btnValor.getText();
 
-    private void contaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_contaActionPerformed
+        // Busca o cliente de origem pelo CPF
+        Cliente clienteOrigem = buscarClientePorCpf(cpfOrigem);
+        if (clienteOrigem == null) {
+            JOptionPane.showMessageDialog(null, "Conta de origem não encontrada!");
+            return;
+        }
+
+        String senhaDigitada = JOptionPane.showInputDialog(null, "Confirme a senha do cliente de origem:", "Confirmação", JOptionPane.PLAIN_MESSAGE);
+        if (senhaDigitada.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Operação cancelada. Senha não informada.");
+            return;
+        }
+
+        if (!clienteOrigem.getSenha().equals(senhaDigitada)) {
+            JOptionPane.showMessageDialog(null, "Senha incorreta! Tente novamente.");
+            return;
+        }
+
+        realizarSaque(cpfOrigem, valor);
+    }//GEN-LAST:event_btnConfirmarActionPerformed
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
         // TODO add your handling code here:
@@ -182,13 +190,43 @@ public class Saque extends javax.swing.JFrame {
             }
         });
     }
+    
+    
+    public void realizarSaque(String cpfOrigem, String valor) {
+
+        BigDecimal valorBigDecimal;
+        try {
+            valor = valor.replace(",", "."); //normaliza entrada caso venha com vírgula
+            valorBigDecimal = new BigDecimal(valor);
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Valor inválido. Digite um número válido.");
+            return;
+        }
+        boolean sucesso = ccontroller.saque(cpfOrigem, valorBigDecimal);
+
+        if (sucesso) {
+            tcontroller.registraSaque(cpfOrigem,valorBigDecimal);
+            JOptionPane.showMessageDialog(null, "Saque realizado com sucesso");
+        } else {
+            JOptionPane.showMessageDialog(null, "Saldo insuficiente ou erro no Saque");
+        }
+
+    }
+
+    private Cliente buscarClientePorCpf(String cpf) {
+
+        persistence.ClientePersistence clientePersistence = new persistence.ClientePersistence();
+        return clientePersistence.buscarCliente(cpf);
+    }
+
+    private TransacaoController tcontroller;
+    private ClienteController ccontroller;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConfirmar;
+    private javax.swing.JFormattedTextField btnCpf;
+    private javax.swing.JTextField btnValor;
     private javax.swing.JButton btnVoltar;
-    private javax.swing.JTextField conta;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField senha;
-    private javax.swing.JTextField valor;
     // End of variables declaration//GEN-END:variables
 }

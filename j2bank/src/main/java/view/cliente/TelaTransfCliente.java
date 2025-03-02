@@ -5,13 +5,10 @@
 package view.cliente;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import javax.swing.JOptionPane;
 import model.Cliente;
 import model.Transacao;
-import persistence.ClientePersistence;
-import persistence.TransacaoPersistence;
+import controller.ClienteController;
 
 /**
  *
@@ -24,7 +21,7 @@ public class TelaTransfCliente extends javax.swing.JFrame {
      */
     public TelaTransfCliente() {
         initComponents();
-
+        controller = new ClienteController();
     }
 
     /**
@@ -192,46 +189,34 @@ public class TelaTransfCliente extends javax.swing.JFrame {
     }
     
     public void realizarTransferencia(String cpfOrigem, String cpfDestino, String valor){
+
+        
         BigDecimal valorBigDecimal;
         try {
-            valor = valor.replace(",", "."); // Normaliza entrada caso venha com vírgula
+            valor = valor.replace(",", "."); //normaliza entrada caso venha com vírgula
             valorBigDecimal = new BigDecimal(valor);
-        } catch (NumberFormatException e) {
+            
+            boolean sucesso = controller.transferir(cpfOrigem, cpfDestino, valorBigDecimal);
+            
+            if(sucesso){
+            JOptionPane.showMessageDialog(null, "Transferência realizada com sucesso");
+            }else{
+            JOptionPane.showMessageDialog(null, "Saldo insuficiente ou erro na transferência");
+            }
+        }catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Valor inválido. Digite um número válido.");
             return;
         }
         
-        boolean sucesso = false;
-        
-        ClientePersistence clientePersistence = new ClientePersistence();
-        TransacaoPersistence transacaoPersistence = new TransacaoPersistence();
-      
-        Cliente destino = clientePersistence.buscarCliente(cpfDestino);
-        Cliente origem = clientePersistence.buscarCliente(cpfOrigem);
-        
-        if(destino != null){
-            if(origem.debitaSaldo(valorBigDecimal)){
-                destino.creditaSaldo(valorBigDecimal);
-                JOptionPane.showMessageDialog(null, "Transferência concluída!");
-                sucesso=true;
-            }else{
-                JOptionPane.showMessageDialog(null, "Saldo insuficiente");
-            }
-        }else{
-            JOptionPane.showMessageDialog(null, "Transferência inválida");
-        }
-        if(sucesso){
-            Transacao transferencia = new Transacao(cpfOrigem, cpfDestino, valorBigDecimal, "TRANSFERENCIA");
-            transacaoPersistence.registraTransacao(transferencia);
-        }
     }
+    
     public Cliente getLogado(){
         return logado;
     }
     public void setLogado(Cliente logado){
         this.logado = logado;
     }
-    
+    private ClienteController controller;
     private Cliente logado;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConfirmar;

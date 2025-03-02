@@ -38,10 +38,8 @@ public class Cliente extends Usuario {
         if(this.getSaldo().compareTo(valor) >= 0 ){
             saldo = saldo.subtract(valor);
             return true;
-        }else{
-            JOptionPane.showMessageDialog(null, "Não foi possivel concluir a transação");
-            return false;
         }
+        return false;
     }
     
     public void creditaSaldo(BigDecimal valor){

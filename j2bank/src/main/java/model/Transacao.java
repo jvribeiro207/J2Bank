@@ -5,8 +5,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.*;
 import javax.swing.JOptionPane;
-import persistence.ClientePersistence;
-import persistence.TransacaoPersistence;
+
 
 /**
  *
@@ -14,8 +13,6 @@ import persistence.TransacaoPersistence;
  */
 public  class Transacao {
     
-    private TransacaoPersistence transacaoPersistence;
-    private ClientePersistence clientePersistence;
     private String cpfOrigem;
     private String cpfDestino;
     private BigDecimal valor;
@@ -34,8 +31,6 @@ public  class Transacao {
         }else{
             this.cpfDestino = null;
         }
-        ClientePersistence clientePersistence = new ClientePersistence();
-        TransacaoPersistence transacaoPersistence = new TransacaoPersistence();
     }
     
     public String getCpfOrigem(){

@@ -4,9 +4,11 @@
  */
 package controller;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 import model.Cliente;
 import persistence.ClientePersistence;
 import persistence.Persistence;
@@ -16,10 +18,17 @@ import persistence.Persistence;
  * @author joaov
  */
 public class ClienteController {
+    
     private DefaultListModel<Cliente> model;
-
+    private ClientePersistence persistence;
+        
     public ClienteController(DefaultListModel<Cliente> model) {
         this.model = model;
+        persistence = new ClientePersistence();
+    }
+
+    public ClienteController() {
+        persistence = new ClientePersistence();
     }
     
     public void carregaClientes() {
@@ -46,6 +55,31 @@ public class ClienteController {
     
     public void removeCliente(int indice) {
         model.remove(indice);
+    }
+    
+    public boolean transferir(String cpfOrigem, String cpfDestino, BigDecimal valor){
+        
+        Cliente origem = persistence.buscarCliente(cpfOrigem);
+        Cliente destino = persistence.buscarCliente(cpfDestino);
+        
+        BigDecimal limite = new BigDecimal("1000000");
+        
+        if(valor.compareTo(limite)<0 ){
+            return false;
+        }
+        
+        if(origem == null || destino == null){
+            return false;
+        }
+        
+        if(origem.debitaSaldo(valor)){
+            destino.creditaSaldo(valor);
+            
+            persistence.atualizar(origem);
+            persistence.atualizar(destino);
+            return true;
+        }
+        return false;
     }
 }
 

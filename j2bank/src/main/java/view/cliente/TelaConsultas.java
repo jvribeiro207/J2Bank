@@ -36,6 +36,7 @@ public class TelaConsultas extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         listaTransacoes = new javax.swing.JList<>();
         lblSaldo = new javax.swing.JLabel();
+        lblValor = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -58,6 +59,8 @@ public class TelaConsultas extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(105, 105, 105)
                 .addComponent(lblSaldo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblValor)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(28, 28, 28))
@@ -72,7 +75,9 @@ public class TelaConsultas extends javax.swing.JFrame {
                         .addComponent(jButton1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(42, 42, 42)
-                        .addComponent(lblSaldo)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblSaldo)
+                            .addComponent(lblValor))))
                 .addGap(86, 86, 86)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE))
         );
@@ -153,6 +158,7 @@ public class TelaConsultas extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblSaldo;
+    private javax.swing.JLabel lblValor;
     private javax.swing.JList<Transacao> listaTransacoes;
     // End of variables declaration//GEN-END:variables
 }

@@ -24,7 +24,6 @@ public class ClienteController {
         
     public ClienteController(DefaultListModel<Cliente> model) {
         this.model = model;
-        persistence = new ClientePersistence();
     }
 
     public ClienteController() {
@@ -64,7 +63,7 @@ public class ClienteController {
         
         BigDecimal limite = new BigDecimal("1000000");
         
-        if(valor.compareTo(limite)<0 ){
+        if(valor.compareTo(limite)>0){
             return false;
         }
         
@@ -79,6 +78,7 @@ public class ClienteController {
             persistence.atualizar(destino);
             return true;
         }
+
         return false;
     }
 }

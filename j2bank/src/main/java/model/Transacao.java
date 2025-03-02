@@ -20,17 +20,12 @@ public  class Transacao {
     private String tipo;
 
     //construtor
-    public Transacao(String cpfOrigem, String cpfDestino, BigDecimal valor, String tipo) {
+    public Transacao(String cpfOrigem, String cpfDestino, BigDecimal valor, String data, String tipo) {
         this.cpfOrigem = cpfOrigem;
+        this.cpfDestino = cpfDestino;
         this.valor = valor.setScale(2, RoundingMode.HALF_UP);
-        this.data = LocalDate.now().toString();
+        this.data = data;
         this.tipo = tipo;
-        
-        if(tipo.equals("TRANSFERENCIA")){
-            this.cpfDestino = cpfDestino;
-        }else{
-            this.cpfDestino = null;
-        }
     }
     
     public String getCpfOrigem(){

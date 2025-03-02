@@ -13,6 +13,7 @@ import view.auth.Login;
  */
 public class ClienteMenu extends javax.swing.JFrame {
 
+    private Cliente logado;
     /**
      * Creates new form ClienteMenu
      */
@@ -35,7 +36,6 @@ public class ClienteMenu extends javax.swing.JFrame {
         btnSolicitacao = new javax.swing.JButton();
         btnTransferencia = new javax.swing.JButton();
         btnSair = new javax.swing.JButton();
-        BemVindo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -75,8 +75,6 @@ public class ClienteMenu extends javax.swing.JFrame {
             }
         });
 
-        BemVindo.setText("Olá, (nome do Cliente), seja bem vindo à sua conta J2Bank!");
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -94,14 +92,9 @@ public class ClienteMenu extends javax.swing.JFrame {
                         .addComponent(btnSolicitacao, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(131, 131, 131))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(btnTransferencia, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(147, 147, 147)
-                                .addComponent(btnConsultas, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(116, 116, 116)
-                                .addComponent(BemVindo)))
+                        .addComponent(btnTransferencia, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(147, 147, 147)
+                        .addComponent(btnConsultas, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(131, Short.MAX_VALUE))))
         );
         jPanel2Layout.setVerticalGroup(
@@ -109,9 +102,7 @@ public class ClienteMenu extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(35, 35, 35)
                 .addComponent(btnSair)
-                .addGap(28, 28, 28)
-                .addComponent(BemVindo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 119, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnTransferencia, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnConsultas, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -146,18 +137,21 @@ public class ClienteMenu extends javax.swing.JFrame {
     private void btnTransferenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTransferenciaActionPerformed
         TelaTransfCliente tc = new TelaTransfCliente();
         tc.setVisible(true);
+        tc.setLogado(logado);
         this.setVisible(false);
     }//GEN-LAST:event_btnTransferenciaActionPerformed
 
     private void btnConsultasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultasActionPerformed
         TelaConsultas c = new TelaConsultas();
         c.setVisible(true);
+        c.setLogado(logado);
         this.setVisible(false);
     }//GEN-LAST:event_btnConsultasActionPerformed
 
     private void btnSolicitacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSolicitacaoActionPerformed
         TelaSolicitacao ts = new TelaSolicitacao();
         ts.setVisible(true);
+        //ts.setLogado(logado);
         this.setVisible(false);
     }//GEN-LAST:event_btnSolicitacaoActionPerformed
 
@@ -209,9 +203,8 @@ public class ClienteMenu extends javax.swing.JFrame {
         this.logado = logado;
     }
     
-    private Cliente logado;
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel BemVindo;
     private javax.swing.JButton btnConsultas;
     private javax.swing.JButton btnInvestimentos;
     private javax.swing.JButton btnSair;

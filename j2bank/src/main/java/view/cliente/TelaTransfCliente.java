@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 import model.Cliente;
 import model.Transacao;
 import controller.ClienteController;
+import controller.TransacaoController;
 
 /**
  *
@@ -21,7 +22,8 @@ public class TelaTransfCliente extends javax.swing.JFrame {
      */
     public TelaTransfCliente() {
         initComponents();
-        controller = new ClienteController();
+        ccontroller = new ClienteController();
+        tcontroller = new TransacaoController();
     }
 
     /**
@@ -142,13 +144,30 @@ public class TelaTransfCliente extends javax.swing.JFrame {
         String cpfOrigem = tfContaOrigem.getText();
         String cpfDestino = tfContaDestino.getText();
         String valor = tfValorTransferencia.getText();
-        
+
+        //solicita a senha ao usuário
+        String senhaDigitada = JOptionPane.showInputDialog(null, "Confirme sua senha:", "Confirmação", JOptionPane.PLAIN_MESSAGE);
+
+        //verifica se a senha foi digitada e se está correta
+        if (senhaDigitada.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Operação cancelada. Senha não informada.");
+            return;
+        }
+
+        if (!logado.getSenha().equals(senhaDigitada)) {
+            JOptionPane.showMessageDialog(null, "Senha incorreta! Tente novamente.");
+            return;
+        }
+
+        //se a senha estiver correta, realiza a transferência
         realizarTransferencia(cpfOrigem, cpfDestino, valor);
+        
     }//GEN-LAST:event_btnConfirmarActionPerformed
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
         this.dispose();
         ClienteMenu cm = new ClienteMenu();
+        cm.setLogado(logado);
         cm.setVisible(true);
     }//GEN-LAST:event_btnVoltarActionPerformed
 
@@ -187,36 +206,43 @@ public class TelaTransfCliente extends javax.swing.JFrame {
             }
         });
     }
-    
-    public void realizarTransferencia(String cpfOrigem, String cpfDestino, String valor){
 
-        
+    public void realizarTransferencia(String cpfOrigem, String cpfDestino, String valor) {
+
+        if (!(getLogado().getCpf().equals(cpfOrigem))) {
+            JOptionPane.showMessageDialog(null, "CPF de Origem inválido!");
+            return;
+        }
+
         BigDecimal valorBigDecimal;
         try {
             valor = valor.replace(",", "."); //normaliza entrada caso venha com vírgula
             valorBigDecimal = new BigDecimal(valor);
-            
-            boolean sucesso = controller.transferir(cpfOrigem, cpfDestino, valorBigDecimal);
-            
-            if(sucesso){
-            JOptionPane.showMessageDialog(null, "Transferência realizada com sucesso");
-            }else{
-            JOptionPane.showMessageDialog(null, "Saldo insuficiente ou erro na transferência");
-            }
-        }catch (NumberFormatException e) {
+        } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Valor inválido. Digite um número válido.");
             return;
         }
-        
+        boolean sucesso = ccontroller.transferir(cpfOrigem, cpfDestino, valorBigDecimal);
+
+        if (sucesso) {
+            tcontroller.registraTransferencia(cpfOrigem,cpfDestino,valorBigDecimal);
+            JOptionPane.showMessageDialog(null, "Transferência realizada com sucesso");
+        } else {
+            JOptionPane.showMessageDialog(null, "Saldo insuficiente ou erro na transferência");
+        }
+
     }
-    
-    public Cliente getLogado(){
+
+    public Cliente getLogado() {
         return logado;
     }
-    public void setLogado(Cliente logado){
+
+    public void setLogado(Cliente logado) {
         this.logado = logado;
     }
-    private ClienteController controller;
+
+    private TransacaoController tcontroller;
+    private ClienteController ccontroller;
     private Cliente logado;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConfirmar;

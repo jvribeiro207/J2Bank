@@ -54,17 +54,9 @@
                           <EmptySpace min="-2" pref="131" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Component id="btnTransferencia" min="-2" pref="200" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="147" max="-2" attributes="0"/>
-                                  <Component id="btnConsultas" min="-2" pref="200" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="116" max="-2" attributes="0"/>
-                                  <Component id="BemVindo" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
+                          <Component id="btnTransferencia" min="-2" pref="200" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="147" max="-2" attributes="0"/>
+                          <Component id="btnConsultas" min="-2" pref="200" max="-2" attributes="0"/>
                           <EmptySpace pref="131" max="32767" attributes="0"/>
                       </Group>
                   </Group>
@@ -76,9 +68,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                   <Component id="btnSair" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                  <Component id="BemVindo" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="75" max="32767" attributes="0"/>
+                  <EmptySpace pref="119" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="btnTransferencia" alignment="3" min="-2" pref="67" max="-2" attributes="0"/>
                       <Component id="btnConsultas" alignment="3" min="-2" pref="67" max="-2" attributes="0"/>
@@ -133,11 +123,6 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSairActionPerformed"/>
           </Events>
-        </Component>
-        <Component class="javax.swing.JLabel" name="BemVindo">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Ol&#xe1;, (nome do Cliente), seja bem vindo &#xe0; sua conta J2Bank!"/>
-          </Properties>
         </Component>
       </SubComponents>
     </Container>

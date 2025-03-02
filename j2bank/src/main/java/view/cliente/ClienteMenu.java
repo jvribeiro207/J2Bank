@@ -13,7 +13,7 @@ import view.auth.Login;
  */
 public class ClienteMenu extends javax.swing.JFrame {
 
-    private Cliente logado;
+
     /**
      * Creates new form ClienteMenu
      */
@@ -36,9 +36,16 @@ public class ClienteMenu extends javax.swing.JFrame {
         btnSolicitacao = new javax.swing.JButton();
         btnTransferencia = new javax.swing.JButton();
         btnSair = new javax.swing.JButton();
+        lblTemplate = new javax.swing.JLabel();
+        lblNome = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         btnConsultas.setText("Consultas");
         btnConsultas.addActionListener(new java.awt.event.ActionListener() {
@@ -75,6 +82,10 @@ public class ClienteMenu extends javax.swing.JFrame {
             }
         });
 
+        lblTemplate.setText("Bem vindo, ");
+
+        lblNome.setText("{nome do cliente}");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -86,6 +97,11 @@ public class ClienteMenu extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(122, 122, 122)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(lblTemplate)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblNome)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(btnInvestimentos, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -102,7 +118,11 @@ public class ClienteMenu extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(35, 35, 35)
                 .addComponent(btnSair)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 119, Short.MAX_VALUE)
+                .addGap(37, 37, 37)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblTemplate)
+                    .addComponent(lblNome))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnTransferencia, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnConsultas, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -156,10 +176,16 @@ public class ClienteMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSolicitacaoActionPerformed
 
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
-        this.dispose();
+
         Login log = new Login();
         log.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnSairActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+        lblNome.setText(logado.getNome());
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
@@ -195,15 +221,17 @@ public class ClienteMenu extends javax.swing.JFrame {
             }
         });
     }
-    
-    public Cliente getLogado(){
+
+    public Cliente getLogado() {
         return logado;
     }
-    public void setLogado(Cliente logado){
+
+    public void setLogado(Cliente logado) {
         this.logado = logado;
     }
-    
-    
+
+
+    private Cliente logado;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConsultas;
     private javax.swing.JButton btnInvestimentos;
@@ -211,7 +239,8 @@ public class ClienteMenu extends javax.swing.JFrame {
     private javax.swing.JButton btnSolicitacao;
     private javax.swing.JButton btnTransferencia;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel lblNome;
+    private javax.swing.JLabel lblTemplate;
     // End of variables declaration//GEN-END:variables
-
 
 }

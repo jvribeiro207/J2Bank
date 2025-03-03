@@ -51,6 +51,7 @@ public class Registro extends javax.swing.JFrame {
         ftfCPF = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Registro");
         setBackground(new java.awt.Color(18, 30, 49));
         setResizable(false);
 
@@ -110,10 +111,9 @@ public class Registro extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(ftfCPF, javax.swing.GroupLayout.DEFAULT_SIZE, 222, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(tfSenha)
-                        .addComponent(cbTipo, 0, 222, Short.MAX_VALUE)
-                        .addComponent(tfNome)))
+                    .addComponent(tfSenha)
+                    .addComponent(cbTipo, 0, 222, Short.MAX_VALUE)
+                    .addComponent(tfNome))
                 .addGap(93, 93, 93))
         );
         jPanel1Layout.setVerticalGroup(

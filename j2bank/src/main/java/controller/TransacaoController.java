@@ -3,16 +3,30 @@ package controller;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import javax.swing.DefaultListModel;
 import model.*;
 import persistence.TransacaoPersistence;
+import view.cliente.TelaConsultas;
 /**
  *
  * @author joaov
  */
 public class TransacaoController {
     
+    private TelaConsultas tela;
     private TransacaoPersistence persistence;
+    private DefaultListModel<Transacao> model;
+    
+    public TransacaoController(TelaConsultas tela) {
+        this.tela = tela;
+        persistence = new TransacaoPersistence();
+        this.model = new DefaultListModel<>();
+        tela.getListaTransacoes().setModel(model);
+        this.model = (DefaultListModel<Transacao>) tela.getListaTransacoes().getModel();
+    }
 
     public TransacaoController() {
         persistence = new TransacaoPersistence();
@@ -42,7 +56,16 @@ public class TransacaoController {
         persistence.registraTransacao(deposito);
     }
     
-    /*public List<Transacao> carregaLista(){
-        List<Transacao> lista = findAll();
-    }*/
+    public void carregaTransacoes() {
+        
+        List<Transacao> todas = persistence.findAll();
+        Cliente logado = tela.getLogado();
+        
+        for(Transacao t: todas){
+            if(t.getCpfOrigem().equals(logado.getCpf()) || t.getCpfDestino().equals(logado.getCpf())){
+                model.addElement(t);
+            }
+    }
+    }
 }
+

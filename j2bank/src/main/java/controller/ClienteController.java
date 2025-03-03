@@ -81,5 +81,9 @@ public class ClienteController {
 
         return false;
     }
+    public BigDecimal atualizaSaldo(String cpf){
+        Cliente atualizado = persistence.buscarCliente(cpf);
+        return atualizado.getSaldo();
+    }
 }
 

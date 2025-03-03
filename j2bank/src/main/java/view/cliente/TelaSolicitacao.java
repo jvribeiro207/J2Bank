@@ -4,6 +4,8 @@
  */
 package view.cliente;
 
+import model.Cliente;
+
 /**
  *
  * @author joaov
@@ -112,9 +114,10 @@ public class TelaSolicitacao extends javax.swing.JFrame {
     }//GEN-LAST:event_cbTipoSolicitacaoActionPerformed
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
-        this.dispose();
         ClienteMenu cm = new ClienteMenu();
+        cm.setLogado(logado);
         cm.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnVoltarActionPerformed
 
     /**
@@ -151,7 +154,16 @@ public class TelaSolicitacao extends javax.swing.JFrame {
             }
         });
     }
-
+    
+    public void setLogado(Cliente cliente){
+        this.logado = cliente;
+    }
+    
+    public Cliente getLogado(){
+        return logado;
+    }
+    
+    private Cliente logado;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnVoltar;
     private javax.swing.JComboBox<String> cbTipoSolicitacao;

@@ -46,7 +46,16 @@ public  class Transacao {
         return tipo;
     }
    
-        //TODO: realizarSaque, realizarDeposito, registraTransacao.
+    public String getValorFormatado() {
+        return "R$ " + valor.setScale(2, BigDecimal.ROUND_HALF_UP);
+    }
+
+    // Sobrescrevendo o toString()
+    @Override
+    public String toString() {
+        return cpfDestino + " | " + tipo + " | " + data + " | " + getValorFormatado();
+    }
 }
+
 
 

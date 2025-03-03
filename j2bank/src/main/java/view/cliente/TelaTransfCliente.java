@@ -43,6 +43,7 @@ public class TelaTransfCliente extends javax.swing.JFrame {
         btnVoltar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Transferência");
         setResizable(false);
 
         tfContaOrigem.setBorder(javax.swing.BorderFactory.createTitledBorder("Conta de Origem"));

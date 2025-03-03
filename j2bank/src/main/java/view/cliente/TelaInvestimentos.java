@@ -4,6 +4,8 @@
  */
 package view.cliente;
 
+import model.Cliente;
+
 /**
  *
  * @author joaov
@@ -45,6 +47,7 @@ public class TelaInvestimentos extends javax.swing.JFrame {
         btnVoltar3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Investimentos");
 
         jPanel1.setPreferredSize(new java.awt.Dimension(600, 400));
 
@@ -71,7 +74,7 @@ public class TelaInvestimentos extends javax.swing.JFrame {
             .addGroup(tabInvestimentosLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 91, Short.MAX_VALUE)
                 .addGroup(tabInvestimentosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tabInvestimentosLayout.createSequentialGroup()
                         .addComponent(btnVoltar)
@@ -89,7 +92,7 @@ public class TelaInvestimentos extends javax.swing.JFrame {
                         .addComponent(btnVoltar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton1))
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 349, Short.MAX_VALUE))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 353, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -123,7 +126,7 @@ public class TelaInvestimentos extends javax.swing.JFrame {
             .addGroup(tabRendaVariavelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 127, Short.MAX_VALUE)
                 .addGroup(tabRendaVariavelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tabRendaVariavelLayout.createSequentialGroup()
                         .addComponent(btnVoltar2)
@@ -141,7 +144,7 @@ public class TelaInvestimentos extends javax.swing.JFrame {
                         .addComponent(btnVoltar2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton4))
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 349, Short.MAX_VALUE))
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 353, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -175,7 +178,7 @@ public class TelaInvestimentos extends javax.swing.JFrame {
             .addGroup(tabRendaFixaLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 127, Short.MAX_VALUE)
                 .addGroup(tabRendaFixaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tabRendaFixaLayout.createSequentialGroup()
                         .addComponent(btnVoltar3)
@@ -193,7 +196,7 @@ public class TelaInvestimentos extends javax.swing.JFrame {
                         .addComponent(btnVoltar3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton5))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 349, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 353, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -203,11 +206,11 @@ public class TelaInvestimentos extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jTabbedPane1)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
         );
 
         jTabbedPane1.getAccessibleContext().setAccessibleName("Meus Investimentos");
@@ -236,21 +239,24 @@ public class TelaInvestimentos extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
-        this.dispose();
         ClienteMenu cm = new ClienteMenu();
+        cm.setLogado(logado);
         cm.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnVoltarActionPerformed
 
     private void btnVoltar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltar2ActionPerformed
-        this.dispose();
         ClienteMenu cm = new ClienteMenu();
+        cm.setLogado(logado);
         cm.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnVoltar2ActionPerformed
 
     private void btnVoltar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltar3ActionPerformed
-        this.dispose();
         ClienteMenu cm = new ClienteMenu();
+        cm.setLogado(logado);
         cm.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnVoltar3ActionPerformed
 
     /**
@@ -287,7 +293,15 @@ public class TelaInvestimentos extends javax.swing.JFrame {
             }
         });
     }
-
+    
+    public Cliente getLogado(){
+        return logado;
+    }
+    public void setLogado(Cliente logado){
+        this.logado = logado;
+    }
+    
+    private Cliente logado;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnVoltar;
     private javax.swing.JButton btnVoltar2;

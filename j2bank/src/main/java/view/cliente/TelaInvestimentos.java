@@ -1,14 +1,22 @@
 package view.cliente;
 
+import controller.ClienteController;
+import controller.TransacaoController;
+import controller.investimento.InvestimentoController;
 import controller.renda_fixa.RendaFixaController;
 import controller.renda_var.RendaVarController;
+import java.math.BigDecimal;
+import javax.swing.JList;
+import javax.swing.JOptionPane;
 import model.*;
-import view.gerente.ListaRendaFixa;
 
 public class TelaInvestimentos extends javax.swing.JFrame {
 
     public TelaInvestimentos() {
         initComponents();
+        this.icontroller = new InvestimentoController();
+        this.ccontroller = new ClienteController();
+        this.tcontroller = new TransacaoController();
     }
 
     @SuppressWarnings("unchecked")
@@ -21,19 +29,19 @@ public class TelaInvestimentos extends javax.swing.JFrame {
         btnVender = new javax.swing.JButton();
         btnVoltar = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jList3 = new javax.swing.JList<>();
-        jScrollPane5 = new javax.swing.JScrollPane();
-        jList5 = new javax.swing.JList<>();
+        ListaInvestimentos = new javax.swing.JList<>();
         tabRendaVariavel = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         ListaRendaVar = new javax.swing.JList<>();
         btnVoltar2 = new javax.swing.JButton();
         btnComprarVar = new javax.swing.JButton();
+        tfValorVar = new javax.swing.JTextField();
         tabRendaFixa = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         ListaRendaFixa = new javax.swing.JList<>();
         btnComprarFixa = new javax.swing.JButton();
         btnVoltar3 = new javax.swing.JButton();
+        tfValorFixa = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Investimentos");
@@ -54,11 +62,8 @@ public class TelaInvestimentos extends javax.swing.JFrame {
             }
         });
 
-        jList3.setBorder(javax.swing.BorderFactory.createTitledBorder("Renda Variável:"));
-        jScrollPane3.setViewportView(jList3);
-
-        jList5.setBorder(javax.swing.BorderFactory.createTitledBorder("Renda Fixa:"));
-        jScrollPane5.setViewportView(jList5);
+        ListaInvestimentos.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane3.setViewportView(ListaInvestimentos);
 
         javax.swing.GroupLayout tabInvestimentosLayout = new javax.swing.GroupLayout(tabInvestimentos);
         tabInvestimentos.setLayout(tabInvestimentosLayout);
@@ -66,9 +71,7 @@ public class TelaInvestimentos extends javax.swing.JFrame {
             tabInvestimentosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(tabInvestimentosLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(tabInvestimentosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 431, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 431, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 431, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addGroup(tabInvestimentosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tabInvestimentosLayout.createSequentialGroup()
@@ -84,19 +87,18 @@ public class TelaInvestimentos extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(tabInvestimentosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(tabInvestimentosLayout.createSequentialGroup()
+                        .addComponent(jScrollPane3)
+                        .addContainerGap())
+                    .addGroup(tabInvestimentosLayout.createSequentialGroup()
                         .addComponent(btnVoltar)
                         .addGap(122, 122, 122)
                         .addComponent(btnVender, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(tabInvestimentosLayout.createSequentialGroup()
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)))
-                .addGap(17, 17, 17))
+                        .addGap(17, 155, Short.MAX_VALUE))))
         );
 
         jTabbedPane1.addTab("Meus Investimentos", tabInvestimentos);
 
+        ListaRendaVar.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane4.setViewportView(ListaRendaVar);
 
         btnVoltar2.setText("Voltar");
@@ -113,6 +115,8 @@ public class TelaInvestimentos extends javax.swing.JFrame {
             }
         });
 
+        tfValorVar.setBorder(javax.swing.BorderFactory.createTitledBorder("Valor"));
+
         javax.swing.GroupLayout tabRendaVariavelLayout = new javax.swing.GroupLayout(tabRendaVariavel);
         tabRendaVariavel.setLayout(tabRendaVariavelLayout);
         tabRendaVariavelLayout.setHorizontalGroup(
@@ -127,7 +131,10 @@ public class TelaInvestimentos extends javax.swing.JFrame {
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tabRendaVariavelLayout.createSequentialGroup()
                         .addComponent(btnComprarVar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(52, 52, 52))))
+                        .addGap(52, 52, 52))
+                    .addGroup(tabRendaVariavelLayout.createSequentialGroup()
+                        .addComponent(tfValorVar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
         tabRendaVariavelLayout.setVerticalGroup(
             tabRendaVariavelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -140,12 +147,15 @@ public class TelaInvestimentos extends javax.swing.JFrame {
                     .addGroup(tabRendaVariavelLayout.createSequentialGroup()
                         .addComponent(btnVoltar2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(tfValorVar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(98, 98, 98)
                         .addComponent(btnComprarVar, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(30, 30, 30))))
         );
 
         jTabbedPane1.addTab("Renda Variável", tabRendaVariavel);
 
+        ListaRendaFixa.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(ListaRendaFixa);
 
         btnComprarFixa.setText("Comprar");
@@ -162,6 +172,8 @@ public class TelaInvestimentos extends javax.swing.JFrame {
             }
         });
 
+        tfValorFixa.setBorder(javax.swing.BorderFactory.createTitledBorder("Valor"));
+
         javax.swing.GroupLayout tabRendaFixaLayout = new javax.swing.GroupLayout(tabRendaFixa);
         tabRendaFixa.setLayout(tabRendaFixaLayout);
         tabRendaFixaLayout.setHorizontalGroup(
@@ -175,7 +187,9 @@ public class TelaInvestimentos extends javax.swing.JFrame {
                         .addComponent(btnVoltar3)
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tabRendaFixaLayout.createSequentialGroup()
-                        .addComponent(btnComprarFixa, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(tabRendaFixaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(tfValorFixa)
+                            .addComponent(btnComprarFixa, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE))
                         .addGap(52, 52, 52))))
         );
         tabRendaFixaLayout.setVerticalGroup(
@@ -189,6 +203,8 @@ public class TelaInvestimentos extends javax.swing.JFrame {
                     .addGroup(tabRendaFixaLayout.createSequentialGroup()
                         .addComponent(btnVoltar3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(tfValorFixa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(99, 99, 99)
                         .addComponent(btnComprarFixa, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(30, 30, 30))))
         );
@@ -223,12 +239,58 @@ public class TelaInvestimentos extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    
     private void btnComprarFixaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComprarFixaActionPerformed
+
+        if (!ListaRendaFixa.isSelectionEmpty()) {
+        String cpfInvestidor = logado.getCpf();
+        String valor = tfValorFixa.getText();
+        String nomeDaOperacao = ListaRendaFixa.getSelectedValue().getNome_op();
+            //solicita a senha ao usuário
+            String senhaDigitada = JOptionPane.showInputDialog(null, "Confirme sua senha:", "Confirmação", JOptionPane.PLAIN_MESSAGE);
+
+            //verifica se a senha foi digitada e se está correta
+            if (senhaDigitada == null || senhaDigitada.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Operação cancelada. Senha não informada.");
+                return;
+            }
+            if (!logado.getSenha().equals(senhaDigitada)) {
+                JOptionPane.showMessageDialog(null, "Senha incorreta! Tente novamente.");
+                return;
+            }
+            realizarInvestimento(cpfInvestidor, valor, nomeDaOperacao);
+            ClienteMenu cm = new ClienteMenu();
+            cm.setLogado(logado);
+            cm.setVisible(true);
+            this.dispose();
+        }
 
     }//GEN-LAST:event_btnComprarFixaActionPerformed
 
     private void btnComprarVarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComprarVarActionPerformed
-        // TODO add your handling code here:
+        if (!ListaRendaVar.isSelectionEmpty()) {
+        String cpfInvestidor = logado.getCpf();
+        String valor = tfValorVar.getText();
+        String nomeDaOperacao = ListaRendaVar.getSelectedValue().getNome_op();
+
+            //solicita a senha ao usuário
+            String senhaDigitada = JOptionPane.showInputDialog(null, "Confirme sua senha:", "Confirmação", JOptionPane.PLAIN_MESSAGE);
+
+            //verifica se a senha foi digitada e se está correta
+            if (senhaDigitada == null || senhaDigitada.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Operação cancelada. Senha não informada.");
+                return;
+            }
+            if (!logado.getSenha().equals(senhaDigitada)) {
+                JOptionPane.showMessageDialog(null, "Senha incorreta! Tente novamente.");
+                return;
+            }
+            realizarInvestimento(cpfInvestidor, valor, nomeDaOperacao);
+            ClienteMenu cm = new ClienteMenu();
+            cm.setLogado(logado);
+            cm.setVisible(true);
+            this.dispose();
+        }
     }//GEN-LAST:event_btnComprarVarActionPerformed
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
@@ -253,13 +315,34 @@ public class TelaInvestimentos extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVoltar3ActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-
+        InvestimentoController icontroller = new InvestimentoController(this);
+        icontroller.carregaInvestimentos();
         RendaVarController rvcontroller = new RendaVarController(this.ListaRendaVar);
         RendaFixaController rfcontroller = new RendaFixaController(this.ListaRendaFixa);
         rvcontroller.carregaRendaVar();
         rfcontroller.carregaRendaFixa();
 
     }//GEN-LAST:event_formWindowOpened
+    public void realizarInvestimento(String cpfInvestidor, String valor, String nomeDaOperacao) {
+        BigDecimal valorBigDecimal;
+        try {
+            valor = valor.replace(",", "."); //normaliza entrada caso venha com vírgula
+            valorBigDecimal = new BigDecimal(valor);
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Valor inválido. Digite um número válido.");
+            return;
+        }
+
+        boolean sucesso = ccontroller.investir(cpfInvestidor, valorBigDecimal, nomeDaOperacao);
+
+        if (sucesso) {
+            icontroller.registraInvestimento(cpfInvestidor, valorBigDecimal, nomeDaOperacao);
+            tcontroller.registraInvestimento(cpfInvestidor, valorBigDecimal);
+            JOptionPane.showMessageDialog(null, "Investimento realizado com sucesso");
+        } else {
+            JOptionPane.showMessageDialog(null, "Erro no investimento");
+        }
+    }
 
     /**
      * @param args the command line arguments
@@ -303,9 +386,17 @@ public class TelaInvestimentos extends javax.swing.JFrame {
     public void setLogado(Cliente logado) {
         this.logado = logado;
     }
-
+    
+    public JList<Investimento> getListaInvestimentos(){
+        return ListaInvestimentos;
+    }
+    
+    private InvestimentoController icontroller;
+    private ClienteController ccontroller;
+    private TransacaoController tcontroller;
     private Cliente logado;
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JList<Investimento> ListaInvestimentos;
     private javax.swing.JList<RendaFixa> ListaRendaFixa;
     private javax.swing.JList<RendaVar> ListaRendaVar;
     private javax.swing.JButton btnComprarFixa;
@@ -314,16 +405,16 @@ public class TelaInvestimentos extends javax.swing.JFrame {
     private javax.swing.JButton btnVoltar;
     private javax.swing.JButton btnVoltar2;
     private javax.swing.JButton btnVoltar3;
-    private javax.swing.JList<String> jList3;
-    private javax.swing.JList<String> jList5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JPanel tabInvestimentos;
     private javax.swing.JPanel tabRendaFixa;
     private javax.swing.JPanel tabRendaVariavel;
+    private javax.swing.JTextField tfValorFixa;
+    private javax.swing.JTextField tfValorVar;
     // End of variables declaration//GEN-END:variables
+
 }

@@ -80,14 +80,21 @@ public class ClienteController {
         }
 
         return false;
-    }
+    }  
     public BigDecimal atualizaSaldo(String cpf){
         Cliente atualizado = persistence.buscarCliente(cpf);
         return atualizado.getSaldo();
     }
     
-    //public carregaRendaFixa(){
+    public boolean investir(String cpfInvestidor, BigDecimal valor, String nomeDaOperacao){
+        Cliente investidor = persistence.buscarCliente(cpfInvestidor);
         
-    //}
+        if(investidor.debitaSaldo(valor)){
+            persistence.atualizar(investidor);
+            return true;
+        }    
+        return false;
+    }
+        
 }
 

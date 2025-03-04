@@ -41,6 +41,7 @@ public class TelaConsultas extends javax.swing.JFrame {
         listaTransacoes = new javax.swing.JList<>();
         lblTemplate = new javax.swing.JLabel();
         lblSaldo = new javax.swing.JLabel();
+        lblHistorico = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Consultas");
@@ -58,13 +59,15 @@ public class TelaConsultas extends javax.swing.JFrame {
             }
         });
 
-        listaTransacoes.setBorder(javax.swing.BorderFactory.createTitledBorder("Ultimas Transações:"));
+        listaTransacoes.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         listaTransacoes.setFixedCellHeight(20);
         jScrollPane2.setViewportView(listaTransacoes);
 
         lblTemplate.setText("Saldo: R$");
 
         lblSaldo.setText("(saldo do cliente)");
+
+        lblHistorico.setText("Histórico de Transações:");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -76,10 +79,15 @@ public class TelaConsultas extends javax.swing.JFrame {
                 .addGap(28, 28, 28))
             .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(225, 225, 225)
-                .addComponent(lblTemplate)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblSaldo)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(225, 225, 225)
+                        .addComponent(lblTemplate)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblSaldo))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(lblHistorico)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -91,7 +99,9 @@ public class TelaConsultas extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblTemplate)
                     .addComponent(lblSaldo))
-                .addGap(76, 76, 76)
+                .addGap(54, 54, 54)
+                .addComponent(lblHistorico)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE))
         );
 
@@ -179,6 +189,7 @@ public class TelaConsultas extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel lblHistorico;
     private javax.swing.JLabel lblSaldo;
     private javax.swing.JLabel lblTemplate;
     private javax.swing.JList<Transacao> listaTransacoes;

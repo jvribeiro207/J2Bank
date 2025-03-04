@@ -150,7 +150,7 @@ public class TelaTransfCliente extends javax.swing.JFrame {
         String senhaDigitada = JOptionPane.showInputDialog(null, "Confirme sua senha:", "Confirmação", JOptionPane.PLAIN_MESSAGE);
 
         //verifica se a senha foi digitada e se está correta
-        if (senhaDigitada.isEmpty()) {
+        if (senhaDigitada == null || senhaDigitada.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Operação cancelada. Senha não informada.");
             return;
         }

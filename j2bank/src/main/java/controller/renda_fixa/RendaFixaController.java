@@ -7,7 +7,9 @@ package controller.renda_fixa;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultListModel;
+import javax.swing.JList;
 import model.RendaFixa;
+import model.RendaVar;
 import persistence.Persistence;
 import persistence.RendaFixaPersistence;
 import view.gerente.ListaRendaFixa;
@@ -17,6 +19,7 @@ import view.gerente.ListaRendaFixa;
  * @author B r u n o
  */
 public class RendaFixaController {
+    private JList<RendaFixa> lista;
     private ListaRendaFixa janela;
     private DefaultListModel<RendaFixa> model;
 
@@ -25,6 +28,15 @@ public class RendaFixaController {
         this.model = new DefaultListModel<>();
         janela.getListaRendaF().setModel(model);
         this.model = (DefaultListModel<RendaFixa>) janela.getListaRendaF().getModel();
+        this.lista = janela.getListaRendaF();
+    }
+    
+    public RendaFixaController(JList<RendaFixa> lista){
+        this.janela = null;
+        this.lista = lista;
+        this.model = new DefaultListModel<>();
+        this.lista.setModel(model);
+        this.model = (DefaultListModel<RendaFixa>) this.lista.getModel();
     }
     
     public void carregaRendaFixa(){

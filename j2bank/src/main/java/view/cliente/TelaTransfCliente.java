@@ -36,24 +36,15 @@ public class TelaTransfCliente extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        tfContaOrigem = new javax.swing.JTextField();
-        tfContaDestino = new javax.swing.JTextField();
         tfValorTransferencia = new javax.swing.JTextField();
         btnConfirmar = new javax.swing.JButton();
         btnVoltar = new javax.swing.JButton();
+        tfContaDestino = new javax.swing.JFormattedTextField();
+        tfContaOrigem = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Transferência");
         setResizable(false);
-
-        tfContaOrigem.setBorder(javax.swing.BorderFactory.createTitledBorder("Conta de Origem"));
-
-        tfContaDestino.setBorder(javax.swing.BorderFactory.createTitledBorder("Conta de Destino"));
-        tfContaDestino.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfContaDestinoActionPerformed(evt);
-            }
-        });
 
         tfValorTransferencia.setBorder(javax.swing.BorderFactory.createTitledBorder("Valor"));
         tfValorTransferencia.addActionListener(new java.awt.event.ActionListener() {
@@ -76,20 +67,30 @@ public class TelaTransfCliente extends javax.swing.JFrame {
             }
         });
 
+        tfContaDestino.setBorder(javax.swing.BorderFactory.createTitledBorder("CPF de Destino"));
+        try {
+            tfContaDestino.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        tfContaOrigem.setBorder(javax.swing.BorderFactory.createTitledBorder("Meu CPF"));
+        try {
+            tfContaOrigem.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(44, 44, 44)
+                .addGap(59, 59, 59)
                 .addComponent(tfContaOrigem, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 118, Short.MAX_VALUE)
-                .addComponent(tfContaDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, Short.MAX_VALUE)
+                .addComponent(tfContaDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(39, 39, 39))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(206, 206, 206)
-                .addComponent(tfValorTransferencia, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -98,23 +99,26 @@ public class TelaTransfCliente extends javax.swing.JFrame {
                         .addGap(216, 216, 216))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(btnVoltar)
-                        .addGap(30, 30, 30))))
+                        .addGap(30, 30, 30))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(tfValorTransferencia, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(192, 192, 192))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(77, 213, Short.MAX_VALUE)
+                .addContainerGap(95, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tfContaOrigem, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfContaDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(73, 73, 73)
                 .addComponent(tfValorTransferencia, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(60, 60, 60)
+                .addGap(55, 55, 55)
                 .addComponent(btnConfirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addComponent(btnVoltar)
-                .addGap(45, 45, 45)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tfContaOrigem, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfContaDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -132,10 +136,6 @@ public class TelaTransfCliente extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void tfContaDestinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfContaDestinoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfContaDestinoActionPerformed
 
     private void tfValorTransferenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfValorTransferenciaActionPerformed
         // TODO add your handling code here:
@@ -223,6 +223,7 @@ public class TelaTransfCliente extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Valor inválido. Digite um número válido.");
             return;
         }
+        
         boolean sucesso = ccontroller.transferir(cpfOrigem, cpfDestino, valorBigDecimal);
 
         if (sucesso) {
@@ -249,8 +250,8 @@ public class TelaTransfCliente extends javax.swing.JFrame {
     private javax.swing.JButton btnConfirmar;
     private javax.swing.JButton btnVoltar;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField tfContaDestino;
-    private javax.swing.JTextField tfContaOrigem;
+    private javax.swing.JFormattedTextField tfContaDestino;
+    private javax.swing.JFormattedTextField tfContaOrigem;
     private javax.swing.JTextField tfValorTransferencia;
     // End of variables declaration//GEN-END:variables
 }

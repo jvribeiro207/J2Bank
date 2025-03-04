@@ -59,6 +59,7 @@ public class TelaConsultas extends javax.swing.JFrame {
         });
 
         listaTransacoes.setBorder(javax.swing.BorderFactory.createTitledBorder("Ultimas Transações:"));
+        listaTransacoes.setFixedCellHeight(20);
         jScrollPane2.setViewportView(listaTransacoes);
 
         lblTemplate.setText("Saldo: R$");

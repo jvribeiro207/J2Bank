@@ -40,11 +40,11 @@ public class ClienteController {
     }
     
     public List<Cliente> listaClientes() {
-        List<Cliente> caixas = new ArrayList<>();
+        List<Cliente> clientes = new ArrayList<>();
         for (int i = 0; i < model.size(); i++) {
-            caixas.add(model.get(i));
+            clientes.add(model.get(i));
         }
-        return caixas;
+        return clientes;
     }
     
     public void salvaClientesAoFechar() {
@@ -85,5 +85,9 @@ public class ClienteController {
         Cliente atualizado = persistence.buscarCliente(cpf);
         return atualizado.getSaldo();
     }
+    
+    //public carregaRendaFixa(){
+        
+    //}
 }
 

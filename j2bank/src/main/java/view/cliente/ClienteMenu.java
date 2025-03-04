@@ -15,6 +15,7 @@ import view.auth.Login;
 public class ClienteMenu extends javax.swing.JFrame {
 
     private Cliente logado;
+
     /**
      * Creates new form ClienteMenu
      */
@@ -120,7 +121,7 @@ public class ClienteMenu extends javax.swing.JFrame {
                 .addGap(35, 35, 35)
                 .addComponent(btnSair)
                 .addGap(7, 7, 7)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblTemplate)
                     .addComponent(lblNome, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 96, Short.MAX_VALUE)
@@ -167,8 +168,8 @@ public class ClienteMenu extends javax.swing.JFrame {
         String senhaDigitada = JOptionPane.showInputDialog(null, "Confirme sua senha:", "Confirmação", JOptionPane.PLAIN_MESSAGE);
 
         //verifica se a senha foi digitada e se está correta
-        if (senhaDigitada.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Senha não informada.");
+        if (senhaDigitada == null || senhaDigitada.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Consulta cancelada");
             return;
         }
 
@@ -176,7 +177,7 @@ public class ClienteMenu extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Senha incorreta! Tente novamente.");
             return;
         }
-        
+
         TelaConsultas c = new TelaConsultas();
         c.setVisible(true);
         c.setLogado(logado);
@@ -234,15 +235,16 @@ public class ClienteMenu extends javax.swing.JFrame {
             }
         });
     }
-    
-    public Cliente getLogado(){
+
+    public Cliente getLogado() {
         return logado;
     }
-    public void setLogado(Cliente logado){
+
+    public void setLogado(Cliente logado) {
         this.logado = logado;
     }
-    
-    
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConsultas;
     private javax.swing.JButton btnInvestimentos;
@@ -253,6 +255,5 @@ public class ClienteMenu extends javax.swing.JFrame {
     private javax.swing.JLabel lblNome;
     private javax.swing.JLabel lblTemplate;
     // End of variables declaration//GEN-END:variables
-
 
 }

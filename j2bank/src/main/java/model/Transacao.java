@@ -1,4 +1,3 @@
-
 package model;
 
 import java.math.BigDecimal;
@@ -6,13 +5,12 @@ import java.math.RoundingMode;
 import java.time.*;
 import javax.swing.JOptionPane;
 
-
 /**
  *
  * @author joaov
  */
-public  class Transacao {
-    
+public class Transacao {
+
     private String cpfOrigem;
     private String cpfDestino;
     private BigDecimal valor;
@@ -27,13 +25,15 @@ public  class Transacao {
         this.data = data;
         this.tipo = tipo;
     }
-    
-    public String getCpfOrigem(){
+
+    public String getCpfOrigem() {
         return cpfOrigem;
     }
-    public String getCpfDestino(){
+
+    public String getCpfDestino() {
         return cpfDestino;
     }
+
     public BigDecimal getValor() {
         return valor;
     }
@@ -45,17 +45,23 @@ public  class Transacao {
     public String getTipoTransacao() {
         return tipo;
     }
-   
-    public String getValorFormatado() {
-        return "R$ " + valor.setScale(2, BigDecimal.ROUND_HALF_UP);
-    }
 
-    // Sobrescrevendo o toString()
+
+    //sobrescrevendo o toString()
     @Override
     public String toString() {
-        return cpfDestino + " | " + tipo + " | " + data + " | " + getValorFormatado();
+        
+        if (cpfDestino == null || cpfDestino.isEmpty()) {
+            return  tipo
+                    + " | CPF Origem: " + cpfOrigem
+                    + " | Valor: R$ " + valor.setScale(2, BigDecimal.ROUND_HALF_UP)
+                    + " | Data: " + data;
+        } else {
+            return tipo
+                    + " | CPF Origem: " + cpfOrigem
+                    + " | CPF Destino: " + cpfDestino
+                    + " | Valor: R$ " + valor.setScale(2, BigDecimal.ROUND_HALF_UP)
+                    + " | Data: " + data;
+        }
     }
 }
-
-
-

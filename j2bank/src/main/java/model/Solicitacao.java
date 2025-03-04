@@ -18,7 +18,7 @@ public class Solicitacao {
     private String status;
     private String data;
 
-    public Solicitacao(String cpfCliente, BigDecimal valor, String tipoSolicitacao,String status, String data) {
+    public Solicitacao(String cpfCliente, BigDecimal valor, String tipoSolicitacao, String status, String data) {
         this.cpfCliente = cpfCliente;
         this.valor = valor;
         this.tipoSolicitacao = tipoSolicitacao;

@@ -64,18 +64,9 @@
                           <EmptySpace min="-2" pref="131" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Group type="102" alignment="1" attributes="0">
-                                  <Component id="lblTemplate" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="lblNome" min="-2" pref="219" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" attributes="0">
-                                  <Component id="btnTransferencia" min="-2" pref="200" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="147" max="-2" attributes="0"/>
-                                  <Component id="btnConsultas" min="-2" pref="200" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
+                          <Component id="btnTransferencia" min="-2" pref="200" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="147" max="-2" attributes="0"/>
+                          <Component id="btnConsultas" min="-2" pref="200" max="-2" attributes="0"/>
                           <EmptySpace pref="131" max="32767" attributes="0"/>
                       </Group>
                   </Group>
@@ -150,7 +141,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="lblTemplate">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Bem vindo, "/>
+            <Property name="text" type="java.lang.String" value="Bem vindo &#xe0; sua conta J2Bank, "/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblNome">

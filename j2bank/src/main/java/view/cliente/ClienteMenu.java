@@ -84,7 +84,7 @@ public class ClienteMenu extends javax.swing.JFrame {
             }
         });
 
-        lblTemplate.setText("Bem vindo, ");
+        lblTemplate.setText("Bem vindo à sua conta J2Bank, ");
 
         lblNome.setText("{nome do cliente}");
 
@@ -110,15 +110,9 @@ public class ClienteMenu extends javax.swing.JFrame {
                         .addComponent(btnSolicitacao, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(131, 131, 131))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(lblTemplate)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblNome, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(btnTransferencia, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(147, 147, 147)
-                                .addComponent(btnConsultas, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnTransferencia, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(147, 147, 147)
+                        .addComponent(btnConsultas, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(131, Short.MAX_VALUE))))
         );
         jPanel2Layout.setVerticalGroup(

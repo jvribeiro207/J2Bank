@@ -4,6 +4,13 @@
  */
 package view.caixa;
 
+import java.math.BigDecimal;
+import javax.swing.JOptionPane;
+import model.Cliente;
+import controller.TransacaoController;
+import model.Transacao;
+import controller.ClienteController;
+
 /**
  *
  * @author jose
@@ -15,6 +22,8 @@ public class Transferencia extends javax.swing.JFrame {
      */
     public Transferencia() {
         initComponents();
+        ccontroller = new ClienteController();
+        tcontroller = new TransacaoController();
     }
 
     /**
@@ -27,29 +36,15 @@ public class Transferencia extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        btnContaDestino = new javax.swing.JTextField();
-        btnContaOrigem = new javax.swing.JTextField();
         btnValor = new javax.swing.JTextField();
         voltar = new javax.swing.JButton();
         confirmar = new javax.swing.JButton();
+        btnContaDestino = new javax.swing.JFormattedTextField();
+        btnContaOrigem = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setPreferredSize(new java.awt.Dimension(800, 600));
-
-        btnContaDestino.setBorder(javax.swing.BorderFactory.createTitledBorder("Conta Destino"));
-        btnContaDestino.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnContaDestinoActionPerformed(evt);
-            }
-        });
-
-        btnContaOrigem.setBorder(javax.swing.BorderFactory.createTitledBorder("Conta Origem"));
-        btnContaOrigem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnContaOrigemActionPerformed(evt);
-            }
-        });
 
         btnValor.setBorder(javax.swing.BorderFactory.createTitledBorder("Valor"));
 
@@ -67,38 +62,57 @@ public class Transferencia extends javax.swing.JFrame {
             }
         });
 
+        btnContaDestino.setBorder(javax.swing.BorderFactory.createTitledBorder("Conta Destino"));
+        try {
+            btnContaDestino.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        btnContaOrigem.setBorder(javax.swing.BorderFactory.createTitledBorder("Conta Origem"));
+        try {
+            btnContaOrigem.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(72, 108, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(56, 56, 56)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnValor, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnContaOrigem, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(voltar, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addGap(104, 104, 104)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(confirmar)
-                            .addComponent(btnContaDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(108, 108, 108))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(btnValor, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(203, 203, 203))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(voltar)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(btnContaOrigem, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 88, Short.MAX_VALUE)
+                                .addComponent(btnContaDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(56, 56, 56))))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(217, 217, 217)
+                .addComponent(confirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(83, 83, 83)
+                .addGap(22, 22, 22)
+                .addComponent(voltar)
+                .addGap(50, 50, 50)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnContaDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnContaOrigem, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(33, 33, 33)
+                .addGap(46, 46, 46)
                 .addComponent(btnValor, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(66, 66, 66)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(voltar)
-                    .addComponent(confirmar))
-                .addContainerGap(91, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
+                .addComponent(confirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(44, 44, 44))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -116,14 +130,6 @@ public class Transferencia extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnContaDestinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContaDestinoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnContaDestinoActionPerformed
-
-    private void btnContaOrigemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContaOrigemActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnContaOrigemActionPerformed
-
     private void voltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_voltarActionPerformed
         // TODO add your handling code here:
         CaixaMenu caixa_logado = new CaixaMenu();
@@ -133,6 +139,30 @@ public class Transferencia extends javax.swing.JFrame {
 
     private void confirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarActionPerformed
         // TODO add your handling code here:
+
+        String cpfOrigem = btnContaOrigem.getText();
+        String cpfDestino = btnContaDestino.getText();
+        String valor = btnValor.getText();
+
+        // Busca o cliente de origem pelo CPF
+        Cliente clienteOrigem = buscarClientePorCpf(cpfOrigem);
+        if (clienteOrigem == null) {
+            JOptionPane.showMessageDialog(null, "Conta de origem não encontrada!");
+            return;
+        }
+
+        String senhaDigitada = JOptionPane.showInputDialog(null, "Confirme a senha do cliente de origem:", "Confirmação", JOptionPane.PLAIN_MESSAGE);
+        if (senhaDigitada.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Operação cancelada. Senha não informada.");
+            return;
+        }
+
+        if (!clienteOrigem.getSenha().equals(senhaDigitada)) {
+            JOptionPane.showMessageDialog(null, "Senha incorreta! Tente novamente.");
+            return;
+        }
+
+        realizarTransferencia(cpfOrigem, cpfDestino, valor);
     }//GEN-LAST:event_confirmarActionPerformed
 
     /**
@@ -162,6 +192,24 @@ public class Transferencia extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(Transferencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(Transferencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(Transferencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(Transferencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -171,9 +219,39 @@ public class Transferencia extends javax.swing.JFrame {
         });
     }
 
+    public void realizarTransferencia(String cpfOrigem, String cpfDestino, String valor) {
+
+        BigDecimal valorBigDecimal;
+        try {
+            valor = valor.replace(",", "."); //normaliza entrada caso venha com vírgula
+            valorBigDecimal = new BigDecimal(valor);
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Valor inválido. Digite um número válido.");
+            return;
+        }
+        boolean sucesso = ccontroller.transferir(cpfOrigem, cpfDestino, valorBigDecimal);
+
+        if (sucesso) {
+            tcontroller.registraTransferencia(cpfOrigem,cpfDestino,valorBigDecimal);
+            JOptionPane.showMessageDialog(null, "Transferência realizada com sucesso");
+        } else {
+            JOptionPane.showMessageDialog(null, "Saldo insuficiente ou erro na transferência");
+        }
+
+    }
+
+    private Cliente buscarClientePorCpf(String cpf) {
+
+        persistence.ClientePersistence clientePersistence = new persistence.ClientePersistence();
+        return clientePersistence.buscarCliente(cpf);
+    }
+
+    private TransacaoController tcontroller;
+    private ClienteController ccontroller;
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField btnContaDestino;
-    private javax.swing.JTextField btnContaOrigem;
+    private javax.swing.JFormattedTextField btnContaDestino;
+    private javax.swing.JFormattedTextField btnContaOrigem;
     private javax.swing.JTextField btnValor;
     private javax.swing.JButton confirmar;
     private javax.swing.JPanel jPanel1;

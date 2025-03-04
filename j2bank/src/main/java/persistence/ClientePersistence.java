@@ -17,17 +17,17 @@ import static persistence.Persistence.DIRECTORY;
  *
  * @author joaov
  */
-public class ClientePersistence implements Persistence<Cliente>{
-    
+public class ClientePersistence implements Persistence<Cliente> {
+
     private static final String PATH = DIRECTORY + File.separator + "clientes.json";
 
-    private void criaDiretorio(){
+    private void criaDiretorio() {
         File diretorio = new File(DIRECTORY);
         if (!diretorio.exists()) {
             diretorio.mkdirs();
         }
     }
-    
+
     @Override
     public void save(List<Cliente> clientes) {
         Gson gson = new Gson();
@@ -38,6 +38,7 @@ public class ClientePersistence implements Persistence<Cliente>{
         Arquivo.salva(PATH, json);
 
     }
+
     @Override
     public List<Cliente> findAll() {
         Gson gson = new Gson();
@@ -57,26 +58,37 @@ public class ClientePersistence implements Persistence<Cliente>{
         }
         return clientes;
     }
-    
+
     public Cliente buscarCliente(String cpf) {
-    Persistence<Cliente> clientes = new ClientePersistence();
-    List <Cliente> todos = clientes.findAll();
+        Persistence<Cliente> clientes = new ClientePersistence();
+        List<Cliente> todos = clientes.findAll();
 
-    //busca o cliente pelo CPF
-    return todos.stream().filter(c -> c.getCpf().equals(cpf)).findFirst().orElse(null);
-    
-}
+        //busca o cliente pelo CPF
+        return todos.stream().filter(c -> c.getCpf().equals(cpf)).findFirst().orElse(null);
+
+    }
+
     public void criarCliente(Cliente cliente) {
-    //carrega a lista existente
-    List<Cliente> clientes = findAll();
+        //carrega a lista existente
+        List<Cliente> clientes = findAll();
 
-    //adiciona o novo cliente
-    clientes.add(cliente);
+        //adiciona o novo cliente
+        clientes.add(cliente);
 
-    //salva a lista atualizada no JSON
-    save(clientes);
+        //salva a lista atualizada no JSON
+        save(clientes);
 
+    }
+
+    public void atualizar(Cliente clienteAtualizado) {
+        List<Cliente> clientes = findAll();
+
+        for (int i = 0; i < clientes.size(); i++) {
+            if (clientes.get(i).getCpf().equals(clienteAtualizado.getCpf())) {
+                clientes.set(i, clienteAtualizado); //atualiza o cliente na lista
+                break;
+            }
+        }
+        save(clientes); //salva a lista atualizada no JSON
+    }
 }
-}
-
-

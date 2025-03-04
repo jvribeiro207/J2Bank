@@ -7,6 +7,7 @@ package controller.renda_var;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultListModel;
+import javax.swing.JList;
 import model.RendaFixa;
 import model.RendaVar;
 import persistence.Persistence;
@@ -20,6 +21,7 @@ import view.gerente.ListaRendaVar;
  * @author B r u n o
  */
 public class RendaVarController {
+    private JList<RendaVar> lista;
     private ListaRendaVar janela;
     private DefaultListModel<RendaVar> model;
 
@@ -28,8 +30,16 @@ public class RendaVarController {
         this.model = new DefaultListModel<>();
         janela.getListaRendaVar().setModel(model);
         this.model = (DefaultListModel<RendaVar>) janela.getListaRendaVar().getModel();
+        this.lista = janela.getListaRendaVar();
     }
     
+    public RendaVarController(JList<RendaVar> lista){
+        this.lista = lista;
+        this.model = new DefaultListModel<>();
+        this.lista.setModel(model);
+        this.model = (DefaultListModel<RendaVar>) this.lista.getModel();
+    }
+     
     public void carregaRendaVar(){
         Persistence<RendaVar> varPersistence = new RendaVarPersistence();
         List<RendaVar> todos = varPersistence.findAll();

@@ -4,6 +4,14 @@
  */
 package view.cliente;
 
+import controller.ClienteController;
+import controller.TransacaoController;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import javax.swing.JList;
+import model.Cliente;
+import model.Transacao;
+
 /**
  *
  * @author joaov
@@ -15,6 +23,7 @@ public class TelaConsultas extends javax.swing.JFrame {
      */
     public TelaConsultas() {
         initComponents();
+        ccontroller = new ClienteController();
     }
 
     /**
@@ -27,38 +36,21 @@ public class TelaConsultas extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        listaTransacoes = new javax.swing.JList<>();
+        lblTemplate = new javax.swing.JLabel();
+        lblSaldo = new javax.swing.JLabel();
+        lblHistorico = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Consultas");
         setResizable(false);
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Tipo", "Valor", "Data"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
             }
         });
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setResizable(false);
-            jTable1.getColumnModel().getColumn(1).setResizable(false);
-            jTable1.getColumnModel().getColumn(2).setResizable(false);
-        }
-
-        jLabel1.setText("Saldo:");
 
         jButton1.setText("Voltar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -67,29 +59,50 @@ public class TelaConsultas extends javax.swing.JFrame {
             }
         });
 
+        listaTransacoes.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        listaTransacoes.setFixedCellHeight(20);
+        jScrollPane2.setViewportView(listaTransacoes);
+
+        lblTemplate.setText("Saldo: R$");
+
+        lblSaldo.setText("(saldo do cliente)");
+
+        lblHistorico.setText("Histórico de Transações:");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(58, 58, 58)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(105, 500, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(28, 28, 28))
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(225, 225, 225)
+                        .addComponent(lblTemplate)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblSaldo))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(lblHistorico)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 108, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(8, 8, 8)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblTemplate)
+                    .addComponent(lblSaldo))
+                .addGap(54, 54, 54)
+                .addComponent(lblHistorico)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -108,10 +121,20 @@ public class TelaConsultas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        this.dispose();
         ClienteMenu cm = new ClienteMenu();
+        cm.setLogado(logado);
         cm.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        BigDecimal saldoAtual = ccontroller.atualizaSaldo(logado.getCpf());
+        saldoAtual.setScale(2, RoundingMode.HALF_UP);
+        
+        lblSaldo.setText(saldoAtual.toString());
+        tcontroller = new TransacaoController(this);
+        tcontroller.carregaTransacoes();
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
@@ -148,12 +171,27 @@ public class TelaConsultas extends javax.swing.JFrame {
             }
         });
     }
+    
+    public Cliente getLogado(){
+        return logado;
+    }
+    public void setLogado(Cliente logado){
+        this.logado = logado;
+    }
 
+    public JList<Transacao> getListaTransacoes(){
+        return listaTransacoes;
+    }
+    private ClienteController ccontroller;
+    private Cliente logado;
+    private TransacaoController tcontroller;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel lblHistorico;
+    private javax.swing.JLabel lblSaldo;
+    private javax.swing.JLabel lblTemplate;
+    private javax.swing.JList<Transacao> listaTransacoes;
     // End of variables declaration//GEN-END:variables
 }

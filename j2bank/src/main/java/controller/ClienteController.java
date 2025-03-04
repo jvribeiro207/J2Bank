@@ -40,11 +40,11 @@ public class ClienteController {
     }
     
     public List<Cliente> listaClientes() {
-        List<Cliente> caixas = new ArrayList<>();
+        List<Cliente> clientes = new ArrayList<>();
         for (int i = 0; i < model.size(); i++) {
-            caixas.add(model.get(i));
+            clientes.add(model.get(i));
         }
-        return caixas;
+        return clientes;
     }
     
     public void salvaClientesAoFechar() {
@@ -80,6 +80,21 @@ public class ClienteController {
         }
 
         return false;
+    }  
+    public BigDecimal atualizaSaldo(String cpf){
+        Cliente atualizado = persistence.buscarCliente(cpf);
+        return atualizado.getSaldo();
     }
+    
+    public boolean investir(String cpfInvestidor, BigDecimal valor, String nomeDaOperacao){
+        Cliente investidor = persistence.buscarCliente(cpfInvestidor);
+        
+        if(investidor.debitaSaldo(valor)){
+            persistence.atualizar(investidor);
+            return true;
+        }    
+        return false;
+    }
+        
 }
 

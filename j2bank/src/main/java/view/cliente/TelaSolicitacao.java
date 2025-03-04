@@ -4,6 +4,11 @@
  */
 package view.cliente;
 
+import controller.SolicitacaoController;
+import java.math.BigDecimal;
+import javax.swing.JOptionPane;
+import model.Cliente;
+
 /**
  *
  * @author joaov
@@ -15,6 +20,7 @@ public class TelaSolicitacao extends javax.swing.JFrame {
      */
     public TelaSolicitacao() {
         initComponents();
+        scontroller = new SolicitacaoController();
     }
 
     /**
@@ -30,7 +36,7 @@ public class TelaSolicitacao extends javax.swing.JFrame {
         cbTipoSolicitacao = new javax.swing.JComboBox<>();
         tfValorSolicitacao = new javax.swing.JTextField();
         btnVoltar = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnConfirmar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Solicitação de Crédito");
@@ -54,34 +60,35 @@ public class TelaSolicitacao extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("Confirmar");
+        btnConfirmar.setText("Confirmar solicitação");
+        btnConfirmar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConfirmarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(52, 52, 52)
+                .addGap(42, 42, 42)
                 .addComponent(tfValorSolicitacao, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
                 .addComponent(cbTipoSolicitacao, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(44, 44, 44))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(221, 221, 221))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(btnVoltar)
-                        .addGap(27, 27, 27))))
+                        .addGap(27, 27, 27))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(btnConfirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(209, 209, 209))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(17, 17, 17))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(17, 17, 17)
                 .addComponent(btnVoltar)
@@ -89,7 +96,9 @@ public class TelaSolicitacao extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tfValorSolicitacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cbTipoSolicitacao, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(236, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 139, Short.MAX_VALUE)
+                .addComponent(btnConfirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(48, 48, 48))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -112,11 +121,52 @@ public class TelaSolicitacao extends javax.swing.JFrame {
     }//GEN-LAST:event_cbTipoSolicitacaoActionPerformed
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
-        this.dispose();
         ClienteMenu cm = new ClienteMenu();
+        cm.setLogado(logado);
         cm.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnVoltarActionPerformed
 
+    private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
+       
+        String valor = tfValorSolicitacao.getText();
+        String opcao = cbTipoSolicitacao.getSelectedItem().toString();
+        
+        String senhaDigitada = JOptionPane.showInputDialog(null, "Confirme sua senha:", "Confirmação", JOptionPane.PLAIN_MESSAGE);
+
+        //verifica se a senha foi digitada e se está correta
+        if (senhaDigitada.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Operação cancelada. Senha não informada.");
+            return;
+        }
+        if (!logado.getSenha().equals(senhaDigitada)) {
+            JOptionPane.showMessageDialog(null, "Senha incorreta! Tente novamente.");
+            return;
+        }
+        solicitarCredito(valor, opcao);
+    }//GEN-LAST:event_btnConfirmarActionPerformed
+    
+    private void solicitarCredito(String valor, String opcao){
+        String cpfCliente = logado.getCpf();
+        BigDecimal valorBigDecimal;
+        try {
+            valor = valor.replace(",", "."); //normaliza entrada caso venha com vírgula
+            valorBigDecimal = new BigDecimal(valor);
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Valor inválido. Digite um número válido.");
+            return;
+        }
+        
+        if(opcao.equals("Financiamento")){
+            scontroller.registraFinanciamento(cpfCliente, valorBigDecimal);
+            JOptionPane.showMessageDialog(null, "Solicitação de Financiamento confirmada!");
+        }else{
+            scontroller.registraEmprestimo(cpfCliente, valorBigDecimal);
+            JOptionPane.showMessageDialog(null, "Solicitação de Empréstimo confirmada!");
+        }
+    }
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -151,11 +201,20 @@ public class TelaSolicitacao extends javax.swing.JFrame {
             }
         });
     }
-
+    
+    public void setLogado(Cliente cliente){
+        this.logado = cliente;
+    }
+    
+    public Cliente getLogado(){
+        return logado;
+    }
+    private SolicitacaoController scontroller;
+    private Cliente logado;
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnConfirmar;
     private javax.swing.JButton btnVoltar;
     private javax.swing.JComboBox<String> cbTipoSolicitacao;
-    private javax.swing.JButton jButton2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField tfValorSolicitacao;
     // End of variables declaration//GEN-END:variables

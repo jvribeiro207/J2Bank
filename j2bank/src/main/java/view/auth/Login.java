@@ -49,6 +49,7 @@ public class Login extends javax.swing.JFrame {
         ftfCPF = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Login");
         setBackground(new java.awt.Color(18, 30, 49));
         setResizable(false);
 

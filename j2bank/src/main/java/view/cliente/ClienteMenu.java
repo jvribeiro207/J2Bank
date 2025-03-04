@@ -4,6 +4,7 @@
  */
 package view.cliente;
 
+import javax.swing.JOptionPane;
 import model.Cliente;
 import view.auth.Login;
 
@@ -40,6 +41,7 @@ public class ClienteMenu extends javax.swing.JFrame {
         lblNome = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Menu Principal");
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
@@ -108,9 +110,15 @@ public class ClienteMenu extends javax.swing.JFrame {
                         .addComponent(btnSolicitacao, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(131, 131, 131))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(btnTransferencia, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(147, 147, 147)
-                        .addComponent(btnConsultas, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(lblTemplate)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblNome, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(btnTransferencia, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(147, 147, 147)
+                                .addComponent(btnConsultas, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap(131, Short.MAX_VALUE))))
         );
         jPanel2Layout.setVerticalGroup(
@@ -150,18 +158,32 @@ public class ClienteMenu extends javax.swing.JFrame {
 
     private void btnInvestimentosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInvestimentosActionPerformed
         TelaInvestimentos ti = new TelaInvestimentos();
+        ti.setLogado(logado);
         ti.setVisible(true);
-        this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_btnInvestimentosActionPerformed
 
     private void btnTransferenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTransferenciaActionPerformed
         TelaTransfCliente tc = new TelaTransfCliente();
         tc.setVisible(true);
         tc.setLogado(logado);
-        this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_btnTransferenciaActionPerformed
 
     private void btnConsultasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultasActionPerformed
+        String senhaDigitada = JOptionPane.showInputDialog(null, "Confirme sua senha:", "Confirmação", JOptionPane.PLAIN_MESSAGE);
+
+        //verifica se a senha foi digitada e se está correta
+        if (senhaDigitada == null || senhaDigitada.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Consulta cancelada");
+            return;
+        }
+
+        if (!logado.getSenha().equals(senhaDigitada)) {
+            JOptionPane.showMessageDialog(null, "Senha incorreta! Tente novamente.");
+            return;
+        }
+
         TelaConsultas c = new TelaConsultas();
         c.setVisible(true);
         c.setLogado(logado);
@@ -171,7 +193,7 @@ public class ClienteMenu extends javax.swing.JFrame {
     private void btnSolicitacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSolicitacaoActionPerformed
         TelaSolicitacao ts = new TelaSolicitacao();
         ts.setVisible(true);
-        //ts.setLogado(logado);
+        ts.setLogado(logado);
         this.setVisible(false);
     }//GEN-LAST:event_btnSolicitacaoActionPerformed
 

@@ -1,31 +1,37 @@
-/* Autores: Bruno Cesario Menezes - 202335003
-            João Victor Macedo Ribeiro - 202335011
-            José Simões de Araújo Neto - 202335035 */
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package controller;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 import model.Cliente;
-import persistence.ClientePersistence;
+import persistence.TestPersistence;
 import persistence.Persistence;
 
-public class ClienteController {
+/**
+ *
+ * @author jose
+ */
+public class TestController {
 
     private DefaultListModel<Cliente> model;
-    private ClientePersistence persistence;
+    private TestPersistence persistence;
 
-    public ClienteController(DefaultListModel<Cliente> model) {
+    public TestController(DefaultListModel<Cliente> model) {
         this.model = model;
     }
 
-    public ClienteController() {
-        persistence = new ClientePersistence();
+    public TestController() {
+        persistence = new TestPersistence();
     }
 
     public void carregaClientes() {
-        Persistence<Cliente> clientePersistence = new ClientePersistence();
+        Persistence<Cliente> clientePersistence = new TestPersistence();
         List<Cliente> todos = clientePersistence.findAll();
 
         for (Cliente cliente : todos) {
@@ -42,9 +48,10 @@ public class ClienteController {
     }
 
     public void salvaClientesAoFechar() {
-        Persistence<Cliente> caixaPersistence = new ClientePersistence();
+        Persistence<Cliente> caixaPersistence = new TestPersistence();
         caixaPersistence.save(listaClientes());
     }
+
     public void removeCliente(int indice) {
         model.remove(indice);
     }
@@ -53,15 +60,10 @@ public class ClienteController {
 
         Cliente origem = persistence.buscarCliente(cpfOrigem);
         Cliente destino = persistence.buscarCliente(cpfDestino);
-        
-        System.out.println(origem);
-        System.out.println(destino);
-        System.out.println(valor);
-        
+
         BigDecimal limite = new BigDecimal("1000000");
 
-
-       if (origem == null || destino == null || valor.compareTo(limite) > 0 || origem.getCpf().equals(destino.getCpf()) || valor.compareTo(BigDecimal.ZERO) <= 0) {
+        if (origem == null || destino == null || valor.compareTo(limite) > 0 || origem.getCpf().equals(destino.getCpf()) || valor.compareTo(BigDecimal.ZERO) <= 0) {
             return false;
         }
 
@@ -70,6 +72,7 @@ public class ClienteController {
 
             persistence.atualizar(origem);
             persistence.atualizar(destino);
+
             return true;
         }
 
@@ -96,8 +99,7 @@ public class ClienteController {
         Cliente origem = persistence.buscarCliente(cpfOrigem);
         BigDecimal saldoAtual = origem.getSaldo();
 
-        
-        if(origem == null || valor.compareTo(BigDecimal.ZERO) < 0 || valor.compareTo(saldoAtual) > 0 || valor.compareTo(BigDecimal.ZERO) == 0){
+        if (origem == null || valor.compareTo(BigDecimal.ZERO) < 0 || valor.compareTo(saldoAtual) > 0 || valor.compareTo(BigDecimal.ZERO) == 0) {
             return false;
         }
 
@@ -115,8 +117,8 @@ public class ClienteController {
         if (origem == null) {
             return false;
         }
-        
-        if(valor.compareTo(BigDecimal.ZERO) < 0){
+
+        if (valor.compareTo(BigDecimal.ZERO) < 0) {
             return false;
         }
 

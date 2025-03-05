@@ -64,6 +64,14 @@ public class TransacaoController {
         persistence.registraTransacao(investimento);
     }
     
+    public void registraEmprestimo(String cpfOrigem, BigDecimal valor){
+        LocalDate data = LocalDate.now();
+        DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        Transacao emprestimo = new Transacao(cpfOrigem, null, valor, data.format(formato), "Empréstimo/Financiamento");
+        
+        persistence.registraTransacao(emprestimo);
+    }
+    
     public void carregaTransacoes() {
         
         List<Transacao> todas = persistence.findAll();

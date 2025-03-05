@@ -41,6 +41,7 @@ public class Deposito extends javax.swing.JFrame {
         btnCpf = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Depósito");
 
         btnValor.setBorder(javax.swing.BorderFactory.createTitledBorder("Valor"));
         btnValor.addActionListener(new java.awt.event.ActionListener() {
@@ -78,7 +79,7 @@ public class Deposito extends javax.swing.JFrame {
                 .addGap(156, 156, 156)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnCpf)
-                    .addComponent(btnValor, javax.swing.GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE)
+                    .addComponent(btnValor)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(btnVoltar)
                         .addGap(96, 96, 96)
@@ -137,7 +138,7 @@ public class Deposito extends javax.swing.JFrame {
             return;
         }
 
-        String senhaDigitada = JOptionPane.showInputDialog(null, "Confirme a senha do cliente de origem:", "Confirmação", JOptionPane.PLAIN_MESSAGE);
+        String senhaDigitada = JOptionPane.showInputDialog(null, "Confirme a senha do cliente:", "Confirmação", JOptionPane.PLAIN_MESSAGE);
         if (senhaDigitada.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Operação cancelada. Senha não informada.");
             return;
@@ -200,9 +201,9 @@ public class Deposito extends javax.swing.JFrame {
 
         if (sucesso) {
             tcontroller.registraDeposito(cpfOrigem,valorBigDecimal);
-            JOptionPane.showMessageDialog(null, "Saque realizado com sucesso");
+            JOptionPane.showMessageDialog(null, "Depósito realizado com sucesso");
         } else {
-            JOptionPane.showMessageDialog(null, "Saldo insuficiente ou erro no Saque");
+            JOptionPane.showMessageDialog(null, "Erro no depósito");
         }
 
     }

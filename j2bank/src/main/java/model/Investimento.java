@@ -12,12 +12,14 @@ public class Investimento {
     private BigDecimal valorInvestido;
     private String data;
     private String nomeDaOperacao;
+    private String tipo;
 
-    public Investimento(String cpfInvestidor, BigDecimal valorInvestido, String data, String nomeDaOperacao) {
+    public Investimento(String cpfInvestidor, BigDecimal valorInvestido, String data, String nomeDaOperacao, String tipo) {
         this.cpfInvestidor = cpfInvestidor;
         this.valorInvestido = valorInvestido;
         this.data = data;
         this.nomeDaOperacao = nomeDaOperacao;
+        this.tipo = tipo;
     }
 
     public String getCpfInvestidor() {
@@ -34,6 +36,10 @@ public class Investimento {
 
     public String getNomeDaOperacao() {
         return nomeDaOperacao;
+    }
+    
+    public String getTipo(){
+        return tipo;
     }
 
     @Override

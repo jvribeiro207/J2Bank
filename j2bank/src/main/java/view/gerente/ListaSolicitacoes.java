@@ -4,9 +4,11 @@
  */
 package view.gerente;
 
+import controller.SolicitacaoController;
 import java.awt.Dimension;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
+import model.Solicitacao;
 import view.gerente.*;
 
 /**
@@ -33,32 +35,50 @@ public class ListaSolicitacoes extends javax.swing.JInternalFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        lista_solicitacao = new javax.swing.JList<>();
+        aprovarBtn = new javax.swing.JButton();
+        recusarBtn = new javax.swing.JButton();
 
-        setBorder(javax.swing.BorderFactory.createTitledBorder("Lista de opções - Renda Variável"));
+        setBorder(javax.swing.BorderFactory.createTitledBorder("Lista de solicitações"));
         setClosable(true);
         setPreferredSize(new java.awt.Dimension(400, 300));
-
-        jList1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jList1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jList1.setFixedCellHeight(20);
-        jScrollPane1.setViewportView(jList1);
-
-        jButton1.setText("Aprovar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameClosing(evt);
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameOpened(evt);
             }
         });
 
-        jButton2.setText("Negar");
+        lista_solicitacao.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        lista_solicitacao.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        lista_solicitacao.setFixedCellHeight(20);
+        jScrollPane1.setViewportView(lista_solicitacao);
+
+        aprovarBtn.setText("Aprovar");
+        aprovarBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aprovarBtnActionPerformed(evt);
+            }
+        });
+
+        recusarBtn.setText("Negar");
+        recusarBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                recusarBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -67,9 +87,9 @@ public class ListaSolicitacoes extends javax.swing.JInternalFrame {
             .addComponent(jScrollPane1)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap(79, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(aprovarBtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
-                .addComponent(jButton2)
+                .addComponent(recusarBtn)
                 .addContainerGap(80, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -78,8 +98,8 @@ public class ListaSolicitacoes extends javax.swing.JInternalFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(aprovarBtn)
+                    .addComponent(recusarBtn))
                 .addContainerGap(29, Short.MAX_VALUE))
         );
 
@@ -97,21 +117,40 @@ public class ListaSolicitacoes extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void aprovarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aprovarBtnActionPerformed
         // TODO add your handling code here:
-        if (!jList1.isSelectionEmpty()) {
-            JFrame parentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
-            SolicitacaoAuth menu = new SolicitacaoAuth(parentFrame, false);
-            menu.setVisible(true);
+        if (!lista_solicitacao.isSelectionEmpty()) {
+            controller.aprovaSolicitacao();
+            controller.atualizaLista();
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_aprovarBtnActionPerformed
+
+    private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
+        // TODO add your handling code here:
+        controller = new SolicitacaoController(lista_solicitacao);
+        controller.carregaSolicitacao();
+    }//GEN-LAST:event_formInternalFrameOpened
+
+    private void recusarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_recusarBtnActionPerformed
+        // TODO add your handling code here:
+        if (!lista_solicitacao.isSelectionEmpty()) {
+            controller.recusaSolicitacao();
+            controller.atualizaLista();
+        }
+    }//GEN-LAST:event_recusarBtnActionPerformed
+
+    private void formInternalFrameClosing(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameClosing
+        // TODO add your handling code here:
+        controller.salvaLista();
+    }//GEN-LAST:event_formInternalFrameClosing
 
 
+    private SolicitacaoController controller;
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JList<String> jList1;
+    private javax.swing.JButton aprovarBtn;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JList<Solicitacao> lista_solicitacao;
+    private javax.swing.JButton recusarBtn;
     // End of variables declaration//GEN-END:variables
 }

@@ -138,6 +138,18 @@ public class Registro extends javax.swing.JFrame {
         String senha = new String(tfSenha.getPassword());
         String tipoUsuario = cbTipo.getSelectedItem().toString();
         boolean sucesso = false;
+        
+        // Verificação do nome
+        if (nome.length() <= 3 || !nome.matches("[a-zA-ZÀ-ú ]+")) {
+            JOptionPane.showMessageDialog(null, "O nome deve ter mais de 3 letras e não pode conter números!", "Erro", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        // Verificação da senha
+        if (senha.length() < 6) {
+            JOptionPane.showMessageDialog(null, "A senha deve ter pelo menos 6 caracteres!", "Erro", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
 
         switch (cbTipo.getSelectedItem().toString()) {
             case "Cliente": {

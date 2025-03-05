@@ -44,6 +44,7 @@ public class Saque extends javax.swing.JFrame {
         btnCpf = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Saque");
 
         jPanel2.setPreferredSize(new java.awt.Dimension(800, 600));
 
@@ -135,7 +136,7 @@ public class Saque extends javax.swing.JFrame {
             return;
         }
 
-        String senhaDigitada = JOptionPane.showInputDialog(null, "Confirme a senha do cliente de origem:", "Confirmação", JOptionPane.PLAIN_MESSAGE);
+        String senhaDigitada = JOptionPane.showInputDialog(null, "Confirme a senha do cliente:", "Confirmação", JOptionPane.PLAIN_MESSAGE);
         if (senhaDigitada.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Operação cancelada. Senha não informada.");
             return;

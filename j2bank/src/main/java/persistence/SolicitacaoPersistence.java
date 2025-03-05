@@ -48,7 +48,7 @@ public class SolicitacaoPersistence implements Persistence<Solicitacao> {
         List<Solicitacao> solicitacoes = new ArrayList<>();
         if (!json.trim().equals("")) {
 
-            Type tipoLista = new TypeToken<List<Cliente>>() {
+            Type tipoLista = new TypeToken<List<Solicitacao>>() {
             }.getType();
             solicitacoes = gson.fromJson(json, tipoLista);
 

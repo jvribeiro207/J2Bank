@@ -1,3 +1,6 @@
+/* Autores: Bruno Cesario Menezes - 202335003
+            João Victor Macedo Ribeiro - 202335011
+            José Simões de Araújo Neto - 202335035 */
 package persistence;
 
 import com.google.gson.Gson;
@@ -10,10 +13,6 @@ import java.util.List;
 import model.Transacao;
 import static persistence.Persistence.DIRECTORY;
 
-/**
- *
- * @author joaov
- */
 public class TransacaoPersistence implements Persistence<Transacao> {
 
     private static final String PATH = DIRECTORY + File.separator + "transacoes.json";
@@ -56,8 +55,8 @@ public class TransacaoPersistence implements Persistence<Transacao> {
 
         return transacoes;
     }
-    
-    public void registraTransacao(Transacao transacao){
+
+    public void registraTransacao(Transacao transacao) {
         List<Transacao> transacoes = findAll();
         transacoes.add(transacao);
         save(transacoes);

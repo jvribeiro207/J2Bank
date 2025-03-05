@@ -1,14 +1,11 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- */
+/* Autores: Bruno Cesario Menezes - 202335003
+            João Victor Macedo Ribeiro - 202335011
+            José Simões de Araújo Neto - 202335035 */
 
 package com.mycompany.j2bank;
 import view.auth.Login;
 
-/**
- *
- * @author B r u n o
- */
+
 public class J2bank {
 
     public static void main(String[] args) {

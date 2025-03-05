@@ -1,22 +1,14 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+/* Autores: Bruno Cesario Menezes - 202335003
+            João Victor Macedo Ribeiro - 202335011
+            José Simões de Araújo Neto - 202335035 */
 package controller.gerente;
 
-import java.util.List;
 import javax.swing.JOptionPane;
 import model.Gerente;
 import persistence.CaixaPersistence;
 import persistence.ClientePersistence;
 import persistence.GerentePersistence;
-import persistence.Persistence;
-import view.auth.Registro;
 
-/**
- *
- * @author B r u n o
- */
 public class RegGerenteController {
 
     private ClientePersistence clientePersistence;

@@ -1,23 +1,21 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+/* Autores: Bruno Cesario Menezes - 202335003
+            João Victor Macedo Ribeiro - 202335011
+            José Simões de Araújo Neto - 202335035 */
 package controller.investimento;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultListModel;
+import javax.swing.JList;
+import javax.swing.JOptionPane;
 import model.Cliente;
 import model.Investimento;
 import persistence.InvestimentoPersistence;
 import view.cliente.TelaInvestimentos;
 
-/**
- *
- * @author joaov
- */
 public class InvestimentoController {
 
     private InvestimentoPersistence persistence;
@@ -32,16 +30,14 @@ public class InvestimentoController {
         this.model = (DefaultListModel<Investimento>) tela.getListaInvestimentos().getModel();
     }
 
-    
-    
     public InvestimentoController() {
         persistence = new InvestimentoPersistence();
     }
 
-    public void registraInvestimento(String cpf, BigDecimal valor, String nomeDaOperacao) {
+    public void registraInvestimento(String cpf, BigDecimal valor, String nomeDaOperacao, String tipo) {
         LocalDate data = LocalDate.now();
         DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        Investimento investimento = new Investimento(cpf, valor, data.format(formato), nomeDaOperacao);
+        Investimento investimento = new Investimento(cpf, valor, data.format(formato), nomeDaOperacao, tipo);
 
         persistence.registraInvestimento(investimento);
     }
@@ -57,4 +53,30 @@ public class InvestimentoController {
             }
         }
     }
+
+    public List<Investimento> listaInvestimentos() {
+        List<Investimento> lista = new ArrayList<>();
+
+        for (int i = 0; i < model.size(); i++) {
+            lista.add(model.get(i));
+        }
+
+        return lista;
+    }
+
+    public void salvaAoFechar() {
+        InvestimentoPersistence persistence = new InvestimentoPersistence();
+        persistence.save(listaInvestimentos());
+    }
+
+    public void removeInvestimento(Investimento selecionado) {
+        List<Investimento> lista = persistence.findAll();
+        for(Investimento i : lista){
+            if(i.getNomeDaOperacao().equals(selecionado.getNomeDaOperacao())){
+                lista.remove(i);
+            }
+        }
+        persistence.save(lista);
+    }
+
 }

@@ -4,10 +4,14 @@
  */
 package view.cliente;
 
+import controller.ClienteController;
 import controller.SolicitacaoController;
+import controller.TransacaoController;
 import java.math.BigDecimal;
 import javax.swing.JOptionPane;
 import model.Cliente;
+import model.Solicitacao;
+import persistence.ClientePersistence;
 
 /**
  *
@@ -21,6 +25,8 @@ public class TelaSolicitacao extends javax.swing.JFrame {
     public TelaSolicitacao() {
         initComponents();
         scontroller = new SolicitacaoController();
+        clientePersistence = new ClientePersistence();
+        tcontroller = new TransacaoController();
     }
 
     /**
@@ -41,6 +47,11 @@ public class TelaSolicitacao extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Solicitação de Crédito");
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         cbTipoSolicitacao.setMaximumRowCount(2);
         cbTipoSolicitacao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Financiamento", "Empréstimo" }));
@@ -145,6 +156,28 @@ public class TelaSolicitacao extends javax.swing.JFrame {
         }
         solicitarCredito(valor, opcao);
     }//GEN-LAST:event_btnConfirmarActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+        Solicitacao pedido = scontroller.buscaSolicitacaoPorCpf(logado.getCpf());
+        if(pedido != null){
+            String senha = JOptionPane.showInputDialog
+                    (null, "Sua solicitação de crédito foi aprovada! Confirme com sua senha para aceitar:", 
+                    "Confirmação", JOptionPane.PLAIN_MESSAGE);
+            
+            if(senha.equals(logado.getSenha())){
+                BigDecimal saldo_atual = logado.getSaldo();
+                
+                logado.setSaldo(saldo_atual.add(pedido.getValor()));
+                
+                clientePersistence.atualizar(logado);
+                
+                tcontroller.registraEmprestimo(logado.getCpf(),pedido.getValor());
+                
+                scontroller.removeSolicitacao(pedido);
+            }
+        }
+    }//GEN-LAST:event_formWindowOpened
     
     private void solicitarCredito(String valor, String opcao){
         String cpfCliente = logado.getCpf();
@@ -209,6 +242,9 @@ public class TelaSolicitacao extends javax.swing.JFrame {
     public Cliente getLogado(){
         return logado;
     }
+    
+    private TransacaoController tcontroller;
+    private ClientePersistence clientePersistence;
     private SolicitacaoController scontroller;
     private Cliente logado;
     // Variables declaration - do not modify//GEN-BEGIN:variables

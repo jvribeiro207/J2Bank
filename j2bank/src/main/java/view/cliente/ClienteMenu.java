@@ -188,7 +188,7 @@ public class ClienteMenu extends javax.swing.JFrame {
         TelaSolicitacao ts = new TelaSolicitacao();
         ts.setVisible(true);
         ts.setLogado(logado);
-        this.setVisible(false);
+        dispose();
     }//GEN-LAST:event_btnSolicitacaoActionPerformed
 
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed

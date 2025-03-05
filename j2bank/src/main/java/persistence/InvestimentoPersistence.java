@@ -1,7 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+/* Autores: Bruno Cesario Menezes - 202335003
+            João Victor Macedo Ribeiro - 202335011
+            José Simões de Araújo Neto - 202335035 */
 package persistence;
 
 import com.google.gson.Gson;
@@ -13,15 +12,11 @@ import java.util.List;
 import model.Investimento;
 import static persistence.Persistence.DIRECTORY;
 
-/**
- *
- * @author joaov
- */
 public class InvestimentoPersistence implements Persistence<Investimento> {
-    
+
     private static final String PATH = DIRECTORY + File.separator + "investimentos.json";
-    
-    private void criaDiretorio(){
+
+    private void criaDiretorio() {
         File diretorio = new File(DIRECTORY);
         if (!diretorio.exists()) {
             diretorio.mkdirs();
@@ -38,7 +33,7 @@ public class InvestimentoPersistence implements Persistence<Investimento> {
         Arquivo.salva(PATH, json);
 
     }
-    
+
     @Override
     public List<Investimento> findAll() {
         Gson gson = new Gson();
@@ -59,11 +54,11 @@ public class InvestimentoPersistence implements Persistence<Investimento> {
 
         return investimentos;
     }
-    
-    public void registraInvestimento(Investimento investimento){
+
+    public void registraInvestimento(Investimento investimento) {
         List<Investimento> lista = findAll();
         lista.add(investimento);
         save(lista);
     }
-    
+
 }

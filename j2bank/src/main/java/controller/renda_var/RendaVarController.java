@@ -1,25 +1,18 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+/* Autores: Bruno Cesario Menezes - 202335003
+            João Victor Macedo Ribeiro - 202335011
+            José Simões de Araújo Neto - 202335035 */
 package controller.renda_var;
 
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
-import model.RendaFixa;
 import model.RendaVar;
 import persistence.Persistence;
-import persistence.RendaFixaPersistence;
 import persistence.RendaVarPersistence;
-import view.gerente.ListaRendaFixa;
 import view.gerente.ListaRendaVar;
 
-/**
- *
- * @author B r u n o
- */
+
 public class RendaVarController {
     private JList<RendaVar> lista;
     private ListaRendaVar janela;

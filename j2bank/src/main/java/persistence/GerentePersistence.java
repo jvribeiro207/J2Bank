@@ -1,11 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+/* Autores: Bruno Cesario Menezes - 202335003
+            João Victor Macedo Ribeiro - 202335011
+            José Simões de Araújo Neto - 202335035 */
 package persistence;
 
 import persistence.*;
-//import model.Usuario;
 
 import com.google.gson.reflect.TypeToken;
 
@@ -15,12 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 import com.google.gson.Gson;
 import model.Gerente;
-
-/**
- *
- * @author B r u n o
- */
-
 
 public class GerentePersistence implements Persistence<Gerente> {
 
@@ -60,24 +52,24 @@ public class GerentePersistence implements Persistence<Gerente> {
 
         return gerentes;
     }
+
     public Gerente buscarGerente(String cpf) {
-    Persistence<Gerente> gerente = new GerentePersistence();
-    List <Gerente> todos = gerente.findAll();
+        Persistence<Gerente> gerente = new GerentePersistence();
+        List<Gerente> todos = gerente.findAll();
 
-    //busca o gerente pelo CPF
-    return todos.stream().filter(g -> g.getCpf().equals(cpf)).findFirst().orElse(null);
-    
-}
+        //busca o gerente pelo CPF
+        return todos.stream().filter(g -> g.getCpf().equals(cpf)).findFirst().orElse(null);
+
+    }
+
     public void criarGerente(Gerente gerente) {
-    //carrega a lista existente
-    List<Gerente> gerentes = findAll();
+        //carrega a lista existente
+        List<Gerente> gerentes = findAll();
 
-    //adiciona o novo gerente
-    gerentes.add(gerente);
+        //adiciona o novo gerente
+        gerentes.add(gerente);
 
-    //salva a lista atualizada no JSON
-    save(gerentes);
+        //salva a lista atualizada no JSON
+        save(gerentes);
+    }
 }
-}
-
-

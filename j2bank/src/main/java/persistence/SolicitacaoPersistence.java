@@ -1,7 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+/* Autores: Bruno Cesario Menezes - 202335003
+            João Victor Macedo Ribeiro - 202335011
+            José Simões de Araújo Neto - 202335035 */
 package persistence;
 
 import com.google.gson.Gson;
@@ -14,20 +13,17 @@ import model.Cliente;
 import model.Solicitacao;
 import static persistence.Persistence.DIRECTORY;
 
-/**
- *
- * @author joaov
- */
 public class SolicitacaoPersistence implements Persistence<Solicitacao> {
+
     private static final String PATH = DIRECTORY + File.separator + "solicitacoes.json";
-    
-        private void criaDiretorio() {
+
+    private void criaDiretorio() {
         File diretorio = new File(DIRECTORY);
         if (!diretorio.exists()) {
             diretorio.mkdirs();
         }
     }
-        
+
     @Override
     public void save(List<Solicitacao> solicitacoes) {
         Gson gson = new Gson();
@@ -38,8 +34,8 @@ public class SolicitacaoPersistence implements Persistence<Solicitacao> {
         Arquivo.salva(PATH, json);
 
     }
-    
-     @Override
+
+    @Override
     public List<Solicitacao> findAll() {
         Gson gson = new Gson();
 
@@ -58,8 +54,8 @@ public class SolicitacaoPersistence implements Persistence<Solicitacao> {
         }
         return solicitacoes;
     }
-    
-    public void registraSolicitacao(Solicitacao solicitacao){
+
+    public void registraSolicitacao(Solicitacao solicitacao) {
         List<Solicitacao> solicitacoes = findAll();
         solicitacoes.add(solicitacao);
         save(solicitacoes);

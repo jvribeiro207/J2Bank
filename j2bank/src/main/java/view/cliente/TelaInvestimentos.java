@@ -1,3 +1,6 @@
+/* Autores: Bruno Cesario Menezes - 202335003
+            João Victor Macedo Ribeiro - 202335011
+            José Simões de Araújo Neto - 202335035 */
 package view.cliente;
 
 import controller.ClienteController;
@@ -344,9 +347,7 @@ public class TelaInvestimentos extends javax.swing.JFrame {
         }
     }
 
-    /**
-     * @param args the command line arguments
-     */
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

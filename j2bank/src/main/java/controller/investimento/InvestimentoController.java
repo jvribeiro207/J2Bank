@@ -1,7 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+/* Autores: Bruno Cesario Menezes - 202335003
+            João Victor Macedo Ribeiro - 202335011
+            José Simões de Araújo Neto - 202335035 */
 package controller.investimento;
 
 import java.math.BigDecimal;
@@ -14,10 +13,6 @@ import model.Investimento;
 import persistence.InvestimentoPersistence;
 import view.cliente.TelaInvestimentos;
 
-/**
- *
- * @author joaov
- */
 public class InvestimentoController {
 
     private InvestimentoPersistence persistence;
@@ -32,8 +27,6 @@ public class InvestimentoController {
         this.model = (DefaultListModel<Investimento>) tela.getListaInvestimentos().getModel();
     }
 
-    
-    
     public InvestimentoController() {
         persistence = new InvestimentoPersistence();
     }

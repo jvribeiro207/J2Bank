@@ -162,7 +162,7 @@ public class TelaSolicitacao extends javax.swing.JFrame {
         Solicitacao pedido = scontroller.buscaSolicitacaoPorCpf(logado.getCpf());
         if(pedido != null){
             String senha = JOptionPane.showInputDialog
-                    (null, "Sua solicitação de crédito foi aprovada! Confirme com sua senha para aceitar:", 
+                    (null, "Sua solicitação de crédito foi aprovada!\n\nConfirme com sua senha para aceitar:", 
                     "Confirmação", JOptionPane.PLAIN_MESSAGE);
             
             if(senha.equals(logado.getSenha())){

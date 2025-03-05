@@ -48,5 +48,12 @@ public class Solicitacao {
     public BigDecimal getValor() {
         return valor;
     }
+    
+    @Override
+    public String toString(){
+        return "Mutuário: " + getCpfCliente() +
+                " - " + "Valor: " + getValor() +
+                " - " + getTipoSolicitacao();
+    }
  
 }

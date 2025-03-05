@@ -70,7 +70,8 @@ public class TransacaoController {
         Cliente logado = tela.getLogado();
         
         for(Transacao t: todas){
-            if(t.getCpfOrigem().equals(logado.getCpf()) || t.getCpfDestino().equals(logado.getCpf())){
+            if (t.getCpfOrigem().equals(logado.getCpf()) || 
+            (t.getCpfDestino() != null && t.getCpfDestino().equals(logado.getCpf()))){
                 model.addElement(t);
             }
     }

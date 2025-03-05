@@ -4,6 +4,14 @@
  */
 package view.gerente;
 
+import controller.ClienteController;
+import controller.TransacaoController;
+import static java.lang.Double.parseDouble;
+import java.math.BigDecimal;
+import javax.swing.JOptionPane;
+import model.Cliente;
+import persistence.ClientePersistence;
+
 /**
  *
  * @author B r u n o
@@ -15,6 +23,9 @@ public class TransferMov extends javax.swing.JInternalFrame {
      */
     public TransferMov() {
         initComponents();
+        clientePersistence = new ClientePersistence();
+        ccontroller = new ClienteController();
+        tcontroller = new TransacaoController();
     }
 
     /**
@@ -27,35 +38,55 @@ public class TransferMov extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         transferNome = new javax.swing.JLabel();
         transferSaldo = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jTextField2 = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
+        senha = new javax.swing.JTextField();
+        transferBtn = new javax.swing.JButton();
+        valor = new javax.swing.JTextField();
+        buscaClienteBtn = new javax.swing.JButton();
+        cpfCliente = new javax.swing.JFormattedTextField();
+        cpfDestino = new javax.swing.JFormattedTextField();
 
         setBorder(javax.swing.BorderFactory.createTitledBorder("Realizar transferência"));
         setClosable(true);
-
-        jTextField1.setBorder(javax.swing.BorderFactory.createTitledBorder("CPF"));
 
         jLabel1.setText("Saldo do cliente:");
 
         jLabel3.setText("Nome do cliente:");
 
-        jTextField4.setBorder(javax.swing.BorderFactory.createTitledBorder("CPF do destinatário"));
+        senha.setBorder(javax.swing.BorderFactory.createTitledBorder("Senha do cliente"));
 
-        jTextField5.setBorder(javax.swing.BorderFactory.createTitledBorder("Senha do cliente"));
+        transferBtn.setText("Realizar transferência");
+        transferBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                transferBtnActionPerformed(evt);
+            }
+        });
 
-        jButton1.setText("Realizar transferência");
+        valor.setBorder(javax.swing.BorderFactory.createTitledBorder("Valor da transferência"));
 
-        jTextField2.setBorder(javax.swing.BorderFactory.createTitledBorder("Valor da transferência"));
+        buscaClienteBtn.setText("...");
+        buscaClienteBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscaClienteBtnActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("...");
+        cpfCliente.setBorder(javax.swing.BorderFactory.createTitledBorder("CPF do cliente"));
+        try {
+            cpfCliente.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        cpfDestino.setBorder(javax.swing.BorderFactory.createTitledBorder("CPF do destinatário"));
+        try {
+            cpfDestino.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -64,40 +95,40 @@ public class TransferMov extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(123, 123, 123)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField5)
-                    .addComponent(jTextField2)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE))
-                .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(senha)
+                    .addComponent(valor)
+                    .addComponent(transferBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE))
+                .addGap(0, 130, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(64, 64, 64)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(transferNome)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(transferNome))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(transferSaldo))))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE)
+                        .addComponent(transferSaldo)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addComponent(cpfCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(42, 42, 42)
-                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27))
+                .addComponent(buscaClienteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(cpfDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(16, 16, 16)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(buscaClienteBtn)
+                    .addComponent(cpfCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cpfDestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(12, 12, 12)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(transferNome))
@@ -106,12 +137,12 @@ public class TransferMov extends javax.swing.JInternalFrame {
                     .addComponent(jLabel1)
                     .addComponent(transferSaldo))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(valor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(senha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addComponent(transferBtn)
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -128,18 +159,75 @@ public class TransferMov extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void buscaClienteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscaClienteBtnActionPerformed
+        // TODO add your handling code here:
+        if (!cpfCliente.equals("")) {
+            busca = clientePersistence.buscarCliente(cpfCliente.getText());
 
+            if (busca != null) {
+                transferNome.setText(busca.getNome());
+                transferSaldo.setText(busca.getSaldo().toPlainString());
+            } else {
+                JOptionPane.showMessageDialog(null, "Cliente não encontrado");
+            }
+        }
+    }//GEN-LAST:event_buscaClienteBtnActionPerformed
+
+    private void transferBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transferBtnActionPerformed
+        // TODO add your handling code here:
+        if (busca == null) {
+            JOptionPane.showMessageDialog(null, "Clique em ... ao lado do CPF para buscar cliente no sistema");
+        } else if (parseDouble(valor.getText()) <= 0) {
+            JOptionPane.showMessageDialog(null, "Não é possível sacar esse valor");
+        } else if (!senha.getText().equals(busca.getSenha())) {
+            JOptionPane.showMessageDialog(null, "Senha inválida");
+        } else if (cpfDestino.equals("") || clientePersistence.buscarCliente(cpfDestino.getText()) == null) {
+            JOptionPane.showMessageDialog(null, "CPF de destino é inválido ou não foi encontrado no sistema");
+        }
+        else {
+            realizarTransferencia(busca.getCpf(), cpfDestino.getText(), valor.getText());
+            transferNome.setText(busca.getNome());
+            transferSaldo.setText(busca.getSaldo().toPlainString());
+        }
+    }//GEN-LAST:event_transferBtnActionPerformed
+ 
+    public void realizarTransferencia(String cpfOrigem, String cpfDestino, String valor) {
+        
+        BigDecimal valorBigDecimal;
+        try {
+            valor = valor.replace(",", "."); //normaliza entrada caso venha com vírgula
+            valorBigDecimal = new BigDecimal(valor);
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Valor inválido. Digite um número válido.");
+            return;
+        }
+        
+        boolean sucesso = ccontroller.transferir(cpfOrigem, cpfDestino, valorBigDecimal);
+
+        if (sucesso) {
+            tcontroller.registraTransferencia(cpfOrigem,cpfDestino,valorBigDecimal);
+            JOptionPane.showMessageDialog(null, "Transferência realizada com sucesso");
+        } else {
+            JOptionPane.showMessageDialog(null, "Saldo insuficiente ou erro na transferência");
+        }
+
+    }
+    
+    private Cliente busca;
+    private ClientePersistence clientePersistence;
+    private ClienteController ccontroller;
+    private TransacaoController tcontroller;
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton buscaClienteBtn;
+    private javax.swing.JFormattedTextField cpfCliente;
+    private javax.swing.JFormattedTextField cpfDestino;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
+    private javax.swing.JTextField senha;
+    private javax.swing.JButton transferBtn;
     private javax.swing.JLabel transferNome;
     private javax.swing.JLabel transferSaldo;
+    private javax.swing.JTextField valor;
     // End of variables declaration//GEN-END:variables
 }

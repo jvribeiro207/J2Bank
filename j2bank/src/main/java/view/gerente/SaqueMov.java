@@ -4,6 +4,14 @@
  */
 package view.gerente;
 
+import controller.ClienteController;
+import controller.TransacaoController;
+import static java.lang.Double.parseDouble;
+import java.math.BigDecimal;
+import javax.swing.JOptionPane;
+import model.Cliente;
+import persistence.ClientePersistence;
+
 /**
  *
  * @author B r u n o
@@ -15,6 +23,9 @@ public class SaqueMov extends javax.swing.JInternalFrame {
      */
     public SaqueMov() {
         initComponents();
+        clientePersistence = new ClientePersistence();
+        ccontroller = new ClienteController();
+        tcontroller = new TransacaoController();
     }
 
     /**
@@ -27,32 +38,47 @@ public class SaqueMov extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         saqNome = new javax.swing.JLabel();
         saqSaldo = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        valor = new javax.swing.JTextField();
+        senha = new javax.swing.JTextField();
+        sacaBtn = new javax.swing.JButton();
+        buscaClienteBtn = new javax.swing.JButton();
+        cpfCliente = new javax.swing.JFormattedTextField();
 
         setBorder(javax.swing.BorderFactory.createTitledBorder("Realizar saque"));
         setClosable(true);
-
-        jTextField1.setBorder(javax.swing.BorderFactory.createTitledBorder("CPF"));
 
         jLabel1.setText("Saldo do cliente:");
 
         jLabel3.setText("Nome do cliente:");
 
-        jTextField4.setBorder(javax.swing.BorderFactory.createTitledBorder("Valor do saque"));
+        valor.setBorder(javax.swing.BorderFactory.createTitledBorder("Valor do saque"));
 
-        jTextField5.setBorder(javax.swing.BorderFactory.createTitledBorder("Senha do cliente"));
+        senha.setBorder(javax.swing.BorderFactory.createTitledBorder("Senha do cliente"));
 
-        jButton1.setText("Realizar saque");
+        sacaBtn.setText("Realizar saque");
+        sacaBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sacaBtnActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("...");
+        buscaClienteBtn.setText("...");
+        buscaClienteBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscaClienteBtnActionPerformed(evt);
+            }
+        });
+
+        cpfCliente.setBorder(javax.swing.BorderFactory.createTitledBorder("CPF do cliente"));
+        try {
+            cpfCliente.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -63,11 +89,11 @@ public class SaqueMov extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField4)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(valor)
+                            .addComponent(senha, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addGap(49, 49, 49)
-                            .addComponent(jButton1)
+                            .addComponent(sacaBtn)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -78,18 +104,18 @@ public class SaqueMov extends javax.swing.JInternalFrame {
                             .addComponent(saqNome)
                             .addComponent(saqSaldo)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(cpfCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(buscaClienteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(82, 82, 82))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(16, 16, 16)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(19, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2))
+                    .addComponent(buscaClienteBtn)
+                    .addComponent(cpfCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -99,12 +125,12 @@ public class SaqueMov extends javax.swing.JInternalFrame {
                     .addComponent(jLabel1)
                     .addComponent(saqSaldo))
                 .addGap(18, 18, 18)
-                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(valor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(senha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addComponent(sacaBtn)
+                .addGap(16, 16, 16))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -121,17 +147,71 @@ public class SaqueMov extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void buscaClienteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscaClienteBtnActionPerformed
+        // TODO add your handling code here:
+        if (!cpfCliente.equals("")) {
+            System.out.println(cpfCliente.getText());
+            busca = clientePersistence.buscarCliente(cpfCliente.getText());
 
+            if (busca != null) {
+                saqNome.setText(busca.getNome());
+                saqSaldo.setText(busca.getSaldo().toPlainString());
+            } else {
+                JOptionPane.showMessageDialog(null, "Cliente não encontrado");
+            }
+        }
+    }//GEN-LAST:event_buscaClienteBtnActionPerformed
+
+    private void sacaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sacaBtnActionPerformed
+        // TODO add your handling code here:
+        if (busca == null) {
+            JOptionPane.showMessageDialog(null, "Clique em ... ao lado do CPF para buscar cliente no sistema");
+        } else if (parseDouble(valor.getText()) <= 0) {
+            JOptionPane.showMessageDialog(null, "Não é possível sacar esse valor");
+        } else if (!senha.getText().equals(busca.getSenha())) {
+            JOptionPane.showMessageDialog(null, "Senha inválida");
+        } else {
+            realizarSaque(busca.getCpf(), valor.getText());
+            saqNome.setText(busca.getNome());
+            saqSaldo.setText(busca.getSaldo().toPlainString());
+        }
+    }//GEN-LAST:event_sacaBtnActionPerformed
+
+    private void realizarSaque(String cpfOrigem, String valor) {
+
+        BigDecimal valorBigDecimal;
+        try {
+            valor = valor.replace(",", "."); //normaliza entrada caso venha com vírgula
+            valorBigDecimal = new BigDecimal(valor);
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Valor inválido. Digite um número válido.");
+            return;
+        }
+        boolean sucesso = ccontroller.saque(cpfOrigem, valorBigDecimal);
+
+        if (sucesso) {
+            tcontroller.registraSaque(cpfOrigem, valorBigDecimal);
+            JOptionPane.showMessageDialog(null, "Saque realizado com sucesso");
+        } else {
+            JOptionPane.showMessageDialog(null, "Saldo insuficiente ou erro no Saque");
+        }
+
+    }
+
+    private TransacaoController tcontroller;
+    private ClienteController ccontroller;
+    private Cliente busca;
+    private ClientePersistence clientePersistence;
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton buscaClienteBtn;
+    private javax.swing.JFormattedTextField cpfCliente;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
+    private javax.swing.JButton sacaBtn;
     private javax.swing.JLabel saqNome;
     private javax.swing.JLabel saqSaldo;
+    private javax.swing.JTextField senha;
+    private javax.swing.JTextField valor;
     // End of variables declaration//GEN-END:variables
 }

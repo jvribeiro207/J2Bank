@@ -4,7 +4,7 @@
  */
 package view.gerente;
 
-import controller.SolicitacaoController;
+import controller.solicitacao.SolicitacaoController;
 import java.awt.Dimension;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;

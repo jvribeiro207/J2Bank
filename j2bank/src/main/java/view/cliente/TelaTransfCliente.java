@@ -6,8 +6,8 @@ package view.cliente;
 import java.math.BigDecimal;
 import javax.swing.JOptionPane;
 import model.Cliente;
-import controller.ClienteController;
-import controller.TransacaoController;
+import controller.cliente.ClienteController;
+import controller.transacao.TransacaoController;
 
 
 public class TelaTransfCliente extends javax.swing.JFrame {

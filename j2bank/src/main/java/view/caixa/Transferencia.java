@@ -7,9 +7,9 @@ package view.caixa;
 import java.math.BigDecimal;
 import javax.swing.JOptionPane;
 import model.Cliente;
-import controller.TransacaoController;
+import controller.transacao.TransacaoController;
 import model.Transacao;
-import controller.ClienteController;
+import controller.cliente.ClienteController;
 
 /**
  *

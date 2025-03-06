@@ -3,8 +3,8 @@
             José Simões de Araújo Neto - 202335035 */
 package view.cliente;
 
-import controller.ClienteController;
-import controller.TransacaoController;
+import controller.cliente.ClienteController;
+import controller.transacao.TransacaoController;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import javax.swing.JList;

@@ -4,8 +4,8 @@
  */
 package view.gerente;
 
-import controller.ClienteController;
-import controller.TransacaoController;
+import controller.cliente.ClienteController;
+import controller.transacao.TransacaoController;
 import static java.lang.Double.parseDouble;
 import java.math.BigDecimal;
 import javax.swing.JOptionPane;

@@ -3,9 +3,9 @@
             José Simões de Araújo Neto - 202335035 */
 package view.cliente;
 
-import controller.ClienteController;
-import controller.SolicitacaoController;
-import controller.TransacaoController;
+import controller.cliente.ClienteController;
+import controller.solicitacao.SolicitacaoController;
+import controller.transacao.TransacaoController;
 import java.math.BigDecimal;
 import javax.swing.JOptionPane;
 import model.Cliente;

@@ -295,7 +295,7 @@ public class TelaInvestimentos extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Senha incorreta! Tente novamente.");
                 return;
             }
-            realizarInvestimento(cpfInvestidor, valor, nomeDaOperacao, "Renda Variável");
+            realizarInvestimento(cpfInvestidor, valor, nomeDaOperacao, "Renda Variavel");
             ClienteMenu cm = new ClienteMenu();
             cm.setLogado(logado);
             cm.setVisible(true);
@@ -386,14 +386,13 @@ public class TelaInvestimentos extends javax.swing.JFrame {
             BigDecimal porcentagemMin = new BigDecimal("2");
             BigDecimal porcentagemMax = new BigDecimal("90");
             Random random = new Random();
-            boolean aumentar = random.nextBoolean(); //true: aumenta, false: diminui
             
             //gera uma porcentagem aleatória dentro do intervalo
             BigDecimal porcentagemAleatoria = porcentagemMin.add(
                     new BigDecimal(random.nextDouble()).multiply(porcentagemMax.subtract(porcentagemMin))
-            ).setScale(2, RoundingMode.HALF_UP);
+                    ).setScale(2, RoundingMode.HALF_UP);
             
-            if(!aumentar){//se for falso, transforma em negativo (redução)
+            if(random.nextBoolean()){
                 porcentagemAleatoria = porcentagemAleatoria.negate();
             }
             //converte a porcentagem para decimal
@@ -406,7 +405,7 @@ public class TelaInvestimentos extends javax.swing.JFrame {
             
             ccontroller.deposito(cpf, novoValor);
             tcontroller.registraDeposito(cpf, novoValor);
-        }else{
+        }else if(tipo.equals("Renda Fixa")){
             BigDecimal porcentagemMin = new BigDecimal("1");
             BigDecimal porcentagemMax = new BigDecimal("20");
             Random random = new Random();

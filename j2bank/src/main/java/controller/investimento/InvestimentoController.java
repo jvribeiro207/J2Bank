@@ -70,10 +70,20 @@ public class InvestimentoController {
     }
 
     public void removeInvestimento(Investimento selecionado) {
+        String nome = selecionado.getNomeDaOperacao();
+        BigDecimal valor = selecionado.getValorInvestido();
+        String data = selecionado.getData();
+        String tipo = selecionado.getTipo();
         List<Investimento> lista = persistence.findAll();
-        for(Investimento i : lista){
-            if(i.getNomeDaOperacao().equals(selecionado.getNomeDaOperacao())){
+        
+        for (int i = lista.size() - 1; i >= 0; i--) {//verifica todos os campos antes de remover.
+            if (lista.get(i).getNomeDaOperacao().equals(nome) && 
+                    lista.get(i).getData().equals(data) && 
+                    lista.get(i).getTipo().equals(tipo) && 
+                    lista.get(i).getValorInvestido().compareTo(valor) ==0){{
                 lista.remove(i);
+                break;
+            }
             }
         }
         persistence.save(lista);

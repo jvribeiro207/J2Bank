@@ -36,7 +36,7 @@ public class ListaRendaFixa extends javax.swing.JInternalFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         listaRendaF = new javax.swing.JList<>();
-        jButton2 = new javax.swing.JButton();
+        excluirBtn = new javax.swing.JButton();
 
         setBorder(javax.swing.BorderFactory.createTitledBorder("Lista de opções - Renda Fixa"));
         setClosable(true);
@@ -65,10 +65,10 @@ public class ListaRendaFixa extends javax.swing.JInternalFrame {
         listaRendaF.setFixedCellHeight(20);
         jScrollPane1.setViewportView(listaRendaF);
 
-        jButton2.setText("Excluir operação");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        excluirBtn.setText("Excluir operação");
+        excluirBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                excluirBtnActionPerformed(evt);
             }
         });
 
@@ -79,7 +79,7 @@ public class ListaRendaFixa extends javax.swing.JInternalFrame {
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 390, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(128, 128, 128)
-                .addComponent(jButton2)
+                .addComponent(excluirBtn)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -87,7 +87,7 @@ public class ListaRendaFixa extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton2)
+                .addComponent(excluirBtn)
                 .addContainerGap(33, Short.MAX_VALUE))
         );
 
@@ -116,12 +116,12 @@ public class ListaRendaFixa extends javax.swing.JInternalFrame {
         controller.salvaRendaFixaAoFechar();
     }//GEN-LAST:event_formInternalFrameClosing
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void excluirBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_excluirBtnActionPerformed
         // TODO add your handling code here:
         if(!listaRendaF.isSelectionEmpty()){
             controller.removeRendaFixa();
         }
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_excluirBtnActionPerformed
 
     public JList<RendaFixa> getListaRendaF() {
         return listaRendaF;
@@ -129,7 +129,7 @@ public class ListaRendaFixa extends javax.swing.JInternalFrame {
 
     private RendaFixaController controller;
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton excluirBtn;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JList<RendaFixa> listaRendaF;

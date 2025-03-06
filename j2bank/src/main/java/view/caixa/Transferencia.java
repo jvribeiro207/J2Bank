@@ -35,17 +35,17 @@ public class Transferencia extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        btnValor = new javax.swing.JTextField();
+        tfValor = new javax.swing.JTextField();
         voltar = new javax.swing.JButton();
         confirmar = new javax.swing.JButton();
-        btnContaDestino = new javax.swing.JFormattedTextField();
-        btnContaOrigem = new javax.swing.JFormattedTextField();
+        ftfContaDestino = new javax.swing.JFormattedTextField();
+        ftfContaOrigem = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setPreferredSize(new java.awt.Dimension(800, 600));
 
-        btnValor.setBorder(javax.swing.BorderFactory.createTitledBorder("Valor"));
+        tfValor.setBorder(javax.swing.BorderFactory.createTitledBorder("Valor"));
 
         voltar.setText("voltar");
         voltar.addActionListener(new java.awt.event.ActionListener() {
@@ -61,16 +61,16 @@ public class Transferencia extends javax.swing.JFrame {
             }
         });
 
-        btnContaDestino.setBorder(javax.swing.BorderFactory.createTitledBorder("Conta Destino"));
+        ftfContaDestino.setBorder(javax.swing.BorderFactory.createTitledBorder("Conta Destino"));
         try {
-            btnContaDestino.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+            ftfContaDestino.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
 
-        btnContaOrigem.setBorder(javax.swing.BorderFactory.createTitledBorder("Conta Origem"));
+        ftfContaOrigem.setBorder(javax.swing.BorderFactory.createTitledBorder("Conta Origem"));
         try {
-            btnContaOrigem.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+            ftfContaOrigem.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -83,15 +83,15 @@ public class Transferencia extends javax.swing.JFrame {
                 .addGap(56, 56, 56)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnValor, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tfValor, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(203, 203, 203))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(voltar)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(btnContaOrigem, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(ftfContaOrigem, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 88, Short.MAX_VALUE)
-                                .addComponent(btnContaDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(ftfContaDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(56, 56, 56))))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(217, 217, 217)
@@ -105,10 +105,10 @@ public class Transferencia extends javax.swing.JFrame {
                 .addComponent(voltar)
                 .addGap(50, 50, 50)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnContaDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnContaOrigem, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(ftfContaDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ftfContaOrigem, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(46, 46, 46)
-                .addComponent(btnValor, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tfValor, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
                 .addComponent(confirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(44, 44, 44))
@@ -139,9 +139,9 @@ public class Transferencia extends javax.swing.JFrame {
     private void confirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarActionPerformed
         // TODO add your handling code here:
 
-        String cpfOrigem = btnContaOrigem.getText();
-        String cpfDestino = btnContaDestino.getText();
-        String valor = btnValor.getText();
+        String cpfOrigem = ftfContaOrigem.getText();
+        String cpfDestino = ftfContaDestino.getText();
+        String valor = tfValor.getText();
 
         // Busca o cliente de origem pelo CPF
         Cliente clienteOrigem = buscarClientePorCpf(cpfOrigem);
@@ -249,11 +249,11 @@ public class Transferencia extends javax.swing.JFrame {
     private ClienteController ccontroller;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JFormattedTextField btnContaDestino;
-    private javax.swing.JFormattedTextField btnContaOrigem;
-    private javax.swing.JTextField btnValor;
     private javax.swing.JButton confirmar;
+    private javax.swing.JFormattedTextField ftfContaDestino;
+    private javax.swing.JFormattedTextField ftfContaOrigem;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JTextField tfValor;
     private javax.swing.JButton voltar;
     // End of variables declaration//GEN-END:variables
 }

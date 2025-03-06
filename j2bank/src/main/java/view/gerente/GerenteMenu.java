@@ -37,17 +37,17 @@ public class GerenteMenu extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        transferMenu = new javax.swing.JMenuItem();
+        saqueMenu = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jMenuItem6 = new javax.swing.JMenuItem();
-        jMenuItem7 = new javax.swing.JMenuItem();
+        cadRendaFMenu = new javax.swing.JMenuItem();
+        cadRendaVarMenu = new javax.swing.JMenuItem();
+        listaRendaFMenu = new javax.swing.JMenuItem();
+        listaRendaVarMenu = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
-        jMenuItem5 = new javax.swing.JMenuItem();
+        solicitacaoMenu = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
-        jMenuItem8 = new javax.swing.JMenuItem();
+        listaUsuariosMenu = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(0, 0));
@@ -115,81 +115,81 @@ public class GerenteMenu extends javax.swing.JFrame {
             }
         });
 
-        jMenuItem1.setText("Transferência");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        transferMenu.setText("Transferência");
+        transferMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                transferMenuActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem1);
+        jMenu1.add(transferMenu);
 
-        jMenuItem2.setText("Saque");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        saqueMenu.setText("Saque");
+        saqueMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                saqueMenuActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem2);
+        jMenu1.add(saqueMenu);
 
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Operações financeiras");
 
-        jMenuItem3.setText("Cadastrar renda fixa");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+        cadRendaFMenu.setText("Cadastrar renda fixa");
+        cadRendaFMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
+                cadRendaFMenuActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem3);
+        jMenu2.add(cadRendaFMenu);
 
-        jMenuItem4.setText("Cadastrar renda variável");
-        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+        cadRendaVarMenu.setText("Cadastrar renda variável");
+        cadRendaVarMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem4ActionPerformed(evt);
+                cadRendaVarMenuActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem4);
+        jMenu2.add(cadRendaVarMenu);
 
-        jMenuItem6.setText("Lista de renda fixa");
-        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+        listaRendaFMenu.setText("Lista de renda fixa");
+        listaRendaFMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem6ActionPerformed(evt);
+                listaRendaFMenuActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem6);
+        jMenu2.add(listaRendaFMenu);
 
-        jMenuItem7.setText("Lista de renda variável");
-        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+        listaRendaVarMenu.setText("Lista de renda variável");
+        listaRendaVarMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem7ActionPerformed(evt);
+                listaRendaVarMenuActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem7);
+        jMenu2.add(listaRendaVarMenu);
 
         jMenuBar1.add(jMenu2);
 
         jMenu3.setText("Avaliação de Crédito");
 
-        jMenuItem5.setText("Mostrar solicitações...");
-        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+        solicitacaoMenu.setText("Mostrar solicitações...");
+        solicitacaoMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem5ActionPerformed(evt);
+                solicitacaoMenuActionPerformed(evt);
             }
         });
-        jMenu3.add(jMenuItem5);
+        jMenu3.add(solicitacaoMenu);
 
         jMenuBar1.add(jMenu3);
 
         jMenu4.setText("Gerenciamento de Usuário");
 
-        jMenuItem8.setText("Ver lista de usuários");
-        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+        listaUsuariosMenu.setText("Ver lista de usuários");
+        listaUsuariosMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem8ActionPerformed(evt);
+                listaUsuariosMenuActionPerformed(evt);
             }
         });
-        jMenu4.add(jMenuItem8);
+        jMenu4.add(listaUsuariosMenu);
 
         jMenuBar1.add(jMenu4);
 
@@ -222,22 +222,22 @@ public class GerenteMenu extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jMenu1ActionPerformed
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    private void saqueMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saqueMenuActionPerformed
         // TODO add your handling code here:
         fechaJanelasInternas();
         SaqueMov menu = new SaqueMov();
         dashboard.add(menu);
         menu.show();
 
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+    }//GEN-LAST:event_saqueMenuActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void transferMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transferMenuActionPerformed
         // TODO add your handling code here:
         fechaJanelasInternas();
         TransferMov menu = new TransferMov();
         dashboard.add(menu);
         menu.show();
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_transferMenuActionPerformed
 
     private void logoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutBtnActionPerformed
         // TODO add your handling code here:
@@ -246,58 +246,58 @@ public class GerenteMenu extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_logoutBtnActionPerformed
 
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+    private void cadRendaFMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadRendaFMenuActionPerformed
         // TODO add your handling code here:
         fechaJanelasInternas();
         CadRendaFixa menu = new CadRendaFixa();
         dashboard.add(menu);
         menu.show();
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
+    }//GEN-LAST:event_cadRendaFMenuActionPerformed
 
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+    private void cadRendaVarMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadRendaVarMenuActionPerformed
         // TODO add your handling code here:
         fechaJanelasInternas();
         CadRendaVar menu = new CadRendaVar();
         dashboard.add(menu);
         menu.show();
-    }//GEN-LAST:event_jMenuItem4ActionPerformed
+    }//GEN-LAST:event_cadRendaVarMenuActionPerformed
 
-    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+    private void listaRendaFMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listaRendaFMenuActionPerformed
         // TODO add your handling code here:
         fechaJanelasInternas();
         ListaRendaFixa menu = new ListaRendaFixa();
         dashboard.add(menu);
         menu.show();
-    }//GEN-LAST:event_jMenuItem6ActionPerformed
+    }//GEN-LAST:event_listaRendaFMenuActionPerformed
 
-    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+    private void listaRendaVarMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listaRendaVarMenuActionPerformed
         // TODO add your handling code here:
         fechaJanelasInternas();
         ListaRendaVar menu = new ListaRendaVar();
         dashboard.add(menu);
         menu.show();
-    }//GEN-LAST:event_jMenuItem7ActionPerformed
+    }//GEN-LAST:event_listaRendaVarMenuActionPerformed
 
-    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+    private void solicitacaoMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_solicitacaoMenuActionPerformed
         // TODO add your handling code here:
         fechaJanelasInternas();
         ListaSolicitacoes menu = new ListaSolicitacoes();
         dashboard.add(menu);
         menu.show();
-    }//GEN-LAST:event_jMenuItem5ActionPerformed
+    }//GEN-LAST:event_solicitacaoMenuActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
     }//GEN-LAST:event_formWindowOpened
 
-    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+    private void listaUsuariosMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listaUsuariosMenuActionPerformed
         // TODO add your handling code here:
         fechaJanelasInternas();
         ListaGerencUsuarios menu = new ListaGerencUsuarios();
         menu.setLogado(this.logado);
         dashboard.add(menu);
         menu.show();
-    }//GEN-LAST:event_jMenuItem8ActionPerformed
+    }//GEN-LAST:event_listaUsuariosMenuActionPerformed
 
     private void formMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseMoved
         // TODO add your handling code here:
@@ -358,6 +358,8 @@ public class GerenteMenu extends javax.swing.JFrame {
     
     private Gerente logado;
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem cadRendaFMenu;
+    private javax.swing.JMenuItem cadRendaVarMenu;
     private javax.swing.JDesktopPane dashboard;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
@@ -365,14 +367,12 @@ public class GerenteMenu extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem jMenuItem7;
-    private javax.swing.JMenuItem jMenuItem8;
+    private javax.swing.JMenuItem listaRendaFMenu;
+    private javax.swing.JMenuItem listaRendaVarMenu;
+    private javax.swing.JMenuItem listaUsuariosMenu;
     private javax.swing.JButton logoutBtn;
+    private javax.swing.JMenuItem saqueMenu;
+    private javax.swing.JMenuItem solicitacaoMenu;
+    private javax.swing.JMenuItem transferMenu;
     // End of variables declaration//GEN-END:variables
 }

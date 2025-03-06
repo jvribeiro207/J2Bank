@@ -42,8 +42,8 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="156" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="btnCpf" max="32767" attributes="0"/>
-                      <Component id="btnValor" alignment="0" max="32767" attributes="0"/>
+                      <Component id="ftfCpf" max="32767" attributes="0"/>
+                      <Component id="tfValor" alignment="0" max="32767" attributes="0"/>
                       <Group type="102" alignment="1" attributes="0">
                           <Component id="btnVoltar" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="96" max="-2" attributes="0"/>
@@ -58,9 +58,9 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace min="-2" pref="83" max="-2" attributes="0"/>
-                  <Component id="btnCpf" min="-2" pref="50" max="-2" attributes="0"/>
+                  <Component id="ftfCpf" min="-2" pref="50" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="btnValor" min="-2" pref="51" max="-2" attributes="0"/>
+                  <Component id="tfValor" min="-2" pref="51" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="btnConfirmar" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -72,7 +72,7 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JTextField" name="btnValor">
+        <Component class="javax.swing.JTextField" name="tfValor">
           <Properties>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
@@ -81,7 +81,7 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnValorActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfValorActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnVoltar">
@@ -100,7 +100,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnConfirmarActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JFormattedTextField" name="btnCpf">
+        <Component class="javax.swing.JFormattedTextField" name="ftfCpf">
           <Properties>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">

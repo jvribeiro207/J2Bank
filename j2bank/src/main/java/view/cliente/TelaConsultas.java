@@ -26,12 +26,13 @@ public class TelaConsultas extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        voltarBtn = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         listaTransacoes = new javax.swing.JList<>();
         lblTemplate = new javax.swing.JLabel();
         lblSaldo = new javax.swing.JLabel();
         lblHistorico = new javax.swing.JLabel();
+        lblValor = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Consultas");
@@ -42,10 +43,10 @@ public class TelaConsultas extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Voltar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        voltarBtn.setText("Voltar");
+        voltarBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                voltarBtnActionPerformed(evt);
             }
         });
 
@@ -65,7 +66,7 @@ public class TelaConsultas extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(105, 500, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(voltarBtn)
                 .addGap(28, 28, 28))
             .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -84,7 +85,7 @@ public class TelaConsultas extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
-                .addComponent(jButton1)
+                .addComponent(voltarBtn)
                 .addGap(8, 8, 8)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblTemplate)
@@ -110,12 +111,12 @@ public class TelaConsultas extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void voltarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_voltarBtnActionPerformed
         ClienteMenu cm = new ClienteMenu();
         cm.setLogado(logado);
         cm.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_voltarBtnActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         BigDecimal saldoAtual = ccontroller.atualizaSaldo(logado.getCpf());
@@ -174,12 +175,13 @@ public class TelaConsultas extends javax.swing.JFrame {
     private Cliente logado;
     private TransacaoController tcontroller;
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblHistorico;
     private javax.swing.JLabel lblSaldo;
     private javax.swing.JLabel lblTemplate;
+    private javax.swing.JLabel lblValor;
     private javax.swing.JList<Transacao> listaTransacoes;
+    private javax.swing.JButton voltarBtn;
     // End of variables declaration//GEN-END:variables
 }

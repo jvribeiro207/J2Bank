@@ -34,18 +34,18 @@ public class Deposito extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        btnValor = new javax.swing.JTextField();
+        tfValor = new javax.swing.JTextField();
         btnVoltar = new javax.swing.JButton();
         btnConfirmar = new javax.swing.JButton();
-        btnCpf = new javax.swing.JFormattedTextField();
+        ftfCpf = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Depósito");
 
-        btnValor.setBorder(javax.swing.BorderFactory.createTitledBorder("Valor"));
-        btnValor.addActionListener(new java.awt.event.ActionListener() {
+        tfValor.setBorder(javax.swing.BorderFactory.createTitledBorder("Valor"));
+        tfValor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnValorActionPerformed(evt);
+                tfValorActionPerformed(evt);
             }
         });
 
@@ -63,9 +63,9 @@ public class Deposito extends javax.swing.JFrame {
             }
         });
 
-        btnCpf.setBorder(javax.swing.BorderFactory.createTitledBorder("CPF"));
+        ftfCpf.setBorder(javax.swing.BorderFactory.createTitledBorder("CPF"));
         try {
-            btnCpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+            ftfCpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -77,8 +77,8 @@ public class Deposito extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(156, 156, 156)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnCpf)
-                    .addComponent(btnValor)
+                    .addComponent(ftfCpf)
+                    .addComponent(tfValor)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(btnVoltar)
                         .addGap(96, 96, 96)
@@ -89,9 +89,9 @@ public class Deposito extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(83, 83, 83)
-                .addComponent(btnCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(ftfCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnValor, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tfValor, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(75, 75, 75)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnConfirmar)
@@ -114,9 +114,9 @@ public class Deposito extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnValorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnValorActionPerformed
+    private void tfValorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfValorActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnValorActionPerformed
+    }//GEN-LAST:event_tfValorActionPerformed
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
         // TODO add your handling code here:
@@ -127,8 +127,8 @@ public class Deposito extends javax.swing.JFrame {
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
         // TODO add your handling code here:
-        String cpfOrigem = btnCpf.getText();
-        String valor = btnValor.getText();
+        String cpfOrigem = ftfCpf.getText();
+        String valor = tfValor.getText();
 
         // Busca o cliente de origem pelo CPF
         Cliente clienteOrigem = buscarClientePorCpf(cpfOrigem);
@@ -218,9 +218,9 @@ public class Deposito extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConfirmar;
-    private javax.swing.JFormattedTextField btnCpf;
-    private javax.swing.JTextField btnValor;
     private javax.swing.JButton btnVoltar;
+    private javax.swing.JFormattedTextField ftfCpf;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JTextField tfValor;
     // End of variables declaration//GEN-END:variables
 }

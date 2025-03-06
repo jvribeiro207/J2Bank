@@ -33,7 +33,7 @@ mvn clean install
 ### Execute o JAR gerado:
 
 ```bash
-java java -jar target/j2bank-1.0-SNAPSHOT.jar
+java -jar target/j2bank-1.0-SNAPSHOT.jar
 ```
 ### Execute os testes de Unidade:
 

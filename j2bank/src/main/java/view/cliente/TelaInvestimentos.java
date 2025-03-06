@@ -249,13 +249,13 @@ public class TelaInvestimentos extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    
+
     private void btnComprarFixaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComprarFixaActionPerformed
 
         if (!ListaRendaFixa.isSelectionEmpty()) {
-        String cpfInvestidor = logado.getCpf();
-        String valor = tfValorFixa.getText();
-        String nomeDaOperacao = ListaRendaFixa.getSelectedValue().getNome_op();
+            String cpfInvestidor = logado.getCpf();
+            String valor = tfValorFixa.getText();
+            String nomeDaOperacao = ListaRendaFixa.getSelectedValue().getNome_op();
             //solicita a senha ao usuário
             String senhaDigitada = JOptionPane.showInputDialog(null, "Confirme sua senha:", "Confirmação", JOptionPane.PLAIN_MESSAGE);
 
@@ -279,9 +279,9 @@ public class TelaInvestimentos extends javax.swing.JFrame {
 
     private void btnComprarVarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComprarVarActionPerformed
         if (!ListaRendaVar.isSelectionEmpty()) {
-        String cpfInvestidor = logado.getCpf();
-        String valor = tfValorVar.getText();
-        String nomeDaOperacao = ListaRendaVar.getSelectedValue().getNome_op();
+            String cpfInvestidor = logado.getCpf();
+            String valor = tfValorVar.getText();
+            String nomeDaOperacao = ListaRendaVar.getSelectedValue().getNome_op();
 
             //solicita a senha ao usuário
             String senhaDigitada = JOptionPane.showInputDialog(null, "Confirme sua senha:", "Confirmação", JOptionPane.PLAIN_MESSAGE);
@@ -295,7 +295,7 @@ public class TelaInvestimentos extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Senha incorreta! Tente novamente.");
                 return;
             }
-            realizarInvestimento(cpfInvestidor, valor, nomeDaOperacao, "Renda Variável");
+            realizarInvestimento(cpfInvestidor, valor, nomeDaOperacao, "Renda Variavel");
             ClienteMenu cm = new ClienteMenu();
             cm.setLogado(logado);
             cm.setVisible(true);
@@ -335,12 +335,12 @@ public class TelaInvestimentos extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowOpened
 
     private void btnVenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVenderActionPerformed
-        if(!ListaInvestimentos.isSelectionEmpty()){
-           
+        if (!ListaInvestimentos.isSelectionEmpty()) {
+
             Investimento selecionado = ListaInvestimentos.getSelectedValue();
             BigDecimal valor = ListaInvestimentos.getSelectedValue().getValorInvestido();
             String tipo = ListaInvestimentos.getSelectedValue().getTipo();
-            
+
             //solicita a senha ao usuário
             String senhaDigitada = JOptionPane.showInputDialog(null, "Confirme sua senha:", "Confirmação", JOptionPane.PLAIN_MESSAGE);
 
@@ -353,7 +353,7 @@ public class TelaInvestimentos extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Senha incorreta! Tente novamente.");
                 return;
             }
-            
+
             retiraDinheiro(logado.getCpf(), valor, tipo);
             InvestimentoController controller = new InvestimentoController(this);
             controller.removeInvestimento(selecionado);
@@ -380,54 +380,54 @@ public class TelaInvestimentos extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Erro no investimento");
         }
     }
-    public void retiraDinheiro(String cpf, BigDecimal valor, String tipo){
-        
-        if(tipo.equals("Renda Variavel")){
+
+    public void retiraDinheiro(String cpf, BigDecimal valor, String tipo) {
+
+        if (tipo.equals("Renda Variavel")) {
             BigDecimal porcentagemMin = new BigDecimal("2");
             BigDecimal porcentagemMax = new BigDecimal("90");
             Random random = new Random();
-            boolean aumentar = random.nextBoolean(); //true: aumenta, false: diminui
-            
+
             //gera uma porcentagem aleatória dentro do intervalo
             BigDecimal porcentagemAleatoria = porcentagemMin.add(
                     new BigDecimal(random.nextDouble()).multiply(porcentagemMax.subtract(porcentagemMin))
             ).setScale(2, RoundingMode.HALF_UP);
-            
-            if(!aumentar){//se for falso, transforma em negativo (redução)
+
+            if (random.nextBoolean()) {//se for falso, transforma em negativo (redução)
                 porcentagemAleatoria = porcentagemAleatoria.negate();
             }
             //converte a porcentagem para decimal
             BigDecimal fator = porcentagemAleatoria.divide(BigDecimal.valueOf(100), 10, RoundingMode.HALF_UP);
-            
+
             //calcula o novo valor
             BigDecimal novoValor = valor.add(valor.multiply(fator)).setScale(2, RoundingMode.HALF_UP);
-            
+
             JOptionPane.showMessageDialog(null, "Dinheiro retirado com sucesso! Valor retirado: R$" + novoValor);
-            
+
             ccontroller.deposito(cpf, novoValor);
             tcontroller.registraDeposito(cpf, novoValor);
-        }else{
+        } else if(tipo.equals("Renda Fixa")) {
             BigDecimal porcentagemMin = new BigDecimal("1");
             BigDecimal porcentagemMax = new BigDecimal("20");
             Random random = new Random();
-            
+
             //gera uma porcentagem aleatória dentro do intervalo
             BigDecimal porcentagemAleatoria = porcentagemMin.add(
                     new BigDecimal(random.nextDouble()).multiply(porcentagemMax.subtract(porcentagemMin))
             ).setScale(2, RoundingMode.HALF_UP);
-            
+
             //converte a porcentagem para decimal
             BigDecimal fator = porcentagemAleatoria.divide(BigDecimal.valueOf(100), 10, RoundingMode.HALF_UP);
-            
+
             //calcula o novo valor
             BigDecimal novoValor = valor.add(valor.multiply(fator)).setScale(2, RoundingMode.HALF_UP);
-            
+
             JOptionPane.showMessageDialog(null, "Dinheiro retirado com sucesso! Valor retirado: R$" + novoValor);
-            
+
             ccontroller.deposito(cpf, novoValor);
             tcontroller.registraDeposito(cpf, novoValor);
         }
-        
+
     }
 
     public static void main(String args[]) {
@@ -469,11 +469,11 @@ public class TelaInvestimentos extends javax.swing.JFrame {
     public void setLogado(Cliente logado) {
         this.logado = logado;
     }
-    
-    public JList<Investimento> getListaInvestimentos(){
+
+    public JList<Investimento> getListaInvestimentos() {
         return ListaInvestimentos;
     }
-    
+
     private InvestimentoController icontroller;
     private ClienteController ccontroller;
     private TransacaoController tcontroller;
